@@ -207,11 +207,11 @@ window.editAnime=function(id){
  <div><label>分类</label><select class="field" name="category">${["TV动画","剧场版","OVA","ONA","其他"].map(x=>`<option value="${x}" ${((a.category||"TV动画")===x)?"selected":""}>${x}</option>`).join("")}</select></div>
  <div class="full"><label>封面图片 URL *</label><input class="field" id="editCoverUrl" name="cover_url" type="url" required value="${esc(coverValue)}" placeholder="粘贴可公开访问的图片直链"><div style="display:flex;align-items:center;gap:12px;margin-top:8px"><img id="editCoverPreview" src="${esc(coverValue)}" alt="封面预览" style="width:72px;height:96px;object-fit:cover;border-radius:8px;border:1px solid #dce7fb;${coverValue?'':'display:none'}" onerror="this.style.display='none'"><small class="muted">封面链接必填；请使用无需登录即可访问的图片直链。</small></div></div>
  <div class="full"><button class="btn primary" type="submit" style="width:100%">保存当前页修改的信息</button></div></form>`);
- const coverInput=$("editCoverUrl"),coverPreview=$("editCoverPreview");coverInput?.addEventListener("input",()=>{const u=coverInput.value.trim();coverPreview.src=u;coverPreview.style.display=u?"block":"none"});
+ const coverInput=$("editCoverUrl"),coverPreview=$("editCoverPreview");coverInput?.addEventListener("input",()=>{const u=coverInput.value.trim();coverPreview.style.display=u?"block":"none";if(u)coverPreview.src=u;else coverPreview.removeAttribute("src")});
  $("editAnimeForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.currentTarget),title=String(f.get("title")||"").trim(),cover=String(f.get("cover_url")||"").trim();if(!title){toast("番剧名称不能为空");return}if(!cover){toast("封面图片 URL 为必填项");return}
  const saveBtn=e.currentTarget.querySelector('button[type="submit"]');saveBtn.disabled=true;saveBtn.textContent="正在保存…";
  try{const r=await db.rpc("admin_update_anime",{p_anime_id:id,p_title:title,p_year:f.get("year")?Number(f.get("year")):null,p_season:String(f.get("season")||"")||null,p_description:a.description??null});if(r.error){toast("修改失败："+r.error.message);return}
- const extra=await db.from("anime").update({category:String(f.get("category")||"TV动画"),cover_url:cover}).eq("id",id);if(extra.error){toast("名称等信息已保存，但分类或封面更新失败："+extra.error.message);await refresh();return}
+ const extra=await db.from("anime").update({category:String(f.get("category")||"TV动画"),cover_url:cover}).eq("id",id);if(extra.error){toast("分类或封面保存失败："+extra.error.message+"。请先在 Supabase 执行压缩包内的‘修复分类字段.sql’，再重新保存。");await refresh();return}
  closeModal();toast("番剧信息已保存");await refresh();
  }catch(err){toast("保存失败："+(err?.message||String(err)))}finally{if(saveBtn){saveBtn.disabled=false;saveBtn.textContent="保存当前页修改的信息"}}
  };
@@ -219,7 +219,7 @@ window.editAnime=function(id){
 window.deleteAnime=function(id){
  if(!isAdmin){toast("只有管理员可以删除已发布番剧");return}
  const a=records.find(x=>x.id===id);if(!a)return;
- modal("删除已发布番剧",`确定删除「${esc(a.title)}」吗？此操作会同时删除这部番剧关联的全部删减记录，且无法撤销。`, `<div class="row" style="justify-content:flex-end"><button class="btn plain" onclick="closeModal()">取消</button><button class="btn primary" style="background:#c43d52" id="confirmDeleteAnime">确认删除</button></div>`);
+ modal("删除已发布番剧",`确定删除「${esc(a.title)}」吗？此操作会同时删除这部番剧关联的全部删减记录，且无法撤销。`, `<div class="row" style="justify-content:flex-end"><button class="btn primary" style="background:#c43d52" id="confirmDeleteAnime">确认删除</button></div>`);
  $("confirmDeleteAnime").onclick=async()=>{const b=$("confirmDeleteAnime");b.disabled=true;b.textContent="正在删除…";const r=await db.rpc("admin_delete_anime",{p_anime_id:id});if(r.error){toast("删除失败："+r.error.message);b.disabled=false;b.textContent="确认删除";return}closeModal();toast("番剧及其删减记录已删除");await refresh();};
 };
 function showDetail(id){
