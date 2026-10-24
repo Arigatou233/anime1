@@ -115,6 +115,11 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 <label>封面图片 URL（选填）</label><input class="field" name="cover_url" id="inlineCoverUrl" type="url" placeholder="粘贴图片直链（不显示预览）">
 <label>番剧原始链接（选填）</label><input class="field" name="source_note" id="newAnimeSource" type="url" placeholder="例如 B 站番剧链接">
 <label>番剧简介（选填）</label><textarea class="field" name="description" id="newAnimeDescription" rows="2" placeholder="简单介绍一下这部番剧"></textarea>
+<div class="item" style="margin-top:12px"><b>首条删减记录（选填）</b><p class="muted">如果这部番剧有删减，可以一起填写；例如“时间丢失”“字幕和谐”。</p></div>
+<label>第几集</label><input class="field" name="first_episode" id="newAnimeFirstEpisode" type="number" min="1" placeholder="例如：第 5 集">
+<label>删减时间点</label><input class="field" name="first_time_point" id="newAnimeFirstTimePoint" placeholder="例如：08:24–09:10；不确定可填“未知”">
+<label>删减概况 / 类型</label><textarea class="field" name="first_cut_description" id="newAnimeFirstCutDescription" rows="3" placeholder="例如：时间丢失、字幕和谐、画面删减、对白修改"></textarea>
+<label>该条记录来源链接（选填）</label><input class="field" name="first_cut_source_note" id="newAnimeFirstCutSource" type="url" placeholder="例如 B 站对应集数链接">
 </div>
 <div id="existingAnimeFields" style="display:none">
 <p class="notice">请先选择已收录的番剧，再填写第几集、删减时间点和删减概况。示例：时间丢失、字幕和谐、画面删减、对白修改。</p>
@@ -243,7 +248,7 @@ function proposalActionName(action){return action==="add_cut"?"新增删减记�
 function proposalSummary(payload={}){
  const rows=[
   ["年份",payload.year],["季度",payload.season],["分类",payload.category],
-  ["集数",payload.episode],["删减时间",payload.time_point],["说明",payload.description],
+  ["集数",payload.episode],["删减时间",payload.time_point],["删减概况",payload.cut_description],["删减来源",payload.cut_source_note],["说明/简介",payload.description],
   ["封面",payload.cover_url],["来源",payload.source_note]
  ].filter(([k,v])=>v!==null&&v!==undefined&&String(v).trim()!=="");
  return `<div class="proposal-summary"><div class="proposal-title">${esc(payload.title||"未命名番剧")}</div>${rows.map(([k,v])=>`<div class="proposal-field"><span>${esc(k)}</span><span>${esc(String(v))}</span></div>`).join("")}</div>`;
@@ -291,7 +296,9 @@ $("inlineProposalForm").addEventListener("submit",async e=>{
  if(type==="create_anime"){
    const title=$("newAnimeTitle").value.trim(), season=$("newAnimeSeason").value, year=$("newAnimeYear").value;
    if(!title||!season||!year){toast("请填写番剧名称、季度和年份");return}
-   payload={title,year:Number(year),season,category:$("newAnimeCategory").value||"TV动画",cover_url:$("inlineCoverUrl").value.trim()||null,source_note:$("newAnimeSource").value.trim()||null,description:$("newAnimeDescription").value.trim()||null};
+   const firstEpisode=Number($("newAnimeFirstEpisode").value)||null, firstTimePoint=$("newAnimeFirstTimePoint").value.trim(), firstCutDescription=$("newAnimeFirstCutDescription").value.trim();
+   if((firstEpisode||firstTimePoint||firstCutDescription) && (!firstEpisode||!firstTimePoint||!firstCutDescription)){toast("首条删减记录请把集数、时间点和删减概况都填完整，或全部留空");return}
+   payload={title,year:Number(year),season,category:$("newAnimeCategory").value||"TV动画",cover_url:$("inlineCoverUrl").value.trim()||null,source_note:$("newAnimeSource").value.trim()||null,description:$("newAnimeDescription").value.trim()||null,episode:firstEpisode,time_point:firstTimePoint||null,cut_description:firstCutDescription||null,cut_source_note:$("newAnimeFirstCutSource").value.trim()||null};
    action="create_anime";
  }else{
    const anime=records.find(a=>a.id===$("existingAnimeSelect").value);
