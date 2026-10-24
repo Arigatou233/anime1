@@ -195,7 +195,7 @@ window.navigatePage=function(page){
  window.scrollTo({top:0,behavior:"smooth"});
 };
 document.querySelectorAll("[data-page]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();navigatePage(el.dataset.page)}));
-$("submitPanelBtn").onclick=()=>navigatePage("submit");
+const submitPanelBtn=$("submitPanelBtn"); if(submitPanelBtn) submitPanelBtn.onclick=()=>navigatePage("submit");
 $("authBtn").onclick=authDialog;
 $("submitBtn").onclick=()=>navigatePage("submit");$("myPropsBtn").onclick=myProposals;$("adminBtn").onclick=adminReview;$("close").onclick=closeModal;$("modal").onclick=e=>{if(e.target===$("modal"))closeModal()};["search","season","year"].forEach(id=>$(id).addEventListener("input",render));
 
