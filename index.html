@@ -96,7 +96,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home">⌂ 首页</a><a href="#" data-page="directory">⌕ 番剧列表</a><a href="#" data-page="submit">＋ 提交投稿</a><a href="#" data-page="my-posts">♟ 我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none">♢ 管理员审核 👑</a></nav><div class="user-chip"><span class="default-avatar" aria-hidden="true">♟</span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn">＋ 投稿</button></div></div></header>
+<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home">⌂ 首页</a><a href="#" data-page="directory">⌕ 番剧列表</a><a href="#" data-page="submit">＋ 提交投稿</a><a href="#" data-page="my-posts">♟ 我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none">♢ 管理员审核 👑</a></nav><div class="user-chip"><span class="default-avatar" aria-hidden="true">♟</span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button">＋ 投稿</button></div></div></header>
 <section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案馆</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
 <main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案馆</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" onclick="navigatePage(\'directory\')">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><input class="field" id="search" placeholder="搜索番剧名称…"><select class="field" id="season"><option value="">全部季度</option><option>冬季</option><option>春季</option><option>夏季</option><option>秋季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><h2>我的投稿</h2><p class="muted">登录后可查看自己的待审核投稿。</p><button class="btn plain" id="myPropsBtn">查看我的投稿</button> <button class="btn plain" id="adminBtn" style="display:none">管理员审核</button><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>🔵 提交番剧投稿</h2><p class="muted">填写番剧信息，管理员审核通过后公开显示。</p>
 <form id="inlineProposalForm" class="inline-form">
@@ -116,7 +116,9 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 const SUPABASE_URL = "https://zmrrygvatvcxlegycydw.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_9AVSujXZOvBGwVK6DoSvOA__GjsnX4S";
 const configured = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && !SUPABASE_PUBLISHABLE_KEY.includes("PASTE_");
-const db = configured ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY) : null;
+const db = configured && window.supabase?.createClient
+  ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY)
+  : null;
 let currentUser=null, isAdmin=false, records=[], cuts=[];
 const $=id=>document.getElementById(id);
 function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),3000)}
@@ -124,7 +126,7 @@ function modal(title,desc,body){$("modalTitle").textContent=title;$("modalDesc")
 function closeModal(){$("modal").classList.remove("show")}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 async function refresh(){
- if(!db){$("status").textContent="尚未配置 Supabase。请在 index.html 中填写 Project URL 和 Publishable key。";return}
+ if(!db){$("status").textContent="Supabase 未加载或配置无效。请检查网络、Supabase URL 和 Publishable key。";$ ("authBtn").disabled=false;return}
  const {data:sessionData}=await db.auth.getSession();currentUser=sessionData.session?.user||null;
  if(currentUser){const p=await db.from("profiles").select("is_admin").eq("id",currentUser.id).maybeSingle();isAdmin=!!p.data?.is_admin}
  else isAdmin=false;
@@ -143,8 +145,33 @@ function render(){const q=$("search").value.trim().toLowerCase(),s=$("season").v
  const list=records.filter(a=>(!q||String(a.title||"").toLowerCase().includes(q))&&(!s||a.season===s)&&(!y||String(a.year)===y));
  $("cards").innerHTML=list.length?list.map(a=>{let cs=cuts.filter(c=>c.anime_id===a.id);return `<article class="card"><div class="cover">${a.cover_url?`<img src="${esc(a.cover_url)}" alt="${esc(a.title)} 封面" onerror="this.parentElement.textContent='🎞️'">`:'🎞️'}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted"><span class="pill">TV动画</span>　<span class="pill">${esc(a.season||"季度待补")}</span>　${esc(a.year||"年份待补")}年</div><p><span class="pill">${cs.length} 条删减记录</span></p><button class="btn plain" onclick="showDetail('${a.id}')">查看详情 ↗</button></div><div class="detail-side"><div class="muted">封面预览</div>${a.cover_url?`<img src="${esc(a.cover_url)}" alt="" style="width:56px;height:74px;object-fit:cover;border-radius:7px;float:left;margin:5px 9px 5px 0">`:'<span style="font-size:30px">🎞️</span>'}<div class="muted">原始链接</div><div class="muted" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div></div></article>`}).join(""):'<div class="panel" style="grid-column:1/-1">暂无符合条件的公开番剧记录。</div>'}
 function showDetail(id){const a=records.find(x=>x.id===id),cs=cuts.filter(c=>c.anime_id===id);modal(a.title,`${a.year||""} ${a.season||""}`,cs.length?cs.map(c=>`<div class="item"><b>第 ${esc(c.episode)} 集 · ${esc(c.time_point)}</b><p>${esc(c.description)}</p><small class="muted">${esc(c.source_note||"")}</small></div>`).join(""):'<p class="muted">暂未收录删减时间点。</p>')}
-function authDialog(){if(!db){toast("登录服务未初始化，请检查网络和 Supabase 配置");return}if(currentUser){db.auth.signOut().then(({error})=>{if(error){toast("退出失败："+error.message);return}toast("已退出登录");refresh()}).catch(e=>toast("退出失败："+e.message));return}modal("登录 / 注册","使用邮箱创建账号或登录",`<form id="authForm"><label>邮箱</label><input class="field" name="email" type="email" required><p><label>密码（至少 6 位）</label><input class="field" name="password" type="password" minlength="6" required></p><div class="row"><button class="btn plain" type="button" onclick="authSubmit('signup')">注册</button><button class="btn primary" type="button" onclick="authSubmit('signin')">登录</button></div></form>`)}
-async function authSubmit(mode){const f=$("authForm");if(!f||!db){toast("登录服务不可用，请刷新页面后重试");return}const email=f.querySelector('[name="email"]').value.trim(),password=f.querySelector('[name="password"]').value;let r;try{r=mode==="signup"?await db.auth.signUp({email,password}):await db.auth.signInWithPassword({email,password})}catch(e){toast("登录请求失败："+e.message);return}if(r.error){toast(r.error.message);return}if(mode==="signup"&&r.data.user){const ins=await db.from("profiles").upsert({id:r.data.user.id,display_name:email.split("@")[0],is_admin:false});if(ins.error)toast("账号已创建，但资料初始化失败："+ins.error.message);else toast("注册成功，请按邮箱验证提示完成验证（如已开启验证）")}else toast("登录成功");closeModal();refresh()}
+function authDialog(){
+ if(!db){toast("登录服务未初始化：请检查网络是否能加载 Supabase，并确认 URL / Publishable key 正确");return}
+ if(currentUser){
+   db.auth.signOut().then(({error})=>{if(error){toast("退出失败："+error.message);return}toast("已退出登录");refresh()}).catch(e=>toast("退出失败："+(e?.message||e)));
+   return;
+ }
+ modal("登录 / 注册","使用邮箱和密码登录，或创建新账号",`<form id="authForm" novalidate><label>邮箱</label><input class="field" name="email" type="email" autocomplete="email" required placeholder="请输入邮箱"><p><label>密码（至少 6 位）</label><input class="field" name="password" type="password" autocomplete="current-password" minlength="6" required placeholder="请输入密码"></p><div class="row"><button class="btn plain" id="signupAction" type="button">注册</button><button class="btn primary" id="signinAction" type="button">登录</button></div><p id="authFeedback" class="notice" style="display:none"></p></form>`);
+ $("signupAction").onclick=()=>authSubmit("signup");
+ $("signinAction").onclick=()=>authSubmit("signin");
+}
+async function authSubmit(mode){
+ const f=$("authForm"),feedback=$("authFeedback");
+ if(!f||!db){toast("登录服务不可用，请刷新页面后重试");return}
+ const email=f.querySelector('[name="email"]').value.trim(), password=f.querySelector('[name="password"]').value;
+ if(!email||!f.querySelector('[name="email"]').checkValidity()){feedback.style.display="block";feedback.textContent="请输入有效的邮箱地址。";return}
+ if(password.length<6){feedback.style.display="block";feedback.textContent="密码至少需要 6 位。";return}
+ const buttons=[$("signupAction"),$("signinAction")];buttons.forEach(b=>b.disabled=true);feedback.style.display="block";feedback.textContent=mode==="signup"?"正在创建账号……":"正在登录……";
+ try{
+   const r=mode==="signup"?await db.auth.signUp({email,password,options:{emailRedirectTo:location.href.split("#")[0]}}):await db.auth.signInWithPassword({email,password});
+   if(r.error){feedback.textContent="操作失败："+r.error.message;return}
+   if(mode==="signup"){
+     if(r.data.session){toast("注册成功，已自动登录");closeModal();await refresh();}
+     else {feedback.textContent="注册请求已提交。请检查邮箱并完成验证，然后返回此处登录。若未收到邮件，请检查 Supabase 的邮件验证设置。";}
+   }else{toast("登录成功");closeModal();await refresh();}
+ }catch(e){feedback.textContent="请求失败："+(e?.message||String(e));}
+ finally{buttons.forEach(b=>b.disabled=false)}
+}
 function proposalDialog(){if(!currentUser){toast("请先登录后再投稿");authDialog();return}modal("提交审核申请","内容不会立即公开，需管理员批准后合并",`<form id="proposalForm" class="grid"><div class="full"><label>申请类型</label><select class="field" name="action"><option value="create_anime">新增番剧</option><option value="add_cut">为已有番剧新增删减记录</option></select></div><div class="full"><label>番剧名称</label><input class="field" name="title" required placeholder="准确的番剧名称"></div><div><label>年份</label><input class="field" name="year" type="number" min="1950" max="2100"></div><div><label>季度</label><select class="field" name="season"><option value="">请选择</option><option>冬季</option><option>春季</option><option>夏季</option><option>秋季</option></select></div><div><label>集数（新增删减记录时填写）</label><input class="field" name="episode" type="number" min="1"></div><div><label>时间点（例如 08:24）</label><input class="field" name="time_point" placeholder="08:24"></div><div class="full"><label>删减说明 / 简介</label><textarea class="field" name="description" rows="3" required></textarea></div><div class="full"><label>番剧封面图片 URL（选填）</label><input class="field" name="cover_url" id="coverUrl" type="url" placeholder="https://... 图片链接"><img id="coverPreview" class="cover-preview" alt="封面预览"></div><div class="full"><label>来源或版本备注</label><input class="field" name="source_note"></div><div class="full"><button class="btn primary" type="submit">提交待审核</button></div></form>`);
  const coverInput=$("coverUrl"), coverPreview=$("coverPreview");if(coverInput){coverInput.addEventListener("input",()=>{const u=coverInput.value.trim();coverPreview.src=u;coverPreview.style.display=u?"block":"none";});coverPreview.onerror=()=>{coverPreview.style.display="none";};}
   $("proposalForm").onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));const payload={title:d.title.trim(),year:d.year?Number(d.year):null,season:d.season||null,episode:d.episode?Number(d.episode):null,time_point:d.time_point.trim(),description:d.description.trim(),source_note:d.source_note.trim(),cover_url:(d.cover_url||"").trim()||null};
@@ -178,14 +205,21 @@ const inlineCoverInput=$("inlineCoverUrl"), inlineCoverPreview=$("inlineCoverPre
 if(inlineCoverInput){inlineCoverInput.addEventListener("input",()=>{const u=inlineCoverInput.value.trim();inlineCoverPreview.src=u;inlineCoverPreview.style.display=u?"block":"none"});inlineCoverPreview.onerror=()=>inlineCoverPreview.style.display="none";}
 $("inlineProposalForm").addEventListener("submit",async e=>{
  e.preventDefault();
+ if(!db){toast("投稿服务未初始化，请检查 Supabase 配置和网络");return}
  if(!currentUser){toast("请先登录后再投稿");authDialog();return}
- const d=Object.fromEntries(new FormData(e.target));
+ const form=e.currentTarget, submit=form.querySelector('button[type="submit"]');
+ const d=Object.fromEntries(new FormData(form));
  const payload={title:(d.title||"").trim(),year:d.year?Number(d.year):null,season:d.season||null,category:d.category||"TV动画",episode:d.episode?Number(d.episode):null,time_point:(d.time_point||"").trim(),description:(d.description||"").trim(),source_note:(d.source_note||"").trim(),cover_url:(d.cover_url||"").trim()||null};
  const action=payload.time_point||payload.episode?"add_cut":"create_anime";
+ if(!payload.title||!payload.season||!payload.year||!payload.category||!payload.source_note){toast("请填写番剧名称、分类、季度、年份和原始链接");return}
  if(action==="add_cut"&&(!payload.episode||!payload.time_point)){toast("填写删减时间点时，请同时填写集数");return}
- const r=await db.from("proposals").insert({user_id:currentUser.id,action,payload,status:"pending"});
- if(r.error){toast("投稿失败："+r.error.message);return}
- e.target.reset();inlineCoverPreview.style.display="none";toast("已提交，等待管理员审核");
+ submit.disabled=true;submit.textContent="正在提交……";
+ try{
+   const r=await db.from("proposals").insert({user_id:currentUser.id,action,payload,status:"pending"});
+   if(r.error){toast("投稿失败："+r.error.message);return}
+   form.reset();if(inlineCoverPreview)inlineCoverPreview.style.display="none";toast("已提交，等待管理员审核");
+ }catch(err){toast("投稿请求失败："+(err?.message||String(err)))}
+ finally{submit.disabled=false;submit.textContent="➤ 提交投稿"}
 });
 
 navigatePage("home");
