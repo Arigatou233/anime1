@@ -1021,6 +1021,37 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
   }
 }
 
+
+/* 修正导航栏外框过长：外框只包住实际菜单，不再拉满整行 */
+.top .navlinks{
+  flex:0 1 auto!important;
+  width:max-content!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin-inline:auto!important;
+  justify-content:center!important;
+  padding:4px!important;
+  border-radius:16px!important;
+}
+.top .wrap.nav{
+  justify-content:center!important;
+}
+@media(max-width:900px){
+  .top .navlinks{
+    width:100%!important;
+    max-width:100%!important;
+    flex:1 1 100%!important;
+    margin-inline:0!important;
+  }
+}
+/* 移除欢迎区多余的大圆形装饰线 */
+#homeWelcome:before{
+  content:none!important;
+  display:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
 </style>
 
 <style id="compact-card-spacing-final">
