@@ -1284,6 +1284,20 @@ function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setT
 function modal(title,desc,body){$("modalTitle").textContent=title;$("modalDesc").textContent=desc||"";$("modalBody").innerHTML=body;$("modal").classList.add("show")}
 function closeModal(){$("modal").classList.remove("show")}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+// 封面容错：按字段顺序尝试所有已有图片地址，避免 cover_url 失效时忽略其他可用字段。
+function coverCandidates(a){return [...new Set([a?.cover_url,a?.cover_image_url,a?.cover_image,a?.poster_url,a?.image_url,a?.cover,a?.coverUrl,a?.coverImageUrl,a?.coverImage,a?.posterUrl,a?.imageUrl].map(v=>String(v||"").trim()).filter(v=>/^https?:\/\//i.test(v)))]}
+function coverImageMarkup(a,extraClass=""){
+ const urls=coverCandidates(a); if(!urls.length)return `<span class="cover-fallback">🎞️<small>暂无封面</small></span>`;
+ return `<img src="${esc(urls[0])}" data-cover-candidates="${esc(JSON.stringify(urls))}" data-cover-index="0" alt="${esc(a.title||"番剧")} 封面" loading="lazy" class="${esc(extraClass)}" onerror="handleCoverImageError(this)">`;
+}
+window.handleCoverImageError=function(img){
+ try{const urls=JSON.parse(img.dataset.coverCandidates||"[]"),next=Number(img.dataset.coverIndex||0)+1;if(next<urls.length){img.dataset.coverIndex=String(next);img.src=urls[next];return;}}catch(e){}
+ const holder=img.closest(".cover");
+ if(holder){holder.innerHTML='<span class="cover-fallback">🎞️<small>封面暂不可用</small></span>';return;}
+ if(img.classList.contains("detail-cover")){const fallback=document.createElement("div");fallback.className="detail-cover-placeholder";fallback.textContent="🎞️";img.replaceWith(fallback);return;}
+ img.onerror=null;img.alt="封面暂不可用";img.style.display="none";
+};
+
 async function refresh(){
  if(!db){$("status").textContent="Supabase 未加载或配置无效。请检查网络、Supabase URL 和 Publishable key。";$ ("authBtn").disabled=false;return}
  const {data:sessionData}=await db.auth.getSession();currentUser=sessionData.session?.user||null;
@@ -1315,7 +1329,7 @@ function render(){
    if(as!==bs)return as-bs;
    return String(a.title||"").localeCompare(String(b.title||""),"zh-CN");
  });
- const cardHtml=a=>{let cs=cuts.filter(c=>String(c.anime_id)===String(a.id));const episodeCount=new Set(cs.map(c=>String(c.episode??c.episode_number??c.episode_no??"未填写"))).size;const coverUrl=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";return `<article class="card"><div class="cover">${coverUrl?`<img src="${esc(coverUrl)}" alt="${esc(a.title)} 封面" loading="lazy" onerror="this.parentElement.innerHTML='<span class=&quot;cover-fallback&quot;>🎞️</span>'">`:'<span class="cover-fallback">🎞️<small>暂无封面</small></span>'}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted card-meta"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.season||"季度待补")}</span><span class="card-year">${esc(a.year||"年份待补")}年</span></div><div class="card-bottom"><span class="pill record-count">${episodeCount} 集 · ${cs.length} 条记录</span><div class="card-actions"><button class="btn plain" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?`<button class="btn plain" onclick="editAnime('${a.id}')">编辑</button><button class="btn plain danger" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></div></div></article>`};
+ const cardHtml=a=>{let cs=cuts.filter(c=>String(c.anime_id)===String(a.id));const episodeCount=new Set(cs.map(c=>String(c.episode??c.episode_number??c.episode_no??"未填写"))).size;return `<article class="card"><div class="cover">${coverImageMarkup(a)}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted card-meta"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.season||"季度待补")}</span><span class="card-year">${esc(a.year||"年份待补")}年</span></div><div class="card-bottom"><span class="pill record-count">${episodeCount} 集 · ${cs.length} 条记录</span><div class="card-actions"><button class="btn plain" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?`<button class="btn plain" onclick="editAnime('${a.id}')">编辑</button><button class="btn plain danger" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></div></div></article>`};
  if(!list.length){$("cards").innerHTML='<div class="panel" style="grid-column:1/-1">暂无符合条件的公开番剧记录。</div>';return;}
  const groups=new Map();
  list.forEach(a=>{const year=a.year?`${a.year} 年`:`年份待补`,season=a.season||"季度待补",key=`${year}｜${season}`;if(!groups.has(key))groups.set(key,{year:a.year,season,items:[]});groups.get(key).items.push(a);});
@@ -1351,8 +1365,8 @@ window.deleteAnime=function(id){
 function showDetail(id){
  const a=records.find(x=>String(x.id)===String(id)),cs=cuts.filter(c=>String(c.anime_id)===String(id));
  if(!a){toast("找不到这部番剧");return}
- const coverUrl=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";
- const cover=coverUrl?`<img src="${esc(coverUrl)}" alt="${esc(a.title)} 封面" loading="lazy" class="detail-cover" onerror="this.style.display='none'">`:`<div class="detail-cover-placeholder">🎞️</div>`;
+ const coverUrls=coverCandidates(a);
+ const cover=coverUrls.length?coverImageMarkup(a,"detail-cover"):`<div class="detail-cover-placeholder">🎞️</div>`;
  const episodeMap=new Map();
  cs.forEach(c=>{const ep=c.episode??c.episode_number??c.episode_no??"未填写";const key=String(ep);if(!episodeMap.has(key))episodeMap.set(key,[]);episodeMap.get(key).push(c)});
  const episodeEntries=[...episodeMap.entries()].sort((a,b)=>{const an=Number(a[0]),bn=Number(b[0]);if(Number.isFinite(an)&&Number.isFinite(bn))return an-bn;if(Number.isFinite(an))return -1;if(Number.isFinite(bn))return 1;return a[0].localeCompare(b[0],"zh-CN")});
@@ -1373,9 +1387,28 @@ function authDialog(){
    db.auth.signOut().then(({error})=>{if(error){toast("退出失败："+error.message);return}toast("已退出登录");refresh()}).catch(e=>toast("退出失败："+(e?.message||e)));
    return;
  }
- modal("登录 / 注册","使用邮箱和密码登录，或创建新账号",`<form id="authForm" novalidate><label>邮箱</label><input class="field" name="email" type="email" autocomplete="email" required placeholder="请输入邮箱"><p><label>密码（至少 6 位）</label><input class="field" name="password" type="password" autocomplete="current-password" minlength="6" required placeholder="请输入密码"></p><div class="row"><button class="btn plain" id="signupAction" type="button">注册</button><button class="btn primary" id="signinAction" type="button">登录</button></div><p id="authFeedback" class="notice" style="display:none"></p></form>`);
+ modal("登录 / 注册","使用邮箱和密码登录，或创建新账号",`<form id="authForm" novalidate><label>邮箱</label><input class="field" name="email" type="email" autocomplete="email" required placeholder="请输入邮箱"><p><label>密码（至少 6 位）</label><input class="field" name="password" type="password" autocomplete="current-password" minlength="6" required placeholder="请输入密码"></p><div class="row"><button class="btn plain" id="signupAction" type="button">注册</button><button class="btn primary" id="signinAction" type="button">登录</button></div><p style="margin:12px 0 0"><button class="btn plain" id="forgotPasswordAction" type="button">忘记密码？发送重置邮件</button></p><p id="authFeedback" class="notice" style="display:none"></p></form>`);
  $("signupAction").onclick=()=>authSubmit("signup");
  $("signinAction").onclick=()=>authSubmit("signin");
+ $("forgotPasswordAction").onclick=sendPasswordRecovery;
+}
+async function sendPasswordRecovery(){
+ const f=$("authForm"),feedback=$("authFeedback");if(!db||!f||!feedback)return;
+ const email=f.querySelector('[name="email"]').value.trim();
+ if(!email||!f.querySelector('[name="email"]').checkValidity()){feedback.style.display="block";feedback.textContent="请先输入注册时使用的有效邮箱，再点击忘记密码。";return}
+ const btn=$("forgotPasswordAction");btn.disabled=true;feedback.style.display="block";feedback.textContent="正在发送密码重置邮件……";
+ try{
+  const redirectTo=window.location.origin+window.location.pathname;
+  const r=await db.auth.resetPasswordForEmail(email,{redirectTo});
+  if(r.error){feedback.textContent="发送失败："+r.error.message+"。请检查 Supabase Authentication → URL Configuration 中是否允许此网址。";return}
+  feedback.textContent="如果该邮箱可用于登录，Supabase 将发送密码重置邮件。请打开最新邮件中的链接；链接应返回本网站的密码修改页面。";
+ }catch(e){feedback.textContent="发送失败："+(e?.message||String(e));}
+ finally{btn.disabled=false}
+}
+function showUpdatePasswordDialog(){
+ if(!db)return;
+ modal("设置新密码","密码重置验证已打开，请设置新密码。",`<form id="updatePasswordForm" novalidate><label>新密码（至少 6 位）</label><input class="field" name="newPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请输入新密码"><p><label>再次输入新密码</label><input class="field" name="confirmPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请再次输入新密码"></p><button class="btn primary" type="submit">保存新密码</button><p id="updatePasswordFeedback" class="notice" style="display:none"></p></form>`);
+ const form=$("updatePasswordForm");form.onsubmit=async e=>{e.preventDefault();const feedback=$("updatePasswordFeedback"),a=form.querySelector('[name="newPassword"]').value,b=form.querySelector('[name="confirmPassword"]').value;feedback.style.display="block";if(a.length<6){feedback.textContent="新密码至少需要 6 位。";return}if(a!==b){feedback.textContent="两次输入的密码不一致，请重新检查。";return}const submit=form.querySelector('button[type="submit"]');submit.disabled=true;feedback.textContent="正在保存新密码……";try{const r=await db.auth.updateUser({password:a});if(r.error){feedback.textContent="修改失败："+r.error.message;return}await db.auth.signOut();closeModal();toast("密码已修改，请使用新密码重新登录");}catch(err){feedback.textContent="修改失败："+(err?.message||String(err));}finally{submit.disabled=false}};
 }
 async function authSubmit(mode){
  const f=$("authForm"),feedback=$("authFeedback");
@@ -1603,5 +1636,5 @@ $("inlineProposalForm").addEventListener("submit",async e=>{
  }catch(err){toast("投稿请求失败："+(err?.message||String(err)))}finally{submit.disabled=false;submit.textContent="➤ 提交投稿"}
 });
 navigatePage("home");
-if(db){db.auth.onAuthStateChange(()=>setTimeout(refresh,0));refresh()}else refresh();
+if(db){db.auth.onAuthStateChange((event)=>{setTimeout(refresh,0);if(event==="PASSWORD_RECOVERY")setTimeout(showUpdatePasswordDialog,150)});refresh();if(location.hash.includes("type=recovery"))setTimeout(showUpdatePasswordDialog,800)}else refresh();
 </script></body></html>
