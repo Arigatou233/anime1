@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>番剧档案馆</title>
+<link rel="icon" type="image/jpeg" href="avatar.jpeg">
+<link rel="apple-touch-icon" href="avatar.jpeg">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--bg:#f3f8ff;--paper:rgba(255,255,255,.92);--ink:#142b5b;--muted:#7186b2;--line:#dce8ff;--brand:#477cff;--soft:#e9efff;--shadow:0 12px 32px rgba(68,113,196,.10)}
@@ -952,6 +954,47 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
   box-shadow:0 12px 22px rgba(67,105,224,.28)!important;
 }
 #homeWelcome #browseDirectoryBtn:hover:after{transform:translateX(3px)}
+/* 首页主按钮：轻盈的蓝紫渐变 + 独立圆形箭头，避免粗重的大箭头 */
+#homeWelcome #browseDirectoryBtn{
+  gap:13px!important;
+  min-height:48px!important;
+  padding:7px 9px 7px 19px!important;
+  border:1px solid rgba(255,255,255,.42)!important;
+  border-radius:15px!important;
+  background:linear-gradient(115deg,#6688f5 0%,#536fe7 58%,#6a70e8 100%)!important;
+  box-shadow:0 7px 18px rgba(76,105,220,.20),inset 0 1px 0 rgba(255,255,255,.28)!important;
+  letter-spacing:.2px!important;
+}
+#homeWelcome #browseDirectoryBtn:before{
+  content:"✦";
+  display:inline-grid;
+  place-items:center;
+  width:23px;height:23px;
+  border-radius:8px;
+  background:rgba(255,255,255,.17);
+  color:#fff;
+  font-size:13px;
+  line-height:1;
+}
+#homeWelcome #browseDirectoryBtn:after{
+  content:"↗";
+  display:inline-grid;
+  place-items:center;
+  width:32px;height:32px;
+  margin-left:3px;
+  border-radius:11px;
+  background:rgba(255,255,255,.19);
+  border:1px solid rgba(255,255,255,.24);
+  color:#fff;
+  font-size:17px;
+  line-height:1;
+  transition:transform .18s ease,background .18s ease;
+}
+#homeWelcome #browseDirectoryBtn:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 11px 24px rgba(76,105,220,.27),inset 0 1px 0 rgba(255,255,255,.3)!important;
+}
+#homeWelcome #browseDirectoryBtn:hover:after{transform:translate(2px,-2px);background:rgba(255,255,255,.27)}
 @media(max-width:700px){
   #homeWelcome{min-height:190px!important;padding:24px 20px!important;border-radius:20px!important}
   #homeWelcome:after{content:none!important;display:none!important}
@@ -1070,6 +1113,13 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
  #modal .dialog>div:first-child #close{min-width:60px!important;min-height:36px!important;padding:7px 9px!important;font-size:12px!important;}
  #modalBody{padding:12px 10px 15px!important;}
 }
+
+/* 导航图标：统一为精致的蓝色线性图标 */
+.top .navlinks .nav-icon{width:17px;height:17px;flex:0 0 17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.92;transition:transform .18s ease,opacity .18s ease}
+.top .navlinks a:hover .nav-icon{transform:translateY(-1px);opacity:1}
+.top .navlinks a.active .nav-icon{stroke-width:2}
+@media(max-width:420px){.top .navlinks .nav-icon{width:16px;height:16px;flex-basis:16px}}
+
 </style>
 
 <style id="compact-card-spacing-final">
@@ -1171,7 +1221,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home">⌂ 首页</a><a href="#" data-page="directory">⌕ 番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none">♟ 我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none">♢ 审核列表</a></nav><div class="user-chip"><span class="default-avatar" id="roleBadge" aria-label="账号身份"></span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
+<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.8 10.5 8.2-7 8.2 7v9.2a1.3 1.3 0 0 1-1.3 1.3H5.1a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.5h6V21"/></svg>首页</a><a href="#" data-page="directory"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.2 4.2"/><path d="M8.3 10.8h5"/></svg>番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5.5c0 4.7-3.3 7.8-8 9.5-4.7-1.7-8-4.8-8-9.5V6z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>审核列表</a></nav><div class="user-chip"><span class="default-avatar" id="roleBadge" aria-label="账号身份"></span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
 <section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案馆</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
 <main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案馆</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><div class="search-wrap"><input class="field" id="search" placeholder="搜索番剧名称…" autocomplete="off"><button class="search-clear" id="clearSearch" type="button" aria-label="清空搜索框" title="清空搜索">×</button></div><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><h2>我的投稿</h2><p class="muted">登录后可查看自己的待审核投稿。</p><button class="btn plain" id="myPropsBtn">查看我的投稿</button> <button class="btn plain" id="adminBtn" style="display:none">审核列表</button><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
 <form id="inlineProposalForm" class="inline-form">
@@ -1281,7 +1331,7 @@ function showDetail(id){
  const episodeMap=new Map();
  cs.forEach(c=>{const ep=c.episode??c.episode_number??c.episode_no??"未填写";const key=String(ep);if(!episodeMap.has(key))episodeMap.set(key,[]);episodeMap.get(key).push(c)});
  const episodeEntries=[...episodeMap.entries()].sort((a,b)=>{const an=Number(a[0]),bn=Number(b[0]);if(Number.isFinite(an)&&Number.isFinite(bn))return an-bn;if(Number.isFinite(an))return -1;if(Number.isFinite(bn))return 1;return a[0].localeCompare(b[0],"zh-CN")});
- const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>记录</h3><p>同一集的多个时间点已归在一起</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>`<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${items.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span>${c.source_note?`<a class="point-source" href="${esc(c.source_note)}" target="_blank" rel="noopener">查看来源 ↗</a>`:""}</div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
+ const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>记录</h3><p>同一集的多个时间点已归在一起</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>`<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${items.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span></div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
  modal(a.title,`${a.year||""} 年 · ${a.season||""}`,cutHtml)
 }
 window.editCutRecord=function(id){
