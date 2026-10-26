@@ -1519,7 +1519,7 @@ document.querySelectorAll("[data-page]").forEach(el=>el.addEventListener("click"
 const quickSubmitBtn=$("submitBtn");if(quickSubmitBtn)quickSubmitBtn.onclick=()=>navigatePage("submit");const submitPanelBtn=$("submitPanelBtn"); if(submitPanelBtn) submitPanelBtn.onclick=()=>navigatePage("submit");
 const browseDirectoryBtn=$("browseDirectoryBtn"); if(browseDirectoryBtn){browseDirectoryBtn.type="button";browseDirectoryBtn.addEventListener("click",e=>{e.preventDefault();navigatePage("directory");requestAnimationFrame(()=>$("directory")?.scrollIntoView({behavior:"smooth",block:"start"}));});}
 $("authBtn").onclick=authDialog;
-$("close").onclick=closeModal;$("modal").onclick=e=>{if(e.target===$("modal"))closeModal()};["search","season","year"].forEach(id=>$(id).addEventListener("input",render));
+$("close").onclick=closeModal;$("modal").onclick=null;["search","season","year"].forEach(id=>$(id).addEventListener("input",render));
 const searchInput=$("search"),clearSearch=$("clearSearch");
 function syncSearchClear(){if(clearSearch)clearSearch.classList.toggle("visible",!!searchInput?.value)}
 searchInput?.addEventListener("input",syncSearchClear);
