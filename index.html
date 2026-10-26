@@ -108,7 +108,10 @@ footer{padding:18px 12px;text-align:center}
 .hero>.wrap,.hero-art{display:none!important}
 .hero:before,.hero:after{display:none!important}
 .user-chip img{display:none!important}
-.default-avatar{width:30px;height:30px;border-radius:50%;display:none;align-items:center;justify-content:center;background:#edf3ff;color:#6e88b8;font-size:13px;font-weight:800;flex:0 0 30px}.default-avatar.visible{display:inline-flex}
+.default-avatar{width:30px;height:30px;border:0;cursor:pointer;border-radius:50%;display:none;align-items:center;justify-content:center;background:#edf3ff;color:#456cc4;font-size:13px;font-weight:800;flex:0 0 30px;padding:0}.default-avatar.visible{display:inline-flex}
+.account-menu-wrap{position:relative;display:none}.account-menu-wrap.visible{display:block}
+.account-menu{display:none;position:absolute;right:0;top:calc(100% + 9px);width:170px;padding:7px;background:#fff;border:1px solid #e0eaff;border-radius:13px;box-shadow:0 12px 32px #294a7b24;z-index:20}
+.account-menu.open{display:grid;gap:5px}.account-menu button{width:100%;text-align:left;border:0;border-radius:9px;background:#fff;color:#294675;padding:10px 11px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.account-menu button:hover{background:#f0f5ff}.account-menu button.logout{color:#b94b5a}.top .user-chip #authBtn[hidden]{display:none!important}
 footer{text-align:center!important;width:100%;padding:18px 12px!important}
 .page-hidden{display:none!important}
 .layout.page-single{grid-template-columns:minmax(0,1fr)!important}
@@ -1246,7 +1249,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.8 10.5 8.2-7 8.2 7v9.2a1.3 1.3 0 0 1-1.3 1.3H5.1a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.5h6V21"/></svg>首页</a><a href="#" data-page="directory"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.2 4.2"/><path d="M8.3 10.8h5"/></svg>番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5.5c0 4.7-3.3 7.8-8 9.5-4.7-1.7-8-4.8-8-9.5V6z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>审核列表</a></nav><div class="user-chip"><span class="default-avatar" id="roleBadge" aria-label="账号身份"></span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
+<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.8 10.5 8.2-7 8.2 7v9.2a1.3 1.3 0 0 1-1.3 1.3H5.1a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.5h6V21"/></svg>首页</a><a href="#" data-page="directory"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.2 4.2"/><path d="M8.3 10.8h5"/></svg>番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5.5c0 4.7-3.3 7.8-8 9.5-4.7-1.7-8-4.8-8-9.5V6z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>审核列表</a></nav><div class="user-chip"><button class="default-avatar" id="roleBadge" type="button" aria-label="账号菜单" aria-expanded="false" title="账号菜单"></button><div class="account-menu-wrap" id="accountMenuWrap"><div class="account-menu" id="accountMenu"><button type="button" id="changePasswordBtn">修改密码</button><button type="button" class="logout" id="logoutBtn">退出登录</button><button type="button" id="closeAccountMenuBtn">关闭</button></div></div><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
 <section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案馆</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
 <main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案馆</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><div class="search-wrap"><input class="field" id="search" placeholder="搜索番剧名称…" autocomplete="off"><button class="search-clear" id="clearSearch" type="button" aria-label="清空搜索框" title="清空搜索">×</button></div><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
 <form id="inlineProposalForm" class="inline-form">
@@ -1263,7 +1266,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 </div>
 <div id="existingAnimeFields" style="display:none">
 <p class="notice">选择番剧后，可从下拉列表选择已有集数补充时间点；也可选择“手动新增集数”。同一集可添加多个时间点，也可添加另一集。</p>
-<label>选择已收录番剧 <b style="color:#ef6c78">*</b></label><select class="field" name="anime_id" id="existingAnimeSelect"><option value="">请选择番剧</option></select>
+<label for="existingAnimeSearch">搜索已收录番剧</label><input class="field" id="existingAnimeSearch" type="search" autocomplete="off" placeholder="输入番剧名称或年份快速筛选…"><label for="existingAnimeSelect" style="margin-top:8px">选择已收录番剧 <b style="color:#ef6c78">*</b></label><select class="field" name="anime_id" id="existingAnimeSelect"><option value="">请选择番剧</option></select><p class="muted" id="existingAnimeSearchCount" style="font-size:12px;margin:5px 0 0">输入关键词即可筛选列表。</p>
 <div class="cut-submit-block"><div class="cut-submit-head"><strong>添加记录</strong></div><div id="existingAnimeCuts"></div></div>
 
 </div>
@@ -1303,7 +1306,7 @@ async function refresh(){
  const {data:sessionData}=await db.auth.getSession();currentUser=sessionData.session?.user||null;
  if(currentUser){const p=await db.from("profiles").select("is_admin").eq("id",currentUser.id).maybeSingle();isAdmin=!!p.data?.is_admin}
  else isAdmin=false;
- $("userState").textContent=currentUser?(isAdmin?"管理员":"已登录"):"访客";const roleBadge=$("roleBadge");if(roleBadge){roleBadge.textContent=isAdmin?"管":"客";roleBadge.classList.toggle("visible",!!currentUser);roleBadge.title=isAdmin?"管理员":"游客";}$("authBtn").textContent=currentUser?"退出登录":"登录 / 注册";if($("navMyPosts"))$("navMyPosts").style.display=currentUser?"inline-flex":"none";if($("navAdmin"))$("navAdmin").style.display=(currentUser&&isAdmin)?"inline-flex":"none";
+ $("userState").textContent=currentUser?(isAdmin?"管理员":"已登录"):"访客";const roleBadge=$("roleBadge");if(roleBadge){roleBadge.textContent=isAdmin?"管":"客";roleBadge.classList.toggle("visible",!!currentUser);roleBadge.title=isAdmin?"管理员账号菜单":"用户账号菜单";roleBadge.setAttribute("aria-expanded","false");}if($("accountMenuWrap"))$("accountMenuWrap").classList.toggle("visible",!!currentUser);if($("accountMenu"))$("accountMenu").classList.remove("open");$("authBtn").hidden=!!currentUser;$("authBtn").textContent="登录 / 注册";if($("navMyPosts"))$("navMyPosts").style.display=currentUser?"inline-flex":"none";if($("navAdmin"))$("navAdmin").style.display=(currentUser&&isAdmin)?"inline-flex":"none";
  const a=await db.from("anime").select("*").order("title");
  if(a.error){$("status").textContent="读取番剧失败："+a.error.message+"。请检查 schema.sql 与 RLS 策略。";return}
  records=a.data||[];
@@ -1370,7 +1373,9 @@ function showDetail(id){
  const episodeMap=new Map();
  cs.forEach(c=>{const ep=c.episode??c.episode_number??c.episode_no??"未填写";const key=String(ep);if(!episodeMap.has(key))episodeMap.set(key,[]);episodeMap.get(key).push(c)});
  const episodeEntries=[...episodeMap.entries()].sort((a,b)=>{const an=Number(a[0]),bn=Number(b[0]);if(Number.isFinite(an)&&Number.isFinite(bn))return an-bn;if(Number.isFinite(an))return -1;if(Number.isFinite(bn))return 1;return a[0].localeCompare(b[0],"zh-CN")});
- const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>记录</h3><p>同一集的多个时间点已归在一起</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>`<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${items.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span></div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
+ // 按时间点从早到晚排序；无法识别的时间（如“未知”）放在最后。
+ const timeSeconds=value=>{const m=String(value??"").match(/(?:^|\D)(\d{1,2}):(\d{2})(?::(\d{2}))?/);if(!m)return Infinity;return m[3]!==undefined?(Number(m[1])*3600+Number(m[2])*60+Number(m[3])):(Number(m[1])*60+Number(m[2]));};
+ const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>记录</h3><p>同一集的多个时间点已归在一起，按时间从早到晚排列</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>{const sortedItems=items.slice().sort((a,b)=>timeSeconds(a.time_point??a.timepoint??a.cut_time??"未知")-timeSeconds(b.time_point??b.timepoint??b.cut_time??"未知"));return `<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${sortedItems.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span></div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`}).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
  modal(a.title,`${a.year||""} 年 · ${a.season||""}`,cutHtml)
 }
 window.editCutRecord=function(id){
@@ -1406,6 +1411,30 @@ async function sendPasswordRecovery(){
  finally{btn.disabled=false}
 }
 let recoveryDialogShown=false;
+function showChangePasswordDialog(){
+ if(!db||!currentUser){toast("请先登录后再修改密码");return}
+ modal("修改密码","请先验证旧密码，再设置新密码。修改成功后保持登录状态。",`<form id="changePasswordForm" novalidate><label>旧密码</label><input class="field" name="oldPassword" type="password" autocomplete="current-password" required placeholder="请输入当前使用的密码"><p><label>新密码（至少 6 位）</label><input class="field" name="newPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请输入新密码"></p><p><label>再次输入新密码</label><input class="field" name="confirmPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请再次输入新密码"></p><button class="btn primary" type="submit">验证并修改密码</button><p id="changePasswordFeedback" class="notice" style="display:none"></p></form>`);
+ const form=$("changePasswordForm");
+ form.onsubmit=async e=>{
+  e.preventDefault();
+  const feedback=$("changePasswordFeedback"),oldPassword=form.querySelector('[name="oldPassword"]').value,a=form.querySelector('[name="newPassword"]').value,b=form.querySelector('[name="confirmPassword"]').value;
+  feedback.style.display="block";
+  if(!oldPassword){feedback.textContent="请先输入旧密码。";return}
+  if(a.length<6){feedback.textContent="新密码至少需要 6 位。";return}
+  if(a!==b){feedback.textContent="两次输入的新密码不一致，请重新检查。";return}
+  if(a===oldPassword){feedback.textContent="新密码不能与旧密码相同。";return}
+  const submit=form.querySelector('button[type="submit"]');submit.disabled=true;feedback.textContent="正在验证旧密码……";
+  try{
+   const verify=await db.auth.signInWithPassword({email:currentUser.email,password:oldPassword});
+   if(verify.error){feedback.textContent="旧密码验证失败，请检查后重试。";return}
+   feedback.textContent="旧密码验证成功，正在更新新密码……";
+   const r=await db.auth.updateUser({password:a});
+   if(r.error){feedback.textContent="修改失败："+r.error.message;return}
+   closeModal();toast("密码修改成功");
+  }catch(err){feedback.textContent="修改失败："+(err?.message||String(err));}
+  finally{submit.disabled=false}
+ };
+}
 function showUpdatePasswordDialog(){
  if(!db || recoveryDialogShown)return;
  recoveryDialogShown=true;
@@ -1519,6 +1548,11 @@ document.querySelectorAll("[data-page]").forEach(el=>el.addEventListener("click"
 const quickSubmitBtn=$("submitBtn");if(quickSubmitBtn)quickSubmitBtn.onclick=()=>navigatePage("submit");const submitPanelBtn=$("submitPanelBtn"); if(submitPanelBtn) submitPanelBtn.onclick=()=>navigatePage("submit");
 const browseDirectoryBtn=$("browseDirectoryBtn"); if(browseDirectoryBtn){browseDirectoryBtn.type="button";browseDirectoryBtn.addEventListener("click",e=>{e.preventDefault();navigatePage("directory");requestAnimationFrame(()=>$("directory")?.scrollIntoView({behavior:"smooth",block:"start"}));});}
 $("authBtn").onclick=authDialog;
+$("roleBadge").onclick=()=>{if(!currentUser){toast("请先登录");return}const menu=$("accountMenu"),opening=!menu.classList.contains("open");menu.classList.toggle("open",opening);$("roleBadge").setAttribute("aria-expanded",String(opening));};
+$("changePasswordBtn").onclick=()=>{if($("accountMenu"))$("accountMenu").classList.remove("open");$("roleBadge").setAttribute("aria-expanded","false");showChangePasswordDialog();};
+$("closeAccountMenuBtn").onclick=()=>{if($("accountMenu"))$("accountMenu").classList.remove("open");$("roleBadge")?.setAttribute("aria-expanded","false");};
+$("logoutBtn").onclick=async()=>{if($("accountMenu"))$("accountMenu").classList.remove("open");try{const r=await db.auth.signOut();if(r.error){toast("退出失败："+r.error.message);return}toast("已退出登录");await refresh();}catch(e){toast("退出失败："+(e?.message||String(e)));}};
+document.addEventListener("click",e=>{const wrap=$("accountMenuWrap");if(wrap&&!wrap.contains(e.target)&&e.target!==$("roleBadge")){$("accountMenu")?.classList.remove("open");$("roleBadge")?.setAttribute("aria-expanded","false");}});
 $("close").onclick=closeModal;$("modal").onclick=null;["search","season","year"].forEach(id=>$(id).addEventListener("input",render));
 const searchInput=$("search"),clearSearch=$("clearSearch");
 function syncSearchClear(){if(clearSearch)clearSearch.classList.toggle("visible",!!searchInput?.value)}
@@ -1602,13 +1636,19 @@ function updateSubmissionType(){
  ["newAnimeTitle","newAnimeSeason","newAnimeYear","inlineCoverUrl"].forEach(id=>$(id).required=isNew);
  $("existingAnimeSelect").required=!isNew;
  const select=$("existingAnimeSelect"),selected=select.value;
- select.innerHTML='<option value="">请选择番剧</option>'+records.slice().sort((a,b)=>String(a.title||"").localeCompare(String(b.title||""),"zh-CN")).map(a=>`<option value="${esc(a.id)}">${esc(a.title)}${a.year?`（${esc(a.year)}）`:""}</option>`).join("");if(selected)select.value=selected;
+ const keyword=($("existingAnimeSearch")?.value||"").trim().toLocaleLowerCase();
+ const allAnime=records.slice().sort((a,b)=>String(a.title||"").localeCompare(String(b.title||""),"zh-CN"));
+ const filtered=allAnime.filter(a=>!keyword||(`${a.title||""} ${a.year||""} ${a.season||""}`).toLocaleLowerCase().includes(keyword));
+ select.innerHTML='<option value="">请选择番剧（'+filtered.length+' 部）</option>'+filtered.map(a=>`<option value="${esc(a.id)}">${esc(a.title)}${a.year?`（${esc(a.year)}）`:""}</option>`).join("");
+ if(selected&&filtered.some(a=>String(a.id)===String(selected)))select.value=selected;
+ const count=$("existingAnimeSearchCount");if(count)count.textContent=keyword?`找到 ${filtered.length} 部番剧`:`共 ${allAnime.length} 部番剧，可输入名称快速查找`;
  refreshExistingEpisodeOptions();
  $("submitIntro").textContent=isNew?"新增番剧：填写基本信息，可一次提交多条删减时间点。":"已收录番剧：选择番剧后，可一次添加同一集或不同集数的多个时间点。";
 }
 function addEpisodeButton(containerId){const container=$(containerId);if(!container)return;const button=document.createElement('button');button.type='button';button.className='cut-add-episode';button.textContent='＋ 添加另一集';button.addEventListener('click',()=>makeCutRow(containerId));container.after(button);}
 makeCutRow("newAnimeCuts");makeCutRow("existingAnimeCuts");addEpisodeButton("newAnimeCuts");addEpisodeButton("existingAnimeCuts");
 $("submissionType").addEventListener("change",updateSubmissionType);
+$("existingAnimeSearch")?.addEventListener("input",()=>updateSubmissionType());
 $("existingAnimeSelect").addEventListener("change",()=>{refreshExistingEpisodeOptions();});
 $("inlineProposalForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!db){toast("投稿服务未初始化，请检查 Supabase 配置和网络");return}if(!currentUser){toast("请先登录后再投稿");authDialog();return}
@@ -1655,8 +1695,7 @@ function handleAuthUrlError(){
  const expired=code==="otp_expired"||/invalid or has expired|expired/i.test(desc);
  modal(expired?"密码恢复链接已过期":"密码恢复验证失败",
    expired?"Supabase 未能验证这封邮件中的链接，因此暂时不能设置新密码。":"这次密码恢复验证没有完成，请重新申请恢复邮件。",
-   `<div class="notice">${expired?"请回到网站的“登录 / 注册”，输入注册邮箱，点击“忘记密码？发送重置邮件”。等邮件发送限流解除后，只使用最新收到的那封邮件，并尽快点击其中的链接。":"请重新申请密码恢复邮件，并使用最新邮件中的链接。"}</div><div class="row"><button class="btn plain" id="authErrorClose" type="button">关闭</button><button class="btn primary" id="authErrorLogin" type="button">返回登录</button></div>`);
- $("authErrorClose").onclick=closeModal;
+   `<div class="notice">${expired?"请回到网站的“登录 / 注册”，输入注册邮箱，点击“忘记密码？发送重置邮件”。等邮件发送限流解除后，只使用最新收到的那封邮件，并尽快点击其中的链接。":"请重新申请密码恢复邮件，并使用最新邮件中的链接。"}</div><div class="row"><button class="btn primary" id="authErrorLogin" type="button">返回登录</button></div>`);
  $("authErrorLogin").onclick=()=>{closeModal();authDialog()};
  return true;
 }
