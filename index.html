@@ -1218,6 +1218,31 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
  #modal .dialog>div:first-child #close{min-width:60px!important;min-height:36px!important;padding:7px 9px!important;font-size:12px!important;}
  #modalBody{padding:12px 10px 15px!important;}
 }
+
+/* Refined submissions archive: compact header, calmer spacing, responsive cards */
+#myProps{min-width:0}
+#myProps .posts-heading{margin:2px 0 14px;padding:10px 14px;min-height:0;border-radius:13px;background:linear-gradient(110deg,#f5f8ff 0%,#fff 78%);box-shadow:0 2px 8px rgba(66,104,171,.035)}
+#myProps .posts-heading h3{margin:0;color:#203b6d;font-size:16px;line-height:1.35;letter-spacing:.1px}
+#myProps .posts-heading p{font-size:12px;line-height:1.45;margin-top:3px}
+#myProps .posts-total{padding:4px 10px;font-size:12px;line-height:1.5;white-space:nowrap}
+#myProps .posts-list{gap:12px}
+#myProps .post-card{padding:13px 14px;border-radius:15px;box-shadow:0 3px 12px rgba(61,99,163,.045);transition:border-color .18s,box-shadow .18s}
+#myProps .post-card:hover{transform:translateY(-1px);border-color:#cbdcff;box-shadow:0 7px 18px rgba(61,99,163,.085)}
+#myProps .post-card-top{gap:8px}
+#myProps .post-kind{font-size:12px;gap:6px}
+#myProps .post-kind-icon{width:23px;height:23px;border-radius:8px;font-size:13px}
+#myProps .post-status{padding:4px 8px;font-size:11px}
+#myProps .post-status i{width:5px;height:5px}
+#myProps .post-card h4{font-size:17px;line-height:1.4;margin:9px 0 7px}
+#myProps .post-meta{gap:5px;margin-bottom:8px}
+#myProps .post-meta span{font-size:11px;padding:3px 7px;border-radius:7px}
+#myProps .post-detail{gap:8px;margin:7px 0;padding:8px 10px;border-radius:10px;font-size:12px}
+#myProps .post-description{font-size:12px;line-height:1.55}
+#myProps .post-note{margin-top:8px;padding:8px 9px;font-size:12px;border-radius:9px}
+#myProps .post-more{margin-top:10px;padding-top:8px}
+#myProps .post-more summary{font-size:12px}
+@media(max-width:760px){#myProps .posts-list{grid-template-columns:minmax(0,1fr);gap:10px}#myProps .post-card{padding:13px}}
+@media(max-width:420px){#myProps .posts-heading{padding:10px 11px}#myProps .post-card h4{font-size:16px}#myProps .post-meta span{font-size:10px}}
 </style>
 </head>
 <body>
