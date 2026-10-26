@@ -450,54 +450,581 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 @media(max-width:900px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:12px!important}#cards .season-items .cover{height:138px!important;max-height:138px!important}}
 @media(max-width:560px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;padding:9px!important}#cards .season-items .cover{height:112px!important;max-height:112px!important}#cards .season-items .card-main{padding:9px!important;gap:6px!important}#cards .season-items .card h3{font-size:15px!important}#cards .season-items .card .card-meta{gap:4px!important}#cards .season-items .card .pill{font-size:10px!important;padding:3px 6px!important}#cards .season-items .card .card-bottom{align-items:flex-start;flex-direction:column;gap:6px}#cards .season-items .card .card-actions{width:100%}#cards .season-items .card .card-actions .btn{padding:5px 7px!important;font-size:11px!important}}
 
-/* 封面完整显示优化：保留原图比例，不再裁切海报；统一卡片布局 */
-#cards .season-items{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;padding:14px!important;align-items:stretch!important}
-#cards .season-items .card{display:flex!important;flex-direction:column!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;gap:0!important;overflow:hidden!important;border:1px solid #dfe8f7!important;border-radius:15px!important;background:#fff!important;box-shadow:0 5px 16px rgba(48,76,123,.07)!important;align-items:stretch!important}
-#cards .season-items .card:hover{transform:translateY(-2px)!important;box-shadow:0 9px 22px rgba(48,76,123,.12)!important}
-#cards .season-items .cover{width:100%!important;height:auto!important;aspect-ratio:3/4!important;max-height:none!important;min-height:0!important;margin:0!important;border-radius:0!important;overflow:hidden!important;background:#eef3fb!important;display:grid!important;place-items:center!important;padding:8px!important;box-sizing:border-box!important}
-#cards .season-items .cover img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important}
-#cards .season-items .card-main{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:8px!important;min-width:0!important;padding:12px 13px 13px!important;background:#f7f8fa!important;box-sizing:border-box!important}
-#cards .season-items .card h3{margin:0!important;font-size:17px!important;line-height:1.4!important;font-weight:800!important;color:#263b62!important;overflow-wrap:anywhere}
-#cards .season-items .card .card-meta{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;font-size:12px!important;color:#8190a8!important}
-#cards .season-items .card .pill{font-size:11px!important;font-weight:700!important;padding:4px 8px!important;border:0!important;border-radius:999px!important;background:#e8efff!important;color:#5278dd!important;white-space:nowrap}
-#cards .season-items .card .card-year{padding:0 1px!important;color:#8492aa!important;white-space:nowrap}
-#cards .season-items .card .card-bottom{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;flex-wrap:wrap!important;padding-top:1px!important}
-#cards .season-items .card .record-count{background:#eaf0fb!important;color:#637da9!important}
-#cards .season-items .card .card-actions{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important}
-#cards .season-items .card .card-actions .btn{margin:0!important;padding:6px 10px!important;min-height:32px!important;border:1px solid #dbe5f6!important;border-radius:9px!important;background:#fff!important;color:#3e5e96!important;font-size:12px!important;line-height:1.25!important;white-space:nowrap!important}
-#cards .season-items .card .card-actions .btn.danger{color:#c44b60!important;background:#fff8f8!important;border-color:#f0d9de!important}
-@media(max-width:900px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important;padding:12px!important}}
-@media(max-width:560px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;padding:9px!important}#cards .season-items .cover{padding:5px!important}#cards .season-items .card-main{padding:9px!important;gap:6px!important}#cards .season-items .card h3{font-size:15px!important}#cards .season-items .card .card-meta{gap:4px!important}#cards .season-items .card .pill{font-size:10px!important;padding:3px 6px!important}#cards .season-items .card .card-bottom{align-items:flex-start!important;flex-direction:column!important;gap:6px!important}#cards .season-items .card .card-actions{width:100%!important}#cards .season-items .card .card-actions .btn{padding:5px 7px!important;font-size:11px!important}}
-
-
-
-/* Final layout refinement: compact poster, horizontal anime card, single-row actions */
-#cards .season-items{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important;padding:12px!important}
-#cards .season-items .card{display:grid!important;grid-template-columns:132px minmax(0,1fr)!important;grid-template-rows:auto!important;align-items:stretch!important;gap:0!important;padding:0!important;min-height:0!important;overflow:hidden!important;border:1px solid #dfe8f6!important;border-radius:15px!important;background:#fff!important}
-#cards .season-items .cover{width:132px!important;height:100%!important;min-height:150px!important;max-height:180px!important;aspect-ratio:auto!important;margin:0!important;border-radius:0!important;align-self:stretch!important;overflow:hidden!important}
-#cards .season-items .cover img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
-#cards .season-items .card-main{min-width:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:9px!important;padding:14px 16px!important;background:#f7f8fa!important}
-#cards .season-items .card h3{font-size:18px!important;line-height:1.35!important;margin:0!important}
-#cards .season-items .card .card-meta{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important}
-#cards .season-items .card .card-bottom{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:10px!important;padding-top:2px!important}
-#cards .season-items .card .card-actions{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:7px!important;flex-wrap:nowrap!important;width:auto!important;max-width:100%!important}
-#cards .season-items .card .card-actions .btn{flex:0 0 auto!important;padding:7px 12px!important;min-height:34px!important;font-size:12px!important;white-space:nowrap!important}
-@media(max-width:560px){
- #cards .season-items{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;padding:8px!important}
- #cards .season-items .card{grid-template-columns:92px minmax(0,1fr)!important}
- #cards .season-items .cover{width:92px!important;min-height:126px!important;max-height:150px!important}
- #cards .season-items .card-main{padding:10px!important;gap:7px!important}
- #cards .season-items .card h3{font-size:15px!important}
- #cards .season-items .card .pill{font-size:10px!important;padding:4px 7px!important}
- #cards .season-items .card .card-bottom{gap:8px!important}
- #cards .season-items .card .card-actions{gap:5px!important;flex-wrap:nowrap!important}
- #cards .season-items .card .card-actions .btn{padding:6px 8px!important;min-height:30px!important;font-size:11px!important;border-radius:8px!important}
+/* 详情弹窗精修：压缩留白、统一左对齐、让时间点更像清晰的记录列表 */
+#modal .dialog{
+  width:min(820px,100%);
+  border-radius:20px;
+  box-shadow:0 24px 75px rgba(29,52,91,.20);
 }
-@media(max-width:370px){#cards .season-items .card{grid-template-columns:78px minmax(0,1fr)!important}#cards .season-items .cover{width:78px!important;min-height:116px!important}#cards .season-items .card-main{padding:8px!important}#cards .season-items .card .card-actions{gap:4px!important}#cards .season-items .card .card-actions .btn{padding:5px 6px!important;font-size:10px!important}}
+#modalBody{padding:18px 22px 22px!important}
+#modal .detail-intro{margin-bottom:20px!important}
+#modal .cut-section-head{margin-bottom:12px!important}
+#modal .cut-section-head h3{font-size:18px!important}
+#modal .cut-section-head p{font-size:12px!important;line-height:1.5}
+#modal .episode-list{gap:12px!important}
+#modal .episode-card{border-radius:15px!important;box-shadow:0 3px 12px rgba(50,78,123,.035)!important}
+#modal .episode-heading{padding:12px 15px!important}
+#modal .episode-points{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:8px!important;
+  padding:10px!important;
+}
+#modal .point-row{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  width:100%;
+  min-height:0!important;
+  margin:0!important;
+  padding:12px 14px!important;
+  border:1px solid #e7edf7!important;
+  border-radius:12px!important;
+  background:#fbfcff!important;
+  box-sizing:border-box;
+}
+#modal .point-content{
+  display:flex!important;
+  flex:1 1 auto!important;
+  min-width:0!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  text-align:left!important;
+}
+#modal .point-time{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:6px 10px!important;
+  border-radius:9px!important;
+  background:#edf3ff!important;
+  border:1px solid #dce7fc!important;
+  color:#345aab!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+  white-space:nowrap!important;
+}
+#modal .point-type{
+  display:inline-block!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:100%;
+  margin:0!important;
+  padding:6px 10px!important;
+  border-radius:9px!important;
+  background:#f0f4f9!important;
+  color:#536781!important;
+  font-size:13px!important;
+  line-height:1.5!important;
+  text-align:left!important;
+  white-space:pre-wrap!important;
+  overflow-wrap:anywhere!important;
+}
+#modal .point-source{flex:0 0 100%!important;margin:0 0 0 2px!important}
+#modal .point-edit{flex:0 0 auto!important;margin:0 0 0 auto!important;align-self:center!important}
+#modal .episode-count{font-size:12px!important}
+@media(max-width:560px){
+  #modal .dialog{width:100%;border-radius:16px}
+  #modalBody{padding:13px 12px 16px!important}
+  #modal .episode-points{padding:8px!important;gap:7px!important}
+  #modal .point-row{gap:8px!important;padding:10px!important}
+  #modal .point-content{gap:6px!important}
+  #modal .point-time{font-size:12px!important;padding:5px 8px!important}
+  #modal .point-type{font-size:12px!important;padding:5px 8px!important}
+}
+
+
+/* 详情时间点：去掉内部小标签框，文字直接靠左排列 */
+#modal .point-row{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  padding:14px 18px!important;
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1px solid #e8edf6!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+#modal .point-content{
+  display:flex!important;
+  flex:1 1 auto!important;
+  min-width:0!important;
+  flex-direction:row!important;
+  align-items:baseline!important;
+  justify-content:flex-start!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  text-align:left!important;
+}
+#modal .point-time{
+  display:inline!important;
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#345aab!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  line-height:1.6!important;
+  white-space:nowrap!important;
+}
+#modal .point-type{
+  display:inline!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:100%;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#536781!important;
+  font-size:14px!important;
+  line-height:1.7!important;
+  text-align:left!important;
+  white-space:pre-wrap!important;
+  overflow-wrap:anywhere!important;
+}
+#modal .point-source{flex:0 0 100%!important;margin:2px 0 0!important}
+#modal .point-edit{flex:0 0 auto!important;margin:0 0 0 auto!important;align-self:center!important}
+@media(max-width:560px){
+  #modal .point-row{gap:8px!important;padding:11px 8px!important}
+  #modal .point-time{font-size:13px!important}
+  #modal .point-type{font-size:13px!important}
+}
+
+
+/* 隐藏“删减时间点”标题下方的说明文字 */
+#modal .cut-section-head p,
+#modal .cut-section-head .subtitle,
+#modal .cut-section-head .section-desc{
+  display:none!important;
+}
+
+
+/* 顶部导航精修：轻盈胶囊式导航，取消厚重下划线感 */
+.top{
+  padding:12px 0!important;
+  background:rgba(250,252,255,.88)!important;
+  border-bottom:1px solid #e3ebfb!important;
+  box-shadow:0 5px 22px rgba(48,76,128,.045)!important;
+}
+.top .nav{
+  gap:18px!important;
+}
+.top .brand{
+  font-size:22px!important;
+  letter-spacing:.2px;
+  color:#2d426d!important;
+}
+.top .mark{
+  width:44px!important;
+  height:44px!important;
+  border-radius:13px!important;
+}
+.top .navlinks{
+  flex:1 1 auto!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:6px!important;
+  flex-wrap:nowrap!important;
+  min-width:0;
+}
+.top .navlinks a{
+  display:inline-flex;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  min-height:42px;
+  padding:10px 15px!important;
+  border:1px solid transparent!important;
+  border-radius:13px!important;
+  color:#526487!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease!important;
+}
+.top .navlinks a:hover{
+  color:#3d70e8!important;
+  background:#f0f5ff!important;
+  border-color:#e6edff!important;
+  transform:translateY(-1px);
+}
+.top .navlinks a.active{
+  color:#3769df!important;
+  background:#eaf1ff!important;
+  border-color:#dce7ff!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),0 3px 9px rgba(67,109,207,.07)!important;
+}
+.top .user-chip{
+  display:flex;
+  align-items:center;
+  gap:8px!important;
+  flex:0 0 auto;
+}
+.top .user-chip .btn{
+  min-height:40px;
+  border-radius:12px!important;
+  padding:9px 13px!important;
+  font-size:13px!important;
+}
+@media(max-width:1050px){
+  .top .brand{font-size:19px!important}
+  .top .nav{gap:10px!important}
+  .top .navlinks{gap:3px!important}
+  .top .navlinks a{padding:9px 10px!important;font-size:14px!important}
+}
+@media(max-width:760px){
+  .top{padding:9px 0!important}
+  .top .nav{flex-wrap:wrap!important;justify-content:center!important;gap:8px!important}
+  .top .brand{display:none!important}
+  .top .navlinks{
+    order:1;
+    flex:1 1 100%!important;
+    justify-content:flex-start!important;
+    overflow-x:auto!important;
+    flex-wrap:nowrap!important;
+    padding:2px 2px 5px!important;
+    scrollbar-width:none;
+  }
+  .top .navlinks::-webkit-scrollbar{display:none}
+  .top .navlinks a{flex:0 0 auto!important;min-height:38px;padding:8px 11px!important;font-size:13px!important}
+  .top .user-chip{order:0;margin-left:auto}
+}
+@media(max-width:420px){
+  .top .user-chip .btn{padding:8px 10px!important;font-size:12px!important}
+  .top .navlinks a{gap:5px!important}
+}
+
+
+/* 导航栏深度美化：品牌区、导航胶囊、账号操作区统一视觉 */
+.top{
+  position:sticky!important;
+  top:0!important;
+  z-index:50!important;
+  padding:10px 0!important;
+  background:rgba(249,251,255,.88)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(145%)!important;
+  backdrop-filter:blur(18px) saturate(145%)!important;
+  border-bottom:1px solid rgba(215,226,248,.9)!important;
+  box-shadow:0 8px 28px rgba(43,69,116,.065)!important;
+}
+.top .wrap.nav{
+  display:flex!important;
+  align-items:center!important;
+  gap:18px!important;
+  min-height:54px;
+}
+.top .brand{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  flex:0 0 auto!important;
+  color:#263d68!important;
+  font-size:20px!important;
+  font-weight:850!important;
+  letter-spacing:.1px!important;
+  white-space:nowrap!important;
+}
+.top .brand .mark{
+  width:42px!important;
+  height:42px!important;
+  object-fit:cover!important;
+  border:2px solid rgba(255,255,255,.95)!important;
+  border-radius:14px!important;
+  box-shadow:0 4px 12px rgba(65,103,180,.16)!important;
+}
+.top .navlinks{
+  display:flex!important;
+  flex:1 1 auto!important;
+  min-width:0!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+  flex-wrap:nowrap!important;
+  padding:4px!important;
+  border:1px solid rgba(226,234,249,.78)!important;
+  border-radius:17px!important;
+  background:rgba(241,246,255,.64)!important;
+}
+.top .navlinks a{
+  display:inline-flex;
+  flex:0 0 auto!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  min-height:40px!important;
+  padding:9px 13px!important;
+  border:1px solid transparent!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  color:#5c6d8d!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  line-height:1.25!important;
+  text-decoration:none!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease!important;
+}
+.top .navlinks a:hover{
+  background:#fff!important;
+  color:#3568dc!important;
+  border-color:#e4ebfb!important;
+  transform:translateY(-1px)!important;
+  box-shadow:0 3px 10px rgba(55,91,159,.07)!important;
+}
+.top .navlinks a.active{
+  background:linear-gradient(135deg,#e7efff,#f1f5ff)!important;
+  color:#3566d8!important;
+  border-color:#d8e4ff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 3px 10px rgba(61,101,190,.08)!important;
+}
+.top .user-chip{
+  display:flex!important;
+  flex:0 0 auto!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  padding:4px!important;
+  border:1px solid rgba(224,232,247,.9)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.76)!important;
+}
+.top .user-chip .default-avatar{margin:0 2px!important}
+.top .user-chip #authBtn,
+.top .user-chip #submitBtn{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  min-height:40px!important;
+  padding:9px 13px!important;
+  border-radius:12px!important;
+  font-size:13px!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  white-space:nowrap!important;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important;
+}
+.top .user-chip #authBtn{
+  background:#fff!important;
+  color:#405a89!important;
+  border:1px solid #dce6fb!important;
+  box-shadow:inset 0 1px 0 #fff!important;
+}
+.top .user-chip #authBtn:hover{
+  background:#f5f8ff!important;
+  border-color:#cbdafa!important;
+  transform:translateY(-1px)!important;
+}
+.top .user-chip #submitBtn{
+  border:1px solid #4e78ee!important;
+  background:linear-gradient(135deg,#6289ff,#4168e8)!important;
+  color:#fff!important;
+  box-shadow:0 5px 12px rgba(66,105,225,.2),inset 0 1px 0 rgba(255,255,255,.22)!important;
+}
+.top .user-chip #submitBtn:hover{
+  background:linear-gradient(135deg,#527cff,#315bdd)!important;
+  box-shadow:0 7px 16px rgba(66,105,225,.26)!important;
+  transform:translateY(-1px)!important;
+}
+@media(max-width:1180px){
+  .top .wrap.nav{gap:10px!important}
+  .top .brand{font-size:18px!important}
+  .top .brand .mark{width:38px!important;height:38px!important}
+  .top .navlinks{gap:2px!important}
+  .top .navlinks a{padding:9px 9px!important;font-size:13px!important}
+  .top .user-chip #authBtn,.top .user-chip #submitBtn{padding:9px 10px!important}
+}
+@media(max-width:900px){
+  .top{padding:8px 0!important}
+  .top .wrap.nav{flex-wrap:wrap!important;gap:8px!important}
+  .top .brand{order:0}
+  .top .user-chip{order:1;margin-left:auto!important}
+  .top .navlinks{
+    order:2;
+    flex:1 1 100%!important;
+    justify-content:flex-start!important;
+    overflow-x:auto!important;
+    padding:4px!important;
+    scrollbar-width:none!important;
+  }
+  .top .navlinks::-webkit-scrollbar{display:none!important}
+  .top .navlinks a{min-height:36px!important;padding:8px 11px!important}
+}
+@media(max-width:520px){
+  .top .wrap{width:calc(100% - 22px)!important}
+  .top .wrap.nav{gap:7px!important}
+  .top .brand{font-size:16px!important;gap:7px!important}
+  .top .brand .mark{width:34px!important;height:34px!important;border-radius:11px!important}
+  .top .user-chip{gap:5px!important;padding:3px!important;border-radius:13px!important}
+  .top .user-chip #authBtn,.top .user-chip #submitBtn{min-height:35px!important;padding:7px 9px!important;font-size:12px!important;border-radius:10px!important}
+  .top .navlinks{border-radius:14px!important}
+  .top .navlinks a{font-size:12px!important;padding:8px 10px!important;gap:5px!important}
+}
+
+
+/* 首页欢迎区美化：更有层次的蓝白渐变、装饰插画与明确的行动入口 */
+#homeWelcome{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  min-height:220px!important;
+  padding:30px 34px!important;
+  margin-top:18px!important;
+  border:1px solid #dce7fb!important;
+  border-radius:24px!important;
+  background:
+    radial-gradient(ellipse at 78% 18%,rgba(255,255,255,.98) 0,rgba(255,255,255,.38) 27%,transparent 48%),
+    radial-gradient(ellipse at 5% 110%,rgba(195,220,255,.56) 0,transparent 46%),
+    linear-gradient(115deg,#f0f6ff 0%,#fbfdff 48%,#edf4ff 100%)!important;
+  box-shadow:0 14px 38px rgba(58,91,151,.085),inset 0 1px 0 rgba(255,255,255,.95)!important;
+}
+#homeWelcome:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:270px;height:270px;
+  right:13%;top:-158px;
+  border-radius:50%;
+  border:1px solid rgba(133,169,238,.23);
+  box-shadow:0 0 0 24px rgba(255,255,255,.22),0 0 0 50px rgba(255,255,255,.15);
+  pointer-events:none;
+}
+#homeWelcome:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  right:24px;bottom:-24px;
+  width:clamp(150px,20vw,235px);
+  height:clamp(150px,20vw,235px);
+  background-image:linear-gradient(135deg,rgba(239,246,255,.05),rgba(239,246,255,.18)),url("avatar.jpeg");
+  background-position:center 18%;
+  background-size:cover;
+  border:8px solid rgba(255,255,255,.62);
+  border-radius:48% 48% 22px 22px;
+  box-shadow:0 16px 34px rgba(63,91,147,.14);
+  opacity:.92;
+  pointer-events:none;
+  mask-image:linear-gradient(to bottom,#000 0%,#000 76%,transparent 100%);
+}
+#homeWelcome h2{
+  position:relative;
+  z-index:1;
+  max-width:62%;
+  margin:0 0 12px!important;
+  color:#263d68!important;
+  font-size:clamp(24px,2.1vw,30px)!important;
+  font-weight:850!important;
+  letter-spacing:.2px!important;
+  line-height:1.35!important;
+}
+#homeWelcome p{
+  position:relative;
+  z-index:1;
+  max-width:58%;
+  margin:0 0 22px!important;
+  color:#687b9f!important;
+  font-size:15px!important;
+  line-height:1.9!important;
+}
+#homeWelcome #browseDirectoryBtn{
+  position:relative;
+  z-index:2;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  min-height:44px!important;
+  padding:12px 19px!important;
+  border:1px solid #4c78ed!important;
+  border-radius:13px!important;
+  background:linear-gradient(135deg,#648cff,#416be9)!important;
+  box-shadow:0 8px 18px rgba(67,105,224,.22),inset 0 1px 0 rgba(255,255,255,.25)!important;
+  font-size:14px!important;
+  font-weight:800!important;
+  transition:transform .18s ease,box-shadow .18s ease!important;
+}
+#homeWelcome #browseDirectoryBtn:after{
+  content:"→";
+  font-size:17px;
+  line-height:1;
+  transition:transform .18s ease;
+}
+#homeWelcome #browseDirectoryBtn:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 12px 22px rgba(67,105,224,.28)!important;
+}
+#homeWelcome #browseDirectoryBtn:hover:after{transform:translateX(3px)}
+@media(max-width:700px){
+  #homeWelcome{min-height:190px!important;padding:24px 20px!important;border-radius:20px!important}
+  #homeWelcome:after{right:-8px;bottom:-18px;width:135px;height:155px;border-width:5px;opacity:.35}
+  #homeWelcome h2{max-width:100%;font-size:22px!important}
+  #homeWelcome p{max-width:100%;padding-right:35px;font-size:13px!important;line-height:1.75!important}
+  #homeWelcome #browseDirectoryBtn{min-height:40px!important;padding:10px 14px!important;font-size:13px!important}
+}
+@media(max-width:400px){
+  #homeWelcome:after{right:-28px;opacity:.22}
+  #homeWelcome p{padding-right:0}
+}
+
+</style>
+
+<style id="compact-card-spacing-final">
+/* Final compact spacing pass: preserve the whole poster while removing excess blank space. */
+#cards .season-items{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;padding:12px!important;align-items:start!important}
+#cards .season-items .card{height:auto!important;min-height:0!important;align-self:start!important;border-radius:13px!important}
+#cards .season-items .cover{height:165px!important;max-height:165px!important;min-height:165px!important;aspect-ratio:auto!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:5px!important;box-sizing:border-box!important;background:#edf2fa!important}
+#cards .season-items .cover img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important}
+#cards .season-items .card-main{height:auto!important;min-height:0!important;padding:10px 12px 11px!important;gap:7px!important;justify-content:flex-start!important}
+#cards .season-items .card h3{font-size:16px!important;line-height:1.3!important;margin:0!important}
+#cards .season-items .card .card-meta{gap:5px!important;line-height:1.25!important}
+#cards .season-items .card .pill{font-size:11px!important;padding:4px 8px!important;min-height:0!important}
+#cards .season-items .card .card-bottom{padding-top:0!important;gap:7px!important;align-items:center!important}
+#cards .season-items .card .card-actions{gap:5px!important}
+#cards .season-items .card .card-actions .btn{min-height:30px!important;padding:5px 9px!important;font-size:11px!important;border-radius:8px!important}
+@media(max-width:900px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;padding:10px!important}#cards .season-items .cover{height:150px!important;max-height:150px!important;min-height:150px!important}}
+@media(max-width:520px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding:8px!important}#cards .season-items .cover{height:125px!important;max-height:125px!important;min-height:125px!important;padding:4px!important}#cards .season-items .card-main{padding:8px!important;gap:6px!important}#cards .season-items .card h3{font-size:14px!important}#cards .season-items .card .pill{font-size:10px!important;padding:3px 6px!important}#cards .season-items .card .card-bottom{align-items:flex-start!important;flex-direction:column!important}#cards .season-items .card .card-actions{width:100%!important}#cards .season-items .card .card-actions .btn{font-size:10px!important;padding:5px 7px!important}}
+
+
+/* Final visual refresh: compact horizontal anime cards */
+#cards .season-group{overflow:hidden;border:1px solid #dce7f8!important;border-radius:20px!important;background:rgba(255,255,255,.58)!important;box-shadow:0 8px 24px rgba(65,100,160,.045)!important;margin:0 0 20px!important}
+#cards .season-heading{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin:0!important;padding:15px 19px!important;border:0!important;border-bottom:1px solid #e5ecf8!important;border-radius:0!important;background:linear-gradient(110deg,#eef4ff,#f8faff)!important;color:#304a79!important;font-size:17px!important;font-weight:850!important}
+#cards .season-count{flex-shrink:0!important;padding:6px 11px!important;border-radius:999px!important;background:#fff!important;color:#7b8fb5!important;font-size:12px!important;font-weight:800!important}
+#cards .season-items{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:13px!important;padding:14px!important;align-items:stretch!important}
+#cards .season-items .card{display:grid!important;grid-template-columns:88px minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;gap:0!important;min-width:0!important;min-height:142px!important;margin:0!important;padding:0!important;overflow:hidden!important;border:1px solid #e1e9f6!important;border-radius:15px!important;background:#fff!important;box-shadow:0 3px 12px rgba(48,76,123,.045)!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important}
+#cards .season-items .card:hover{transform:translateY(-2px)!important;border-color:#bfd1f6!important;box-shadow:0 8px 20px rgba(48,76,123,.10)!important}
+#cards .season-items .cover{grid-column:1!important;grid-row:1!important;width:88px!important;height:100%!important;min-height:142px!important;max-height:none!important;aspect-ratio:auto!important;margin:0!important;padding:7px!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;border-radius:0!important;background:#f0f4fb!important;border-right:1px solid #e8eef8!important}
+#cards .season-items .cover img{display:block!important;width:100%!important;height:100%!important;max-height:180px!important;object-fit:contain!important;object-position:center!important;border-radius:7px!important}
+#cards .season-items .card-main{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:center!important;gap:8px!important;min-width:0!important;padding:12px 13px!important;background:linear-gradient(145deg,#fff,#fbfcff)!important}
+#cards .season-items .card h3{margin:0!important;color:#2e4269!important;font-size:17px!important;font-weight:850!important;line-height:1.35!important;letter-spacing:.1px!important;overflow-wrap:anywhere!important}
+#cards .season-items .card .card-meta{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;font-size:12px!important;color:#8492aa!important}
+#cards .season-items .card .pill{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:24px!important;padding:4px 8px!important;border:0!important;border-radius:999px!important;background:#edf2ff!important;color:#5b79ce!important;font-size:11px!important;font-weight:750!important;white-space:nowrap!important}
+#cards .season-items .card .card-year{padding:0 2px!important;color:#8492aa!important;font-size:12px!important;white-space:nowrap!important}
+#cards .season-items .card .card-bottom{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:7px!important;flex-wrap:nowrap!important;padding-top:1px!important;min-width:0!important}
+#cards .season-items .card .record-count{flex-shrink:0!important;background:#f0f4fb!important;color:#7185a8!important}
+#cards .season-items .card .card-actions{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:4px!important;flex-wrap:nowrap!important;min-width:0!important;width:auto!important}
+#cards .season-items .card .card-actions .btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-width:0!important;min-height:29px!important;margin:0!important;padding:5px 8px!important;border:1px solid #dce6f7!important;border-radius:8px!important;background:#fff!important;color:#49689f!important;font-size:11px!important;font-weight:750!important;line-height:1.2!important;white-space:nowrap!important;box-shadow:none!important}
+#cards .season-items .card .card-actions .btn:hover{background:#f0f5ff!important;border-color:#cbd9f4!important}
+#cards .season-items .card .card-actions .btn.danger{color:#c45a6b!important;background:#fff9fa!important;border-color:#f1dce1!important}
+@media(max-width:1500px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important}#cards .season-items .card{grid-template-columns:92px minmax(0,1fr)!important}#cards .season-items .cover{width:92px!important}}
+@media(max-width:900px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;padding:11px!important}#cards .season-items .card{grid-template-columns:78px minmax(0,1fr)!important;min-height:132px!important}#cards .season-items .cover{width:78px!important;min-height:132px!important;padding:6px!important}#cards .season-items .card-main{padding:10px!important;gap:7px!important}#cards .season-items .card h3{font-size:16px!important}#cards .season-items .card .card-bottom{align-items:flex-start!important;flex-direction:column!important;gap:6px!important}#cards .season-items .card .card-actions{width:100%!important;justify-content:flex-start!important}#cards .season-items .card .card-actions .btn{font-size:11px!important;padding:5px 8px!important}}
+@media(max-width:620px){#cards .season-items{grid-template-columns:minmax(0,1fr)!important;gap:9px!important;padding:9px!important}#cards .season-items .card{grid-template-columns:86px minmax(0,1fr)!important;min-height:128px!important}#cards .season-items .cover{width:86px!important;min-height:128px!important}#cards .season-items .card-main{padding:10px 11px!important}#cards .season-items .card .card-bottom{align-items:center!important;flex-direction:row!important;justify-content:space-between!important;gap:6px!important}#cards .season-items .card .card-actions{width:auto!important;gap:4px!important}#cards .season-items .card .card-actions .btn{font-size:10px!important;padding:5px 7px!important;min-height:28px!important}}
+@media(max-width:380px){#cards .season-items .card{grid-template-columns:72px minmax(0,1fr)!important}#cards .season-items .cover{width:72px!important;padding:5px!important}#cards .season-items .card-main{padding:8px!important}#cards .season-items .card .pill{font-size:10px!important;padding:3px 6px!important}#cards .season-items .card .card-actions .btn{font-size:10px!important;padding:5px 6px!important}}
+
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home">⌂ 首页</a><a href="#" data-page="directory">⌕ 番剧列表</a><a href="#" data-page="submit">＋ 提交投稿</a><a href="#" data-page="my-posts">♟ 我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none">♢ 审核列表</a></nav><div class="user-chip"><span class="default-avatar" id="roleBadge" aria-label="账号身份"></span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button">＋ 投稿</button></div></div></header>
+<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home">⌂ 首页</a><a href="#" data-page="directory">⌕ 番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none">♟ 我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none">♢ 审核列表</a></nav><div class="user-chip"><span class="default-avatar" id="roleBadge" aria-label="账号身份"></span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
 <section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案馆</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
 <main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案馆</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><input class="field" id="search" placeholder="搜索番剧名称…"><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><h2>我的投稿</h2><p class="muted">登录后可查看自己的待审核投稿。</p><button class="btn plain" id="myPropsBtn">查看我的投稿</button> <button class="btn plain" id="adminBtn" style="display:none">审核列表</button><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
 <form id="inlineProposalForm" class="inline-form">
@@ -541,7 +1068,7 @@ async function refresh(){
  const {data:sessionData}=await db.auth.getSession();currentUser=sessionData.session?.user||null;
  if(currentUser){const p=await db.from("profiles").select("is_admin").eq("id",currentUser.id).maybeSingle();isAdmin=!!p.data?.is_admin}
  else isAdmin=false;
- $("userState").textContent=currentUser?(isAdmin?"管理员":"已登录"):"访客";const roleBadge=$("roleBadge");if(roleBadge){roleBadge.textContent=isAdmin?"管":"客";roleBadge.classList.toggle("visible",!!currentUser);roleBadge.title=isAdmin?"管理员":"游客";}$("authBtn").textContent=currentUser?"退出登录":"登录 / 注册";$("adminBtn").style.display=isAdmin?"inline-block":"none";if($("navAdmin"))$("navAdmin").style.display=isAdmin?"inline-block":"none";
+ $("userState").textContent=currentUser?(isAdmin?"管理员":"已登录"):"访客";const roleBadge=$("roleBadge");if(roleBadge){roleBadge.textContent=isAdmin?"管":"客";roleBadge.classList.toggle("visible",!!currentUser);roleBadge.title=isAdmin?"管理员":"游客";}$("authBtn").textContent=currentUser?"退出登录":"登录 / 注册";$("adminBtn").style.display=isAdmin?"inline-block":"none";if($("navMyPosts"))$("navMyPosts").style.display=currentUser?"inline-flex":"none";if($("navAdmin"))$("navAdmin").style.display=(currentUser&&isAdmin)?"inline-flex":"none";
  const a=await db.from("anime").select("*").order("title");
  if(a.error){$("status").textContent="读取番剧失败："+a.error.message+"。请检查 schema.sql 与 RLS 策略。";return}
  records=a.data||[];
@@ -609,7 +1136,7 @@ function showDetail(id){
  const episodeMap=new Map();
  cs.forEach(c=>{const ep=c.episode??c.episode_number??c.episode_no??"未填写";const key=String(ep);if(!episodeMap.has(key))episodeMap.set(key,[]);episodeMap.get(key).push(c)});
  const episodeEntries=[...episodeMap.entries()].sort((a,b)=>{const an=Number(a[0]),bn=Number(b[0]);if(Number.isFinite(an)&&Number.isFinite(bn))return an-bn;if(Number.isFinite(an))return -1;if(Number.isFinite(bn))return 1;return a[0].localeCompare(b[0],"zh-CN")});
- const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>删减时间点</h3><p>同一集的多个时间点已归在一起</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>`<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${items.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span>${c.source_note?`<a class="point-source" href="${esc(c.source_note)}" target="_blank" rel="noopener">查看来源 ↗</a>`:""}</div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
+ const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>记录</h3><p>同一集的多个时间点已归在一起</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>`<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${items.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span>${c.source_note?`<a class="point-source" href="${esc(c.source_note)}" target="_blank" rel="noopener">查看来源 ↗</a>`:""}</div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
  modal(a.title,`${a.year||""} 年 · ${a.season||""}`,intro+cutHtml)
 }
 window.editCutRecord=function(id){
@@ -713,10 +1240,10 @@ window.navigatePage=function(page){
  window.scrollTo({top:0,behavior:"smooth"});
 };
 document.querySelectorAll("[data-page]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();navigatePage(el.dataset.page)}));
-const submitPanelBtn=$("submitPanelBtn"); if(submitPanelBtn) submitPanelBtn.onclick=()=>navigatePage("submit");
+const quickSubmitBtn=$("submitBtn");if(quickSubmitBtn)quickSubmitBtn.onclick=()=>navigatePage("submit");const submitPanelBtn=$("submitPanelBtn"); if(submitPanelBtn) submitPanelBtn.onclick=()=>navigatePage("submit");
 const browseDirectoryBtn=$("browseDirectoryBtn"); if(browseDirectoryBtn){browseDirectoryBtn.type="button";browseDirectoryBtn.addEventListener("click",e=>{e.preventDefault();navigatePage("directory");requestAnimationFrame(()=>$("directory")?.scrollIntoView({behavior:"smooth",block:"start"}));});}
 $("authBtn").onclick=authDialog;
-$("submitBtn").onclick=()=>navigatePage("submit");$("myPropsBtn").onclick=myProposals;$("adminBtn").onclick=adminReview;$("close").onclick=closeModal;$("modal").onclick=e=>{if(e.target===$("modal"))closeModal()};["search","season","year"].forEach(id=>$(id).addEventListener("input",render));
+$("myPropsBtn").onclick=myProposals;$("adminBtn").onclick=adminReview;$("close").onclick=closeModal;$("modal").onclick=e=>{if(e.target===$("modal"))closeModal()};["search","season","year"].forEach(id=>$(id).addEventListener("input",render));
 
 const inlineYear = $("newAnimeYear");
 if(inlineYear){const now=new Date().getFullYear();for(let y=now;y>=1950;y--){const op=document.createElement("option");op.value=String(y);op.textContent=y+"年";inlineYear.appendChild(op)}}
