@@ -1405,8 +1405,10 @@ async function sendPasswordRecovery(){
  }catch(e){feedback.textContent="发送失败："+(e?.message||String(e));}
  finally{btn.disabled=false}
 }
+let recoveryDialogShown=false;
 function showUpdatePasswordDialog(){
- if(!db)return;
+ if(!db || recoveryDialogShown)return;
+ recoveryDialogShown=true;
  modal("设置新密码","密码重置验证已打开，请设置新密码。",`<form id="updatePasswordForm" novalidate><label>新密码（至少 6 位）</label><input class="field" name="newPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请输入新密码"><p><label>再次输入新密码</label><input class="field" name="confirmPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请再次输入新密码"></p><button class="btn primary" type="submit">保存新密码</button><p id="updatePasswordFeedback" class="notice" style="display:none"></p></form>`);
  const form=$("updatePasswordForm");form.onsubmit=async e=>{e.preventDefault();const feedback=$("updatePasswordFeedback"),a=form.querySelector('[name="newPassword"]').value,b=form.querySelector('[name="confirmPassword"]').value;feedback.style.display="block";if(a.length<6){feedback.textContent="新密码至少需要 6 位。";return}if(a!==b){feedback.textContent="两次输入的密码不一致，请重新检查。";return}const submit=form.querySelector('button[type="submit"]');submit.disabled=true;feedback.textContent="正在保存新密码……";try{const r=await db.auth.updateUser({password:a});if(r.error){feedback.textContent="修改失败："+r.error.message;return}await db.auth.signOut();closeModal();toast("密码已修改，请使用新密码重新登录");}catch(err){feedback.textContent="修改失败："+(err?.message||String(err));}finally{submit.disabled=false}};
 }
@@ -1636,5 +1638,18 @@ $("inlineProposalForm").addEventListener("submit",async e=>{
  }catch(err){toast("投稿请求失败："+(err?.message||String(err)))}finally{submit.disabled=false;submit.textContent="➤ 提交投稿"}
 });
 navigatePage("home");
-if(db){db.auth.onAuthStateChange((event)=>{setTimeout(refresh,0);if(event==="PASSWORD_RECOVERY")setTimeout(showUpdatePasswordDialog,150)});refresh();if(location.hash.includes("type=recovery"))setTimeout(showUpdatePasswordDialog,800)}else refresh();
+function hasRecoveryMarker(){
+ const hash= new URLSearchParams((location.hash||"").replace(/^#/,""));
+ const query= new URLSearchParams(location.search||"");
+ return hash.get("type")==="recovery" || query.get("type")==="recovery";
+}
+if(db){
+ db.auth.onAuthStateChange((event)=>{
+   setTimeout(refresh,0);
+   if(event==="PASSWORD_RECOVERY")setTimeout(showUpdatePasswordDialog,200);
+ });
+ refresh();
+ // Supabase may return the recovery marker in either the URL fragment or query string.
+ if(hasRecoveryMarker())setTimeout(showUpdatePasswordDialog,800);
+}else refresh();
 </script></body></html>
