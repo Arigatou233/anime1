@@ -351,7 +351,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 .cut-time-list{display:grid;gap:7px!important}
 .cut-time-row{grid-template-columns:minmax(150px,.75fr) minmax(0,2fr) auto!important;align-items:end!important;gap:9px!important;padding:10px!important;border:1px solid #e5ecf9!important;border-radius:11px!important;background:#fbfcff!important}
 .cut-time-row>div{min-width:0}
-.cut-time-row textarea.field{min-height:36px!important;height:36px;resize:vertical;line-height:1.45}
+.cut-time-row input.field,.cut-time-row textarea.field{height:44px!important;min-height:44px!important;max-height:44px!important;box-sizing:border-box!important;padding:10px 12px!important;line-height:22px!important;vertical-align:middle!important}.cut-time-row textarea.field{resize:none!important;overflow:hidden!important;display:block!important}
 .cut-time-row .cut-remove,.cut-submit-row-head .cut-remove{padding:7px 9px!important;min-height:34px;border-radius:9px;font-size:12px}
 .cut-episode-actions{display:flex;justify-content:flex-end;margin-top:8px}
 .cut-add-inline{border:1px solid #d7e4ff!important;background:#f4f7ff!important;color:#4f78d9!important;border-radius:9px!important;padding:7px 11px!important;font-size:12px!important;font-weight:800;min-height:32px}
@@ -361,9 +361,139 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 #existingAnimeFields>label{display:block;font-size:12px;font-weight:800;color:#526b94;margin:9px 0 5px}
 #existingAnimeSelect{min-height:39px}
 @media(max-width:900px){#submit .anime-meta-grid{grid-template-columns:minmax(0,1fr)}#submit .anime-meta-subgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:600px){#submit .anime-meta-subgrid{grid-template-columns:minmax(0,1fr)}.cut-episode-head{flex-wrap:wrap}.cut-episode-head .episode-input-wrap{width:100%;flex-basis:100%}.cut-time-row{grid-template-columns:minmax(0,1fr)!important}.cut-time-row textarea.field{height:auto;min-height:54px!important}.cut-time-row .cut-remove{justify-self:end}.cut-submit-head{align-items:flex-start}.cut-submit-head small{width:100%}}
+@media(max-width:600px){#submit .anime-meta-subgrid{grid-template-columns:minmax(0,1fr)}.cut-episode-head{flex-wrap:wrap}.cut-episode-head .episode-input-wrap{width:100%;flex-basis:100%}.cut-time-row{grid-template-columns:minmax(0,1fr)!important}.cut-time-row input.field,.cut-time-row textarea.field{height:44px!important;min-height:44px!important;max-height:44px!important}.cut-time-row textarea.field{height:44px!important;min-height:44px!important}.cut-time-row .cut-remove{justify-self:end}.cut-submit-head{align-items:flex-start}.cut-submit-head small{width:100%}}
+
+
+/* 投稿表单改为纵向单列：每个字段独占一行，避免横向挤压与左侧大块留白 */
+#contentLayout:has(#submit:not(.page-hidden)){grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+#contentLayout:has(#submit:not(.page-hidden))>div{display:none!important}
+#contentLayout:has(#submit:not(.page-hidden))>#submit{grid-column:1/-1!important;width:100%!important;max-width:none!important;box-sizing:border-box}
+#submit .anime-meta-grid,
+#submit .anime-meta-subgrid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:9px!important;align-items:stretch!important}
+#submit .anime-meta-field{width:100%;box-sizing:border-box}
+#submit .anime-meta-field .inline-two{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+#submit #newAnimeFields>label{margin-top:12px!important}
+#submit #newAnimeFields>input.field,
+#submit #newAnimeFields>textarea.field,
+#submit #existingAnimeFields>select.field{display:block;width:100%;box-sizing:border-box}
+#submit .cut-submit-head small{display:none!important}
+#existingAnimeCuts .existing-episode-controls{display:flex;align-items:flex-end;gap:9px;flex-wrap:wrap;width:100%}
+#existingAnimeCuts .existing-episode-controls .episode-select-wrap{flex:0 1 320px;width:320px;max-width:100%;min-width:0}
+#existingAnimeCuts .existing-episode-controls .episode-manual-wrap{flex:0 1 150px;min-width:130px}
+#existingAnimeCuts .existing-episode-controls label{display:block;font-size:11px;font-weight:800;color:#7184a7;margin-bottom:4px}
+#existingAnimeCuts .existing-episode-controls .field{width:100%;box-sizing:border-box;min-height:36px;padding:8px 10px;border-radius:9px;font-size:13px}
+#existingAnimeCuts .existing-episode-controls .episode-manual-wrap[hidden]{display:none!important}
+@media(max-width:600px){#existingAnimeCuts .existing-episode-controls{align-items:stretch;flex-direction:column}#existingAnimeCuts .existing-episode-controls .episode-select-wrap,#existingAnimeCuts .existing-episode-controls .episode-manual-wrap{min-width:0;width:100%;flex-basis:auto}}
+@media(max-width:600px){#submit .anime-meta-grid,#submit .anime-meta-subgrid{grid-template-columns:minmax(0,1fr)!important}}
+
+
+/* Anime card typography and action alignment polish */
+#cards .card{align-items:center;gap:20px;padding:18px 22px;min-height:158px;border:1px solid #e3ebfb;border-radius:18px;background:rgba(255,255,255,.94);box-shadow:0 5px 18px rgba(65,103,169,.06);margin:0 0 12px}
+#cards .card:hover{background:#fff;box-shadow:0 8px 24px rgba(65,103,169,.10)}
+#cards .cover{width:132px;height:132px;margin:0;flex-shrink:0}
+#cards .card-main{display:grid;grid-template-columns:repeat(3,max-content);align-items:center;justify-content:start;column-gap:10px;row-gap:9px;width:100%;min-width:0}
+#cards .card h3{grid-column:1/-1;font-size:22px;font-weight:800;line-height:1.3;letter-spacing:.1px;margin:0 0 1px;color:#203966;overflow-wrap:anywhere}
+#cards .card-main>.muted{grid-column:1/-1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:#8292ad}
+#cards .card-main>p{grid-column:1/-1;margin:0!important}
+#cards .card-main .pill{display:inline-flex;align-items:center;min-height:29px;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:650;background:#edf2ff;color:#5578df;white-space:nowrap}
+#cards .card-main button{grid-row:auto;align-self:center;justify-self:start;margin:0!important;min-height:40px;padding:8px 17px;border:1px solid #dce6ff;border-radius:13px;font-size:14px;font-weight:750;white-space:nowrap;box-shadow:none}
+#cards .card-main button:first-of-type{background:#f3f6ff;border-color:#dce6ff;color:#3e5f9d}
+#cards .card-main button:first-of-type:hover{background:#eaf0ff}
+#cards .card-main button[style*="c43d52"]{background:#fff7f8;border-color:#f0d7dc;color:#c43d52}
+#cards .card-main button+button{margin-left:0!important}
+@media(max-width:1050px){#cards .card{grid-template-columns:104px minmax(0,1fr);gap:14px;padding:14px;min-height:0}#cards .cover{width:104px;height:116px}#cards .card-main{grid-template-columns:repeat(3,max-content);column-gap:8px}#cards .card h3{font-size:20px}}
+@media(max-width:720px){#cards .card{grid-template-columns:82px minmax(0,1fr);gap:12px;padding:12px;border-radius:15px}#cards .cover{width:82px;height:100px}#cards .card-main{grid-template-columns:repeat(3,minmax(0,max-content));column-gap:7px;row-gap:7px}#cards .card h3{font-size:18px}#cards .card-main .pill{font-size:12px;min-height:27px;padding:4px 9px}#cards .card-main button{min-height:36px;padding:7px 11px;font-size:12px}}
+@media(max-width:420px){#cards .card{grid-template-columns:70px minmax(0,1fr);gap:10px}#cards .cover{width:70px;height:88px}#cards .card-main{grid-template-columns:repeat(2,max-content)}#cards .card-main>.muted,#cards .card h3,#cards .card-main>p{grid-column:1/-1}#cards .card-main button{padding:7px 9px;font-size:12px}}
+
+
+/* Anime cards: poster-first editorial layout inspired by the supplied reference */
+#cards .season-items{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;padding:16px!important;align-items:stretch}
+#cards .season-items .card{display:flex!important;flex-direction:column!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;border:1px solid #e2eaf5!important;border-radius:15px!important;background:#fff!important;box-shadow:0 4px 15px rgba(48,76,123,.07)!important;gap:0!important;align-items:stretch!important;transition:transform .18s,box-shadow .18s}
+#cards .season-items .card:hover{transform:translateY(-3px)!important;box-shadow:0 10px 24px rgba(48,76,123,.13)!important}
+#cards .season-items .cover{width:100%!important;height:auto!important;aspect-ratio:4/4.1!important;min-height:0!important;margin:0!important;border-radius:0!important;overflow:hidden!important;background:#edf3fb!important;display:grid!important;place-items:center!important}
+#cards .season-items .cover img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+#cards .cover-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#8ba0c2;font-size:34px;width:100%;height:100%}
+#cards .cover-fallback small{font-size:12px}
+#cards .season-items .card-main{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:9px!important;min-width:0!important;padding:14px 15px 15px!important;background:#f5f6f8!important}
+#cards .season-items .card h3{margin:0!important;font-size:19px!important;line-height:1.4!important;font-weight:850!important;color:#263b62!important;overflow-wrap:anywhere}
+#cards .season-items .card .card-meta{display:flex!important;align-items:center!important;gap:7px!important;flex-wrap:wrap!important;font-size:13px!important;color:#8190a8!important}
+#cards .season-items .card .pill{font-size:12px!important;font-weight:700!important;padding:5px 10px!important;border:0!important;border-radius:999px!important;background:#e8efff!important;color:#5278dd!important;white-space:nowrap}
+#cards .season-items .card .card-year{padding:0 2px;color:#8492aa;white-space:nowrap}
+#cards .season-items .card .card-bottom{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;flex-wrap:wrap!important;padding-top:2px}
+#cards .season-items .card .record-count{background:#eaf0fb!important;color:#637da9!important}
+#cards .season-items .card .card-actions{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important}
+#cards .season-items .card .card-actions .btn{margin:0!important;padding:7px 11px!important;min-height:34px!important;border:1px solid #dbe5f6!important;border-radius:9px!important;background:#fff!important;color:#3e5e96!important;font-size:12px!important;line-height:1.3!important;white-space:nowrap!important}
+#cards .season-items .card .card-actions .btn:hover{background:#edf3ff!important}
+#cards .season-items .card .card-actions .btn.danger{color:#c44b60!important;background:#fff8f8!important;border-color:#f0d9de!important}
+@media(min-width:1250px){#cards .season-items{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:900px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important;padding:12px!important}}
+@media(max-width:560px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;padding:10px!important}#cards .season-items .card-main{padding:10px!important;gap:7px!important}#cards .season-items .card h3{font-size:16px!important}#cards .season-items .card .card-meta{gap:5px!important}#cards .season-items .card .pill{font-size:10px!important;padding:4px 7px!important}#cards .season-items .card .card-bottom{align-items:flex-start;flex-direction:column;gap:7px}#cards .season-items .card .card-actions{width:100%}#cards .season-items .card .card-actions .btn{padding:6px 8px!important;font-size:11px!important}}
+
+
+/* Compact anime cards: reduce oversized covers and tighten card layout */
+#cards .season-items{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;padding:14px!important;align-items:stretch!important}
+#cards .season-items .card{display:flex!important;flex-direction:column!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;gap:0!important;overflow:hidden!important;border:1px solid #e0e8f5!important;border-radius:14px!important;background:#fff!important;box-shadow:0 4px 14px rgba(48,76,123,.06)!important;align-items:stretch!important}
+#cards .season-items .card:hover{transform:translateY(-2px)!important;box-shadow:0 8px 20px rgba(48,76,123,.11)!important}
+#cards .season-items .cover{width:100%!important;height:150px!important;max-height:150px!important;aspect-ratio:16/10!important;min-height:0!important;margin:0!important;border-radius:0!important;overflow:hidden!important;background:#edf3fb!important}
+#cards .season-items .cover img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+#cards .season-items .card-main{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:8px!important;min-width:0!important;padding:12px 13px 13px!important;background:#f7f8fa!important}
+#cards .season-items .card h3{margin:0!important;font-size:17px!important;line-height:1.35!important;font-weight:800!important;color:#263b62!important;overflow-wrap:anywhere}
+#cards .season-items .card .card-meta{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;font-size:12px!important;color:#8190a8!important}
+#cards .season-items .card .pill{font-size:11px!important;font-weight:700!important;padding:4px 8px!important;border:0!important;border-radius:999px!important;background:#e8efff!important;color:#5278dd!important;white-space:nowrap}
+#cards .season-items .card .card-year{padding:0 1px;color:#8492aa;white-space:nowrap}
+#cards .season-items .card .card-bottom{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;flex-wrap:wrap!important;padding-top:1px}
+#cards .season-items .card .record-count{background:#eaf0fb!important;color:#637da9!important}
+#cards .season-items .card .card-actions{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important}
+#cards .season-items .card .card-actions .btn{margin:0!important;padding:6px 10px!important;min-height:31px!important;border:1px solid #dbe5f6!important;border-radius:9px!important;background:#fff!important;color:#3e5e96!important;font-size:12px!important;line-height:1.25!important;white-space:nowrap!important}
+#cards .season-items .card .card-actions .btn.danger{color:#c44b60!important;background:#fff8f8!important;border-color:#f0d9de!important}
+@media(min-width:1250px){#cards .season-items{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:900px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:12px!important}#cards .season-items .cover{height:138px!important;max-height:138px!important}}
+@media(max-width:560px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;padding:9px!important}#cards .season-items .cover{height:112px!important;max-height:112px!important}#cards .season-items .card-main{padding:9px!important;gap:6px!important}#cards .season-items .card h3{font-size:15px!important}#cards .season-items .card .card-meta{gap:4px!important}#cards .season-items .card .pill{font-size:10px!important;padding:3px 6px!important}#cards .season-items .card .card-bottom{align-items:flex-start;flex-direction:column;gap:6px}#cards .season-items .card .card-actions{width:100%}#cards .season-items .card .card-actions .btn{padding:5px 7px!important;font-size:11px!important}}
+
+/* 封面完整显示优化：保留原图比例，不再裁切海报；统一卡片布局 */
+#cards .season-items{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;padding:14px!important;align-items:stretch!important}
+#cards .season-items .card{display:flex!important;flex-direction:column!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;gap:0!important;overflow:hidden!important;border:1px solid #dfe8f7!important;border-radius:15px!important;background:#fff!important;box-shadow:0 5px 16px rgba(48,76,123,.07)!important;align-items:stretch!important}
+#cards .season-items .card:hover{transform:translateY(-2px)!important;box-shadow:0 9px 22px rgba(48,76,123,.12)!important}
+#cards .season-items .cover{width:100%!important;height:auto!important;aspect-ratio:3/4!important;max-height:none!important;min-height:0!important;margin:0!important;border-radius:0!important;overflow:hidden!important;background:#eef3fb!important;display:grid!important;place-items:center!important;padding:8px!important;box-sizing:border-box!important}
+#cards .season-items .cover img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important}
+#cards .season-items .card-main{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:8px!important;min-width:0!important;padding:12px 13px 13px!important;background:#f7f8fa!important;box-sizing:border-box!important}
+#cards .season-items .card h3{margin:0!important;font-size:17px!important;line-height:1.4!important;font-weight:800!important;color:#263b62!important;overflow-wrap:anywhere}
+#cards .season-items .card .card-meta{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;font-size:12px!important;color:#8190a8!important}
+#cards .season-items .card .pill{font-size:11px!important;font-weight:700!important;padding:4px 8px!important;border:0!important;border-radius:999px!important;background:#e8efff!important;color:#5278dd!important;white-space:nowrap}
+#cards .season-items .card .card-year{padding:0 1px!important;color:#8492aa!important;white-space:nowrap}
+#cards .season-items .card .card-bottom{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;flex-wrap:wrap!important;padding-top:1px!important}
+#cards .season-items .card .record-count{background:#eaf0fb!important;color:#637da9!important}
+#cards .season-items .card .card-actions{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important}
+#cards .season-items .card .card-actions .btn{margin:0!important;padding:6px 10px!important;min-height:32px!important;border:1px solid #dbe5f6!important;border-radius:9px!important;background:#fff!important;color:#3e5e96!important;font-size:12px!important;line-height:1.25!important;white-space:nowrap!important}
+#cards .season-items .card .card-actions .btn.danger{color:#c44b60!important;background:#fff8f8!important;border-color:#f0d9de!important}
+@media(max-width:900px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important;padding:12px!important}}
+@media(max-width:560px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;padding:9px!important}#cards .season-items .cover{padding:5px!important}#cards .season-items .card-main{padding:9px!important;gap:6px!important}#cards .season-items .card h3{font-size:15px!important}#cards .season-items .card .card-meta{gap:4px!important}#cards .season-items .card .pill{font-size:10px!important;padding:3px 6px!important}#cards .season-items .card .card-bottom{align-items:flex-start!important;flex-direction:column!important;gap:6px!important}#cards .season-items .card .card-actions{width:100%!important}#cards .season-items .card .card-actions .btn{padding:5px 7px!important;font-size:11px!important}}
 
 </style>
+
+<style id="final-card-polish-v2">
+/* 最终卡片排版：封面完整显示，信息与按钮统一对齐 */
+#cards .season-items{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;align-items:stretch!important;padding:4px!important}
+#cards .season-items>.card{display:flex!important;flex-direction:column!important;min-width:0!important;padding:0!important;overflow:hidden!important;border:1px solid #dfe8f8!important;border-radius:17px!important;background:#fff!important;box-shadow:0 5px 18px rgba(55,91,150,.08)!important;transform:none!important;transition:box-shadow .2s,border-color .2s!important}
+#cards .season-items>.card:hover{border-color:#b8ccff!important;box-shadow:0 10px 26px rgba(55,91,150,.14)!important}
+#cards .season-items .cover{width:100%!important;height:320px!important;max-height:320px!important;aspect-ratio:auto!important;flex:none!important;box-sizing:border-box!important;padding:8px!important;margin:0!important;border-radius:0!important;background:linear-gradient(145deg,#f4f7fd,#eaf0fb)!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+#cards .season-items .cover img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;border-radius:7px!important}
+#cards .season-items .cover .cover-fallback{min-height:100%;font-size:30px}
+#cards .season-items .card-main{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;min-width:0!important;flex:1!important;padding:14px 15px 15px!important;box-sizing:border-box!important}
+#cards .season-items .card h3{font-size:18px!important;line-height:1.4!important;font-weight:800!important;margin:0!important;color:#253b68!important;overflow-wrap:anywhere!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;min-height:2.8em!important}
+#cards .season-items .card-meta{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;margin:0!important;min-height:27px!important}
+#cards .season-items .card-meta .pill{font-size:12px!important;line-height:1.4!important;padding:5px 9px!important;border-radius:99px!important;white-space:nowrap!important}
+#cards .season-items .card-meta .card-year{font-size:13px!important;color:#8392ad!important;white-space:nowrap!important}
+#cards .season-items .card-bottom{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;flex-wrap:wrap!important;margin-top:auto!important;padding-top:10px!important;border-top:1px solid #edf1f8!important}
+#cards .season-items .record-count{font-size:12px!important;padding:6px 10px!important;background:#f0f4ff!important;color:#5975b3!important;white-space:nowrap!important}
+#cards .season-items .card-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;flex-wrap:wrap!important;margin-left:auto!important}
+#cards .season-items .card-actions .btn{min-height:36px!important;padding:7px 12px!important;font-size:13px!important;border-radius:10px!important;white-space:nowrap!important}
+#cards .season-items .card-actions .primary{background:#edf3ff!important;color:#4169c7!important;border:1px solid #d9e5ff!important}
+@media(max-width:1050px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}#cards .season-items .cover{height:260px!important;max-height:260px!important}}
+@media(max-width:600px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;padding:2px!important}#cards .season-items>.card{border-radius:13px!important}#cards .season-items .cover{height:132px!important;max-height:132px!important;padding:6px!important}#cards .season-items .card-main{padding:10px!important;gap:8px!important}#cards .season-items .card h3{font-size:15px!important;min-height:2.8em!important}#cards .season-items .card-meta{gap:4px!important}#cards .season-items .card-meta .pill{font-size:10px!important;padding:4px 6px!important}#cards .season-items .card-meta .card-year{font-size:11px!important}#cards .season-items .card-bottom{align-items:flex-start!important;flex-direction:column!important;gap:8px!important}#cards .season-items .record-count{font-size:11px!important;padding:5px 8px!important}#cards .season-items .card-actions{width:100%!important;justify-content:flex-start!important;margin-left:0!important;gap:5px!important}#cards .season-items .card-actions .btn{min-height:32px!important;padding:6px 9px!important;font-size:11px!important}}
+@media(max-width:360px){#cards .season-items .cover{height:112px!important;max-height:112px!important}#cards .season-items .card-main{padding:8px!important}#cards .season-items .card-actions .btn{padding:5px 7px!important}}
+</style>
+
 </head>
 <body>
 <header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home">⌂ 首页</a><a href="#" data-page="directory">⌕ 番剧列表</a><a href="#" data-page="submit">＋ 提交投稿</a><a href="#" data-page="my-posts">♟ 我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none">♢ 审核列表</a></nav><div class="user-chip"><span class="default-avatar" id="roleBadge" aria-label="账号身份"></span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button">＋ 投稿</button></div></div></header>
@@ -380,12 +510,12 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
     </div>
 <label for="inlineCoverUrl">封面图片 URL <b style="color:#ef6c78">*</b></label><input class="field" name="cover_url" id="inlineCoverUrl" type="url" required placeholder="粘贴图片直链（必填）">
 <label>番剧简介（选填）</label><textarea class="field" name="description" id="newAnimeDescription" rows="2" placeholder="简单介绍一下这部番剧"></textarea>
-<div class="cut-submit-block"><div class="cut-submit-head"><strong>首批删减记录 <em class="optional-tag">选填</em></strong><small>每集可添加多个时间点，也可继续添加其他集数</small></div><div id="newAnimeCuts"></div></div>
+<div class="cut-submit-block"><div class="cut-submit-head"><strong>添加记录</strong></div><div id="newAnimeCuts"></div></div>
 </div>
 <div id="existingAnimeFields" style="display:none">
-<p class="notice">选择已公开的番剧后，可给已有集数补充时间点，也可以添加新的集数；同一集可添加多条时间点记录。</p>
+<p class="notice">选择番剧后，可从下拉列表选择已有集数补充时间点；也可选择“手动新增集数”。同一集可添加多个时间点，也可添加另一集。</p>
 <label>选择已收录番剧 <b style="color:#ef6c78">*</b></label><select class="field" name="anime_id" id="existingAnimeSelect"><option value="">请选择番剧</option></select>
-<div class="cut-submit-block"><div class="cut-submit-head"><strong>补充删减记录</strong><small>选择已有番剧后，按集数添加一个或多个时间点</small></div><div id="existingAnimeCuts"></div></div>
+<div class="cut-submit-block"><div class="cut-submit-head"><strong>添加记录</strong></div><div id="existingAnimeCuts"></div></div>
 
 </div>
 <button class="btn primary" id="inlineSubmitButton" type="submit" style="width:100%;margin-top:12px">➤ 提交投稿</button>
@@ -417,6 +547,8 @@ async function refresh(){
  if($("submissionType"))updateSubmissionType();
  const c=await db.from("cut_records").select("*").order("episode");cuts=c.data||[];
  if(c.error){$("status").textContent="读取删减记录失败："+c.error.message;return}
+ // 关键：番剧列表先加载、删减记录后加载；记录加载完成后必须重新生成已有集数选项。
+ refreshExistingEpisodeOptions();
  $("status").textContent="云端已连接 · 数据来自 Supabase";$("animeCount").textContent=records.length;$("cutCount").textContent=cuts.length;
  const years=[...new Set(records.map(x=>x.year).filter(Boolean))].sort((a,b)=>b-a), old=$("year").value;
  $("year").innerHTML='<option value="">全部年份</option>'+years.map(y=>`<option value="${y}">${y} 年</option>`).join("");$("year").value=old;
@@ -434,7 +566,7 @@ function render(){
    if(as!==bs)return as-bs;
    return String(a.title||"").localeCompare(String(b.title||""),"zh-CN");
  });
- const cardHtml=a=>{let cs=cuts.filter(c=>String(c.anime_id)===String(a.id));const coverUrl=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";return `<article class="card"><div class="cover">${coverUrl?`<img src="${esc(coverUrl)}" alt="${esc(a.title)} 封面" loading="lazy" onerror="this.parentElement.textContent='🎞️'">`:'🎞️<small>暂无封面</small>'}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted"><span class="pill">${esc(a.category||"TV动画")}</span>　<span class="pill">${esc(a.season||"季度待补")}</span>　${esc(a.year||"年份待补")}年</div><p><span class="pill">${cs.length} 条记录</span></p><button class="btn plain" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?` <button class="btn plain" onclick="editAnime('${a.id}')">编辑</button> <button class="btn plain" style="color:#c43d52" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></article>`};
+ const cardHtml=a=>{let cs=cuts.filter(c=>String(c.anime_id)===String(a.id));const coverUrl=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";return `<article class="card"><div class="cover">${coverUrl?`<img src="${esc(coverUrl)}" alt="${esc(a.title)} 封面" loading="lazy" onerror="this.parentElement.innerHTML='<span class=&quot;cover-fallback&quot;>🎞️</span>'">`:'<span class="cover-fallback">🎞️<small>暂无封面</small></span>'}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted card-meta"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.season||"季度待补")}</span><span class="card-year">${esc(a.year||"年份待补")}年</span></div><div class="card-bottom"><span class="pill record-count">${cs.length} 条记录</span><div class="card-actions"><button class="btn plain" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?`<button class="btn plain" onclick="editAnime('${a.id}')">编辑</button><button class="btn plain danger" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></div></div></article>`};
  if(!list.length){$("cards").innerHTML='<div class="panel" style="grid-column:1/-1">暂无符合条件的公开番剧记录。</div>';return;}
  const groups=new Map();
  list.forEach(a=>{const year=a.year?`${a.year} 年`:`年份待补`,season=a.season||"季度待补",key=`${year}｜${season}`;if(!groups.has(key))groups.set(key,{year:a.year,season,items:[]});groups.get(key).items.push(a);});
@@ -587,26 +719,71 @@ $("submitBtn").onclick=()=>navigatePage("submit");$("myPropsBtn").onclick=myProp
 
 const inlineYear = $("newAnimeYear");
 if(inlineYear){const now=new Date().getFullYear();for(let y=now;y>=1950;y--){const op=document.createElement("option");op.value=String(y);op.textContent=y+"年";inlineYear.appendChild(op)}}
+function existingEpisodeNumbers(){
+ const animeId=$("existingAnimeSelect")?.value;
+ if(!animeId)return [];
+ const nums=new Set();
+ cuts.filter(c=>String(c.anime_id)===String(animeId)).forEach(c=>{
+  const ep=c.episode??c.episode_number??c.episode_no;
+  if(ep!==undefined&&ep!==null&&String(ep).trim()!=="")nums.add(String(ep));
+ });
+ return [...nums].sort((a,b)=>{const an=Number(a),bn=Number(b);return Number.isFinite(an)&&Number.isFinite(bn)?an-bn:a.localeCompare(b,"zh-CN")});
+}
+function episodeChoiceMarkup(selected=""){
+ const nums=existingEpisodeNumbers();
+ const existing=nums.map(ep=>`<option value="${esc(ep)}">第 ${esc(ep)} 集（已有记录）</option>`).join("");
+ const options=`<option value="">请选择集数</option>${existing}<option value="__new__">手动新增集数</option>`;
+ return options;
+}
 function makeCutRow(containerId, values={}){
  const container=$(containerId);if(!container)return;
  const card=document.createElement("div");card.className="cut-submit-row";
+ const isExisting=containerId==="existingAnimeCuts";
  const episodeValue=values.episode||"";
- card.innerHTML=`<div class="cut-submit-row-head"><span>第 ${container.querySelectorAll('.cut-submit-row').length+1} 集删减记录</span><button class="cut-remove" type="button" data-remove-episode>删除本集</button></div><div class="cut-episode-head"><div class="episode-input-wrap"><label>集数 *</label><input class="field cut-episode" type="number" min="1" value="${esc(episodeValue)}" placeholder="例如 5"></div><small class="muted">同一集可添加多个时间点</small></div><div class="cut-time-list"></div><div class="cut-episode-actions"><button class="cut-add-inline" type="button" data-add-time>＋ 添加时间点</button></div>`;
+ let episodeMarkup;
+ if(isExisting){
+  const known=existingEpisodeNumbers().includes(String(episodeValue));
+  const choice=episodeValue?(known?String(episodeValue):"__new__"):"";
+  episodeMarkup=`<div class="existing-episode-controls"><div class="episode-select-wrap"><label>选择集数 *</label><select class="field cut-episode-choice">${episodeChoiceMarkup(choice)}</select></div><div class="episode-manual-wrap" ${choice==="__new__"?"":"hidden"}><label>新集数 *</label><input class="field cut-episode-new" type="number" min="1" value="${choice==="__new__"?esc(episodeValue):""}" placeholder="例如 5"></div></div>`;
+ }else{
+  episodeMarkup=`<div class="cut-episode-head"><div class="episode-input-wrap"><label>集数 *</label><input class="field cut-episode" type="number" min="1" value="${esc(episodeValue)}" placeholder="例如 5"></div></div>`;
+ }
+ card.innerHTML=`<div class="cut-submit-row-head"><span>记录</span><button class="cut-remove" type="button" data-remove-episode>删除本集</button></div>${episodeMarkup}<div class="cut-time-list"></div><div class="cut-episode-actions"><button class="cut-add-inline" type="button" data-add-time>＋ 添加时间点</button></div>`;
  const list=card.querySelector('.cut-time-list');
  addTimePointRow(list,values.time_point!==undefined||values.description!==undefined?values:{});
+ if(isExisting){
+  const choiceSelect=card.querySelector('.cut-episode-choice'),manualWrap=card.querySelector('.episode-manual-wrap');
+  const requestedEpisode=String(values.episode||"");
+  const choiceValue=requestedEpisode?(existingEpisodeNumbers().includes(requestedEpisode)?requestedEpisode:"__new__"):"";
+  choiceSelect.value=choiceValue;
+  if(manualWrap&&choiceValue==="__new__"&&!card.querySelector(".cut-episode-new").value)card.querySelector(".cut-episode-new").value=requestedEpisode;
+  choiceSelect.addEventListener('change',()=>{manualWrap.hidden=choiceSelect.value!=="__new__";if(choiceSelect.value!=="__new__")card.querySelector('.cut-episode-new').value="";});
+ }
  card.querySelector('[data-remove-episode]').addEventListener('click',()=>{card.remove();renumberCutRows(containerId)});
  card.querySelector('[data-add-time]').addEventListener('click',()=>addTimePointRow(list));
  container.appendChild(card);renumberCutRows(containerId);
 }
+function refreshExistingEpisodeOptions(){
+ const available=existingEpisodeNumbers();
+ document.querySelectorAll('#existingAnimeCuts .cut-submit-row').forEach(card=>{
+  const sel=card.querySelector('.cut-episode-choice');if(!sel)return;
+  const old=sel.value;
+  const opts=`<option value="">请选择集数</option>${available.map(ep=>`<option value="${esc(ep)}">第 ${esc(ep)} 集（已有记录）</option>`).join("")}<option value="__new__">手动新增集数</option>`;
+  sel.innerHTML=opts;
+  sel.value=available.includes(old)||old==="__new__"?old:"";
+  const manual=card.querySelector('.episode-manual-wrap');if(manual)manual.hidden=sel.value!=="__new__";
+ });
+}
+
 function addTimePointRow(list,values={}){
  const row=document.createElement('div');row.className='cut-time-row';
  row.innerHTML=`<div><label>时间点 *</label><input class="field cut-time" value="${esc(values.time_point||"")}" placeholder="08:24–09:10 或 未知"></div><div><label>类型 / 说明 *</label><textarea class="field cut-description" rows="1" placeholder="字幕和谐、画面删减、对白修改等">${esc(values.description||"")}</textarea></div><button class="cut-remove" type="button" data-remove-time>移除</button>`;
- row.querySelector('[data-remove-time]').addEventListener('click',()=>{if(list.querySelectorAll('.cut-time-row').length<=1){row.querySelector('.cut-time').value='';row.querySelector('.cut-description').value='';return}row.remove();renumberTimeRows(list)});
+ row.querySelector('[data-remove-time]').addEventListener('click',()=>{if(list.querySelectorAll('.cut-time-row').length<=1)return;row.remove();renumberTimeRows(list)});
  list.appendChild(row);renumberTimeRows(list);
 }
-function renumberTimeRows(list){[...list.querySelectorAll('.cut-time-row')].forEach((r,i)=>{const label=r.querySelector('label');if(label)label.textContent=`时间点 ${i+1} *`;});}
-function renumberCutRows(containerId){const c=$(containerId);if(!c)return;[...c.querySelectorAll('.cut-submit-row')].forEach((r,i)=>{const label=r.querySelector('.cut-submit-row-head span');if(label)label.textContent=`第 ${i+1} 集删减记录`;r.querySelector('[data-remove-episode]').style.visibility=c.querySelectorAll('.cut-submit-row').length>1?'visible':'hidden';});}
-function readCutRows(containerId){const result=[];[...$(containerId).querySelectorAll('.cut-submit-row')].forEach(card=>{const episode=Number(card.querySelector('.cut-episode').value);card.querySelectorAll('.cut-time-row').forEach(row=>result.push({episode,time_point:row.querySelector('.cut-time').value.trim(),description:row.querySelector('.cut-description').value.trim()}));});return result;}
+function renumberTimeRows(list){const rows=[...list.querySelectorAll('.cut-time-row')];rows.forEach((r,i)=>{const label=r.querySelector('label');if(label)label.textContent=`时间点 ${i+1} *`;const remove=r.querySelector('[data-remove-time]');if(remove)remove.style.display=rows.length>1?'':'none';});}
+function renumberCutRows(containerId){const c=$(containerId);if(!c)return;[...c.querySelectorAll('.cut-submit-row')].forEach((r,i)=>{const label=r.querySelector('.cut-submit-row-head span');if(label)label.textContent="记录";r.querySelector('[data-remove-episode]').style.visibility=c.querySelectorAll('.cut-submit-row').length>1?'visible':'hidden';});}
+function readCutRows(containerId){const result=[];[...$(containerId).querySelectorAll('.cut-submit-row')].forEach(card=>{let episode=0;if(containerId==="existingAnimeCuts"){const choice=card.querySelector('.cut-episode-choice')?.value||"";episode=choice==="__new__"?Number(card.querySelector('.cut-episode-new')?.value):Number(choice);}else{episode=Number(card.querySelector('.cut-episode')?.value)}card.querySelectorAll('.cut-time-row').forEach(row=>result.push({episode,time_point:row.querySelector('.cut-time').value.trim(),description:row.querySelector('.cut-description').value.trim()}));});return result;}
 function collectValidCuts(containerId, optional=false){const rows=readCutRows(containerId),filled=rows.filter(c=>c.episode||c.time_point||c.description);if(optional&&!filled.length)return [];if(filled.some(c=>!c.episode||c.episode<1||!c.time_point||!c.description))throw new Error("每条删减记录都要填写集数、时间点和类型；不需要的空白行可以移除。");return filled;}
 function updateSubmissionType(){
  const type=$("submissionType").value,isNew=type==="create_anime";
@@ -615,11 +792,13 @@ function updateSubmissionType(){
  $("existingAnimeSelect").required=!isNew;
  const select=$("existingAnimeSelect"),selected=select.value;
  select.innerHTML='<option value="">请选择番剧</option>'+records.slice().sort((a,b)=>String(a.title||"").localeCompare(String(b.title||""),"zh-CN")).map(a=>`<option value="${esc(a.id)}">${esc(a.title)}${a.year?`（${esc(a.year)}）`:""}</option>`).join("");if(selected)select.value=selected;
+ refreshExistingEpisodeOptions();
  $("submitIntro").textContent=isNew?"新增番剧：填写基本信息，可一次提交多条删减时间点。":"已收录番剧：选择番剧后，可一次添加同一集或不同集数的多个时间点。";
 }
 function addEpisodeButton(containerId){const container=$(containerId);if(!container)return;const button=document.createElement('button');button.type='button';button.className='cut-add-episode';button.textContent='＋ 添加另一集';button.addEventListener('click',()=>makeCutRow(containerId));container.after(button);}
 makeCutRow("newAnimeCuts");makeCutRow("existingAnimeCuts");addEpisodeButton("newAnimeCuts");addEpisodeButton("existingAnimeCuts");
 $("submissionType").addEventListener("change",updateSubmissionType);
+$("existingAnimeSelect").addEventListener("change",()=>{refreshExistingEpisodeOptions();});
 $("inlineProposalForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!db){toast("投稿服务未初始化，请检查 Supabase 配置和网络");return}if(!currentUser){toast("请先登录后再投稿");authDialog();return}
  const form=e.currentTarget,submit=$("inlineSubmitButton"),type=$("submissionType").value;let action,payload;
