@@ -1501,7 +1501,7 @@ async function syncApprovedProposal(proposalId){
    await insertCuts(a.id);
  }else if(p.action==="add_cut"&&pl.anime_id){await insertCuts(pl.anime_id)}
 }
-async function review(id,decision){const note=$("note-"+id)?.value||"";const r=await db.rpc("review_proposal",{p_proposal_id:id,p_decision:decision,p_admin_note:note});if(r.error){const msg=r.error.message||String(r.error);if(msg.includes("正式档案中找不到该番剧")){toast("发布失败：档案里还没有这部番剧。请先新增番剧并审核通过，再提交删减记录。");}else if(msg.includes("管理员")||msg.includes("admin")){toast("审核失败：当前账号没有管理员权限，请检查 profiles.is_admin。");}else{toast("审核失败："+msg);}return}if(decision==="approve")await syncApprovedProposal(id);toast(decision==="approve"?"已批准并同步发布番剧/删减记录":"已驳回");adminReview();refresh()}
+async function review(id,decision){const note=$("note-"+id)?.value||"";const r=await db.rpc("review_proposal",{p_proposal_id:id,p_decision:decision,p_admin_note:note});if(r.error){const msg=r.error.message||String(r.error);if(msg.includes("正式档案中找不到该番剧")){toast("发布失败：档案里还没有这部番剧。请先新增番剧并审核通过，再提交删减记录。");}else if(msg.includes("管理员")||msg.includes("admin")){toast("审核失败：当前账号没有管理员权限，请检查 profiles.is_admin。");}else{toast("审核失败："+msg);}return}if(decision==="approve")await syncApprovedProposal(id);toast(decision==="approve"?"已发布":"已驳回");adminReview();refresh()}
 window.navigatePage=function(page){
  document.querySelectorAll("[data-page]").forEach(el=>el.classList.toggle("active",el.dataset.page===page));
  const welcome=$("homeWelcome"), layout=$("contentLayout");
