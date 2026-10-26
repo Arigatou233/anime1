@@ -1052,6 +1052,24 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
   box-shadow:none!important;
 }
 
+
+/* 修复详情弹窗顶部被遮挡、关闭按钮点不到；移除简介卡片后的紧凑布局 */
+#modal{z-index:10000!important;align-items:flex-start!important;justify-content:center!important;overflow-y:auto!important;overflow-x:hidden!important;padding: max(12px, env(safe-area-inset-top)) 12px 12px!important;}
+#modal .dialog{position:relative!important;width:min(780px,100%)!important;max-height:calc(100dvh - max(24px, env(safe-area-inset-top) + 12px))!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;overscroll-behavior:contain!important;}
+#modal .dialog>div:first-child{position:sticky!important;top:0!important;z-index:20!important;display:flex!important;align-items:center!important;justify-content:space-between!important;flex:0 0 auto!important;gap:14px!important;padding:16px 20px!important;background:rgba(255,255,255,.98)!important;border-bottom:1px solid #e7edf7!important;}
+#modal .dialog>div:first-child>div{flex:1 1 auto!important;min-width:0!important;padding:0!important;}
+#modal .dialog>div:first-child h2{padding:0!important;margin:0!important;max-width:100%!important;font-size:clamp(18px,2.3vw,23px)!important;line-height:1.35!important;overflow-wrap:anywhere!important;}
+#modal .dialog>div:first-child p{padding:4px 0 0!important;margin:0!important;font-size:12px!important;color:#8190aa!important;}
+#modal .dialog>div:first-child #close{position:relative!important;z-index:30!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-width:68px!important;min-height:38px!important;margin:0!important;padding:8px 13px!important;pointer-events:auto!important;white-space:nowrap!important;align-self:center!important;}
+#modalBody{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;padding:16px 20px 22px!important;}
+#modal .detail-intro{display:none!important;}
+@media(max-width:560px){
+ #modal{padding: max(8px, env(safe-area-inset-top)) 7px 8px!important;}
+ #modal .dialog{max-height:calc(100dvh - max(16px, env(safe-area-inset-top) + 8px))!important;border-radius:16px!important;}
+ #modal .dialog>div:first-child{gap:9px!important;padding:12px 12px!important;}
+ #modal .dialog>div:first-child #close{min-width:60px!important;min-height:36px!important;padding:7px 9px!important;font-size:12px!important;}
+ #modalBody{padding:12px 10px 15px!important;}
+}
 </style>
 
 <style id="compact-card-spacing-final">
@@ -1096,12 +1114,66 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 @media(max-width:620px){#cards .season-items{grid-template-columns:minmax(0,1fr)!important;gap:9px!important;padding:9px!important}#cards .season-items .card{grid-template-columns:86px minmax(0,1fr)!important;min-height:128px!important}#cards .season-items .cover{width:86px!important;min-height:128px!important}#cards .season-items .card-main{padding:10px 11px!important}#cards .season-items .card .card-bottom{align-items:center!important;flex-direction:row!important;justify-content:space-between!important;gap:6px!important}#cards .season-items .card .card-actions{width:auto!important;gap:4px!important}#cards .season-items .card .card-actions .btn{font-size:10px!important;padding:5px 7px!important;min-height:28px!important}}
 @media(max-width:380px){#cards .season-items .card{grid-template-columns:72px minmax(0,1fr)!important}#cards .season-items .cover{width:72px!important;padding:5px!important}#cards .season-items .card-main{padding:8px!important}#cards .season-items .card .pill{font-size:10px!important;padding:3px 6px!important}#cards .season-items .card .card-actions .btn{font-size:10px!important;padding:5px 6px!important}}
 
+
+/* 本次调整：搜索清空、回到顶部、详情弹窗紧凑与防裁切 */
+.filters .search-wrap{position:relative;min-width:0}
+.filters .search-wrap input{width:100%;padding-right:44px}
+.search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:29px;height:29px;border:0;border-radius:50%;background:#edf3ff;color:#607aa8;font-size:21px;line-height:1;display:none;align-items:center;justify-content:center;cursor:pointer}
+.search-clear.visible{display:flex}
+.search-clear:hover{background:#dfeaff;color:#315fbe}
+.back-to-top{position:fixed;right:22px;bottom:24px;z-index:8;display:flex;align-items:center;gap:7px;padding:10px 14px;border:1px solid #d6e3fb;border-radius:999px;background:rgba(255,255,255,.94);color:#4168b2;box-shadow:0 7px 22px rgba(48,80,137,.16);font:700 13px/1.2 inherit;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s}
+.back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-to-top:first-letter{font-size:17px}
+#modal .dialog{display:flex;flex-direction:column;max-height:min(88vh,900px);overflow:auto;overflow-x:hidden}
+#modal .dialog>div:first-child{align-items:flex-start!important;gap:16px!important;padding:16px 22px 13px!important}
+#modal .dialog>div:first-child>div{flex:1;min-width:0;padding-right:4px}
+#modal .dialog>div:first-child h2{overflow-wrap:anywhere;word-break:normal;max-width:100%}
+#modal .dialog>div:first-child #close{position:relative;top:0;flex:0 0 auto;margin:0;white-space:nowrap;align-self:flex-start}
+#modalBody{padding:15px 22px 22px!important}
+#modal .detail-intro{grid-template-columns:78px minmax(0,1fr);gap:13px;padding:12px;margin-bottom:17px;border-radius:14px}
+#modal .detail-cover,#modal .detail-cover-placeholder{width:78px;height:104px;border-radius:10px}
+#modal .detail-intro-text{gap:0;justify-content:center;min-height:0}
+#modal .detail-intro-text p{margin:0;line-height:1.65}
+#modal .cut-section-head{margin-bottom:10px}
+#modal .episode-list{gap:10px}
+#modal .episode-heading{padding:10px 14px}
+#modal .episode-points{gap:8px;padding:10px}
+#modal .point-row{padding:9px 10px;border-radius:11px}
+@media(max-width:720px){
+ .filters .search-wrap{grid-column:1/-1}
+ .back-to-top{right:12px;bottom:14px;padding:10px 12px}
+ #modal .dialog{max-height:92vh}
+ #modal .dialog>div:first-child{padding:12px 14px 10px!important;gap:9px!important}
+ #modal .dialog>div:first-child h2{font-size:19px!important}
+ #modal .dialog>div:first-child #close{padding:7px 10px;font-size:12px}
+ #modalBody{padding:12px 12px 16px!important}
+ #modal .detail-intro{grid-template-columns:62px minmax(0,1fr);gap:10px;padding:10px;margin-bottom:14px}
+ #modal .detail-cover,#modal .detail-cover-placeholder{width:62px;height:84px}
+}
+
+/* 修复详情弹窗顶部被遮挡、关闭按钮点不到；移除简介卡片后的紧凑布局 */
+#modal{z-index:10000!important;align-items:flex-start!important;justify-content:center!important;overflow-y:auto!important;overflow-x:hidden!important;padding: max(12px, env(safe-area-inset-top)) 12px 12px!important;}
+#modal .dialog{position:relative!important;width:min(780px,100%)!important;max-height:calc(100dvh - max(24px, env(safe-area-inset-top) + 12px))!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;overscroll-behavior:contain!important;}
+#modal .dialog>div:first-child{position:sticky!important;top:0!important;z-index:20!important;display:flex!important;align-items:center!important;justify-content:space-between!important;flex:0 0 auto!important;gap:14px!important;padding:16px 20px!important;background:rgba(255,255,255,.98)!important;border-bottom:1px solid #e7edf7!important;}
+#modal .dialog>div:first-child>div{flex:1 1 auto!important;min-width:0!important;padding:0!important;}
+#modal .dialog>div:first-child h2{padding:0!important;margin:0!important;max-width:100%!important;font-size:clamp(18px,2.3vw,23px)!important;line-height:1.35!important;overflow-wrap:anywhere!important;}
+#modal .dialog>div:first-child p{padding:4px 0 0!important;margin:0!important;font-size:12px!important;color:#8190aa!important;}
+#modal .dialog>div:first-child #close{position:relative!important;z-index:30!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-width:68px!important;min-height:38px!important;margin:0!important;padding:8px 13px!important;pointer-events:auto!important;white-space:nowrap!important;align-self:center!important;}
+#modalBody{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;padding:16px 20px 22px!important;}
+#modal .detail-intro{display:none!important;}
+@media(max-width:560px){
+ #modal{padding: max(8px, env(safe-area-inset-top)) 7px 8px!important;}
+ #modal .dialog{max-height:calc(100dvh - max(16px, env(safe-area-inset-top) + 8px))!important;border-radius:16px!important;}
+ #modal .dialog>div:first-child{gap:9px!important;padding:12px 12px!important;}
+ #modal .dialog>div:first-child #close{min-width:60px!important;min-height:36px!important;padding:7px 9px!important;font-size:12px!important;}
+ #modalBody{padding:12px 10px 15px!important;}
+}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home">⌂ 首页</a><a href="#" data-page="directory">⌕ 番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none">♟ 我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none">♢ 审核列表</a></nav><div class="user-chip"><span class="default-avatar" id="roleBadge" aria-label="账号身份"></span><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
 <section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案馆</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
-<main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案馆</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><input class="field" id="search" placeholder="搜索番剧名称…"><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><h2>我的投稿</h2><p class="muted">登录后可查看自己的待审核投稿。</p><button class="btn plain" id="myPropsBtn">查看我的投稿</button> <button class="btn plain" id="adminBtn" style="display:none">审核列表</button><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
+<main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案馆</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><div class="search-wrap"><input class="field" id="search" placeholder="搜索番剧名称…" autocomplete="off"><button class="search-clear" id="clearSearch" type="button" aria-label="清空搜索框" title="清空搜索">×</button></div><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><h2>我的投稿</h2><p class="muted">登录后可查看自己的待审核投稿。</p><button class="btn plain" id="myPropsBtn">查看我的投稿</button> <button class="btn plain" id="adminBtn" style="display:none">审核列表</button><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
 <form id="inlineProposalForm" class="inline-form">
 <div class="anime-meta-grid">
   <div class="anime-meta-field"><label for="submissionType">投稿类型</label><select class="field" name="submission_type" id="submissionType"><option value="create_anime">新增番剧</option><option value="add_cut">给已收录番剧投稿</option></select></div>
@@ -1112,7 +1184,6 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
       <div class="anime-meta-field"><label>季度 / 年份 <b style="color:#ef6c78">*</b></label><div class="inline-two"><select class="field" name="season" id="newAnimeSeason" required><option value="">季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" name="year" id="newAnimeYear" required><option value="">年份</option></select></div></div>
     </div>
 <label for="inlineCoverUrl">封面图片 URL <b style="color:#ef6c78">*</b></label><input class="field" name="cover_url" id="inlineCoverUrl" type="url" required placeholder="粘贴图片直链（必填）">
-<label>番剧简介（选填）</label><textarea class="field" name="description" id="newAnimeDescription" rows="2" placeholder="简单介绍一下这部番剧"></textarea>
 <div class="cut-submit-block"><div class="cut-submit-head"><strong>添加记录</strong></div><div id="newAnimeCuts"></div></div>
 </div>
 <div id="existingAnimeFields" style="display:none">
@@ -1123,7 +1194,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 </div>
 <button class="btn primary" id="inlineSubmitButton" type="submit" style="width:100%;margin-top:12px">➤ 提交投稿</button>
 </form></aside></div></main><footer>© 2026 番剧档案馆　|　让每一部番剧都值得被记住</footer>
-<div class="modal" id="modal"><div class="dialog"><div style="display:flex;justify-content:space-between;gap:10px"><div><h2 id="modalTitle" style="margin:0">窗口</h2><p class="muted" id="modalDesc"></p></div><button class="btn plain" id="close">关闭</button></div><div id="modalBody"></div></div></div><div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="dialog"><div style="display:flex;justify-content:space-between;gap:10px"><div><h2 id="modalTitle" style="margin:0">窗口</h2><p class="muted" id="modalDesc"></p></div><button class="btn plain" id="close">关闭</button></div><div id="modalBody"></div></div></div><div class="toast" id="toast"></div><button id="backToTop" class="back-to-top" type="button" aria-label="回到顶部" title="回到顶部">↑<span>回到顶部</span></button>
 <script>
 /* 填入你的 Supabase Project URL 与 Publishable key。不要填写 Secret/service_role key。 */
 const SUPABASE_URL = "https://zmrrygvatvcxlegycydw.supabase.co";
@@ -1169,7 +1240,7 @@ function render(){
    if(as!==bs)return as-bs;
    return String(a.title||"").localeCompare(String(b.title||""),"zh-CN");
  });
- const cardHtml=a=>{let cs=cuts.filter(c=>String(c.anime_id)===String(a.id));const coverUrl=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";return `<article class="card"><div class="cover">${coverUrl?`<img src="${esc(coverUrl)}" alt="${esc(a.title)} 封面" loading="lazy" onerror="this.parentElement.innerHTML='<span class=&quot;cover-fallback&quot;>🎞️</span>'">`:'<span class="cover-fallback">🎞️<small>暂无封面</small></span>'}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted card-meta"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.season||"季度待补")}</span><span class="card-year">${esc(a.year||"年份待补")}年</span></div><div class="card-bottom"><span class="pill record-count">${cs.length} 条记录</span><div class="card-actions"><button class="btn plain" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?`<button class="btn plain" onclick="editAnime('${a.id}')">编辑</button><button class="btn plain danger" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></div></div></article>`};
+ const cardHtml=a=>{let cs=cuts.filter(c=>String(c.anime_id)===String(a.id));const episodeCount=new Set(cs.map(c=>String(c.episode??c.episode_number??c.episode_no??"未填写"))).size;const coverUrl=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";return `<article class="card"><div class="cover">${coverUrl?`<img src="${esc(coverUrl)}" alt="${esc(a.title)} 封面" loading="lazy" onerror="this.parentElement.innerHTML='<span class=&quot;cover-fallback&quot;>🎞️</span>'">`:'<span class="cover-fallback">🎞️<small>暂无封面</small></span>'}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted card-meta"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.season||"季度待补")}</span><span class="card-year">${esc(a.year||"年份待补")}年</span></div><div class="card-bottom"><span class="pill record-count">${episodeCount} 集 · ${cs.length} 条记录</span><div class="card-actions"><button class="btn plain" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?`<button class="btn plain" onclick="editAnime('${a.id}')">编辑</button><button class="btn plain danger" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></div></div></article>`};
  if(!list.length){$("cards").innerHTML='<div class="panel" style="grid-column:1/-1">暂无符合条件的公开番剧记录。</div>';return;}
  const groups=new Map();
  list.forEach(a=>{const year=a.year?`${a.year} 年`:`年份待补`,season=a.season||"季度待补",key=`${year}｜${season}`;if(!groups.has(key))groups.set(key,{year:a.year,season,items:[]});groups.get(key).items.push(a);});
@@ -1207,12 +1278,11 @@ function showDetail(id){
  if(!a){toast("找不到这部番剧");return}
  const coverUrl=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";
  const cover=coverUrl?`<img src="${esc(coverUrl)}" alt="${esc(a.title)} 封面" loading="lazy" class="detail-cover" onerror="this.style.display='none'">`:`<div class="detail-cover-placeholder">🎞️</div>`;
- const intro=`<div class="detail-intro">${cover}<div class="detail-intro-text"><p>${esc(a.description||"暂无简介")}</p><div class="detail-tags"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.season||"季度待补")}</span><span class="pill">${esc(a.year||"年份待补")}年</span></div></div></div>`;
  const episodeMap=new Map();
  cs.forEach(c=>{const ep=c.episode??c.episode_number??c.episode_no??"未填写";const key=String(ep);if(!episodeMap.has(key))episodeMap.set(key,[]);episodeMap.get(key).push(c)});
  const episodeEntries=[...episodeMap.entries()].sort((a,b)=>{const an=Number(a[0]),bn=Number(b[0]);if(Number.isFinite(an)&&Number.isFinite(bn))return an-bn;if(Number.isFinite(an))return -1;if(Number.isFinite(bn))return 1;return a[0].localeCompare(b[0],"zh-CN")});
  const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>记录</h3><p>同一集的多个时间点已归在一起</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>`<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${items.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span>${c.source_note?`<a class="point-source" href="${esc(c.source_note)}" target="_blank" rel="noopener">查看来源 ↗</a>`:""}</div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
- modal(a.title,`${a.year||""} 年 · ${a.season||""}`,intro+cutHtml)
+ modal(a.title,`${a.year||""} 年 · ${a.season||""}`,cutHtml)
 }
 window.editCutRecord=function(id){
  if(!isAdmin){toast("只有管理员可以修改已发布删减记录");return}
@@ -1340,6 +1410,13 @@ const quickSubmitBtn=$("submitBtn");if(quickSubmitBtn)quickSubmitBtn.onclick=()=
 const browseDirectoryBtn=$("browseDirectoryBtn"); if(browseDirectoryBtn){browseDirectoryBtn.type="button";browseDirectoryBtn.addEventListener("click",e=>{e.preventDefault();navigatePage("directory");requestAnimationFrame(()=>$("directory")?.scrollIntoView({behavior:"smooth",block:"start"}));});}
 $("authBtn").onclick=authDialog;
 $("myPropsBtn").onclick=myProposals;$("adminBtn").onclick=adminReview;$("close").onclick=closeModal;$("modal").onclick=e=>{if(e.target===$("modal"))closeModal()};["search","season","year"].forEach(id=>$(id).addEventListener("input",render));
+const searchInput=$("search"),clearSearch=$("clearSearch");
+function syncSearchClear(){if(clearSearch)clearSearch.classList.toggle("visible",!!searchInput?.value)}
+searchInput?.addEventListener("input",syncSearchClear);
+clearSearch?.addEventListener("click",()=>{searchInput.value="";syncSearchClear();render();searchInput.focus()});
+const backToTop=$("backToTop");
+backToTop?.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+window.addEventListener("scroll",()=>backToTop?.classList.toggle("visible",window.scrollY>280),{passive:true});
 
 const inlineYear = $("newAnimeYear");
 if(inlineYear){const now=new Date().getFullYear();for(let y=now;y>=1950;y--){const op=document.createElement("option");op.value=String(y);op.textContent=y+"年";inlineYear.appendChild(op)}}
@@ -1431,7 +1508,7 @@ $("inlineProposalForm").addEventListener("submit",async e=>{
    const title=$("newAnimeTitle").value.trim(),season=$("newAnimeSeason").value,year=$("newAnimeYear").value,cover=$("inlineCoverUrl").value.trim();
    if(!title||!season||!year||!cover){toast("请填写番剧名称、季度、年份和封面图片 URL");return}
    const cuts=collectValidCuts("newAnimeCuts",true);
-   payload={title,year:Number(year),season,category:$("newAnimeCategory").value||"TV动画",cover_url:cover,description:$("newAnimeDescription").value.trim()||null,cuts};
+   payload={title,year:Number(year),season,category:$("newAnimeCategory").value||"TV动画",cover_url:cover,cuts};
    if(cuts.length)Object.assign(payload,{episode:cuts[0].episode,time_point:cuts[0].time_point,cut_description:cuts[0].description});
    action="create_anime";
   }else{
