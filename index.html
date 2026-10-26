@@ -1279,7 +1279,28 @@ function proposalSummary(payload={}){
  const cutRows=cuts.map((c,i)=>`<div class="proposal-field"><span>时间点 ${i+1}</span><span>第 ${esc(c.episode||"?")} 集 · ${esc(c.time_point||"未填写")}<br>${esc(c.description||"未填写类型")}</span></div>`).join("");
  return `<div class="proposal-summary"><div class="proposal-title">${esc(payload.title||"未命名番剧")}</div>${rows.map(([k,v])=>`<div class="proposal-field"><span>${esc(k)}</span><span>${esc(String(v))}</span></div>`).join("")}${cutRows?`<div class="proposal-field"><span>多条记录</span><span>${cuts.length} 个时间点</span></div>${cutRows}`:""}</div>`;
 }
-async function adminReview(){if(!isAdmin){toast("当前账号不是管理员");return}const r=await db.from("proposals").select("*").eq("status","pending").order("created_at");if(r.error){toast(r.error.message);return}modal("待审核投稿","核对内容后再批准。新增删减记录必须对应已收录的番剧。",(r.data||[]).map(p=>`<div class="item"><b>${esc(proposalActionName(p.action))}</b>${proposalSummary(p.payload||{})}<input class="field" id="note-${p.id}" placeholder="审核备注（选填）"><div class="row"><button class="btn plain" onclick="review('${p.id}','reject')">驳回</button><button class="btn primary" onclick="review('${p.id}','approve')">批准并发布</button></div></div>`).join("")||'<p>当前没有待审核投稿。</p>')}
+async function adminReview(){if(!isAdmin){toast("当前账号不是管理员");return}const r=await db.from("proposals").select("*").eq("status","pending").order("created_at");if(r.error){toast(r.error.message);return}const pending=r.data||[];const bulkBar=pending.length?`<div class="item" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#f1f6ff"><div><b>批量审核</b><div class="muted" style="font-size:13px">当前有 ${pending.length} 条待审核投稿。批量同意前请确认内容与删减记录正确。</div></div><button class="btn primary" id="approveAllBtn" onclick="batchApproveAll()">✓ 一键同意全部（${pending.length}）</button></div>`:"";modal("待审核投稿","核对内容后再批准。新增删减记录必须对应已收录的番剧。",bulkBar+pending.map(p=>`<div class="item"><b>${esc(proposalActionName(p.action))}</b>${proposalSummary(p.payload||{})}<input class="field" id="note-${p.id}" placeholder="审核备注（选填）"><div class="row"><button class="btn plain" onclick="review('${p.id}','reject')">驳回</button><button class="btn primary" onclick="review('${p.id}','approve')">批准并发布</button></div></div>`).join("")||'<p>当前没有待审核投稿。</p>')}
+async function batchApproveAll(){
+ if(!isAdmin){toast("当前账号不是管理员");return}
+ const r=await db.from("proposals").select("id,action,payload").eq("status","pending").order("created_at");
+ if(r.error){toast("读取待审核列表失败："+r.error.message);return}
+ const pending=r.data||[];if(!pending.length){toast("当前没有待审核投稿");await adminReview();return}
+ if(!confirm(`确定一键同意全部 ${pending.length} 条待审核投稿吗？这会把投稿发布到正式档案，请确认内容正确。`))return;
+ const btn=$("approveAllBtn");if(btn){btn.disabled=true;btn.textContent="正在批量处理…"}
+ let approved=0;const failures=[];
+ for(let i=0;i<pending.length;i++){
+  const p=pending[i];
+  try{
+   const result=await db.rpc("review_proposal",{p_proposal_id:p.id,p_decision:"approve",p_admin_note:"管理员批量审核通过"});
+   if(result.error){failures.push(`${p.payload?.title||p.id}：${result.error.message}`);continue}
+   await syncApprovedProposal(p.id);approved++;
+   if(btn)btn.textContent=`正在处理 ${i+1}/${pending.length}…`;
+  }catch(err){failures.push(`${p.payload?.title||p.id}：${err?.message||String(err)}`)}
+ }
+ await refresh();await adminReview();
+ if(failures.length){const nl=String.fromCharCode(10);alert(`批量审核完成。成功：${approved} 条；失败：${failures.length} 条。${nl}${nl}失败详情：${nl}${failures.slice(0,12).join(nl)}${failures.length>12?nl+"其余失败项请在审核列表逐条检查。":""}`)}
+ else toast(`批量审核完成：已同意 ${approved} 条投稿`);
+}
 async function syncApprovedProposal(proposalId){
  const q=await db.from("proposals").select("*").eq("id",proposalId).maybeSingle();if(q.error||!q.data)return;
  const p=q.data,pl=p.payload||{};
