@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>番剧档案馆</title>
+<title>番剧档案库</title>
 <link rel="icon" type="image/jpeg" href="avatar.jpeg">
 <link rel="apple-touch-icon" href="avatar.jpeg">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1123,6 +1123,14 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 .top .navlinks a.active .nav-icon{stroke-width:2}
 @media(max-width:420px){.top .navlinks .nav-icon{width:16px;height:16px;flex-basis:16px}}
 
+
+/* 修复二级弹窗滚动穿透：打开弹窗时锁定底层页面，只允许弹窗内容区域滚动 */
+html.modal-open, body.modal-open{overflow:hidden!important;height:100%!important;overscroll-behavior:none!important}
+body.modal-open{position:fixed!important;width:100%!important;left:0!important;right:0!important}
+#modal{position:fixed!important;inset:0!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
+#modal .dialog{overflow:hidden!important;overscroll-behavior:contain!important}
+#modalBody{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-y!important}
+
 </style>
 
 <style id="compact-card-spacing-final">
@@ -1249,9 +1257,9 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案馆头像">番剧档案馆</div><nav class="navlinks"><a href="#" class="active" data-page="home"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.8 10.5 8.2-7 8.2 7v9.2a1.3 1.3 0 0 1-1.3 1.3H5.1a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.5h6V21"/></svg>首页</a><a href="#" data-page="directory"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.2 4.2"/><path d="M8.3 10.8h5"/></svg>番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5.5c0 4.7-3.3 7.8-8 9.5-4.7-1.7-8-4.8-8-9.5V6z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>审核列表</a></nav><div class="user-chip"><button class="default-avatar" id="roleBadge" type="button" aria-label="账号菜单" aria-expanded="false" title="账号菜单"></button><div class="account-menu-wrap" id="accountMenuWrap"><div class="account-menu" id="accountMenu"><button type="button" id="changePasswordBtn">修改密码</button><button type="button" class="logout" id="logoutBtn">退出登录</button><button type="button" id="closeAccountMenuBtn">关闭</button></div></div><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
-<section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案馆</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
-<main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案馆</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><div class="search-wrap"><input class="field" id="search" placeholder="搜索番剧名称…" autocomplete="off"><button class="search-clear" id="clearSearch" type="button" aria-label="清空搜索框" title="清空搜索">×</button></div><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
+<header class="top"><div class="wrap nav"><div class="brand"><img class="mark" src="avatar.jpeg" alt="番剧档案库头像">番剧档案库</div><nav class="navlinks"><a href="#" class="active" data-page="home"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.8 10.5 8.2-7 8.2 7v9.2a1.3 1.3 0 0 1-1.3 1.3H5.1a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.5h6V21"/></svg>首页</a><a href="#" data-page="directory"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.2 4.2"/><path d="M8.3 10.8h5"/></svg>番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5.5c0 4.7-3.3 7.8-8 9.5-4.7-1.7-8-4.8-8-9.5V6z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>审核列表</a></nav><div class="user-chip"><button class="default-avatar" id="roleBadge" type="button" aria-label="账号菜单" aria-expanded="false" title="账号菜单"></button><div class="account-menu-wrap" id="accountMenuWrap"><div class="account-menu" id="accountMenu"><button type="button" id="changePasswordBtn">修改密码</button><button type="button" class="logout" id="logoutBtn">退出登录</button><button type="button" id="closeAccountMenuBtn">关闭</button></div></div><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
+<section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案库</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
+<main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案库</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><div class="search-wrap"><input class="field" id="search" placeholder="搜索番剧名称…" autocomplete="off"><button class="search-clear" id="clearSearch" type="button" aria-label="清空搜索框" title="清空搜索">×</button></div><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
 <form id="inlineProposalForm" class="inline-form">
 <div class="anime-meta-grid">
   <div class="anime-meta-field"><label for="submissionType">投稿类型</label><select class="field" name="submission_type" id="submissionType"><option value="create_anime">新增番剧</option><option value="add_cut">给已收录番剧投稿</option></select></div>
@@ -1271,7 +1279,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 
 </div>
 <button class="btn primary" id="inlineSubmitButton" type="submit" style="width:100%;margin-top:12px">➤ 提交投稿</button>
-</form></aside></div></main><footer>© 2026 番剧档案馆　|　让每一部番剧都值得被记住</footer>
+</form></aside></div></main><footer>© 2026 番剧档案库　|　让每一部番剧都值得被记住</footer>
 <div class="modal" id="modal"><div class="dialog"><div style="display:flex;justify-content:space-between;gap:10px"><div><h2 id="modalTitle" style="margin:0">窗口</h2><p class="muted" id="modalDesc"></p></div><button class="btn plain" id="close">关闭</button></div><div id="modalBody"></div></div></div><div class="toast" id="toast"></div><button id="backToTop" class="back-to-top" type="button" aria-label="回到顶部" title="回到顶部">↑<span>回到顶部</span></button>
 <script>
 /* 填入你的 Supabase Project URL 与 Publishable key。不要填写 Secret/service_role key。 */
@@ -1284,8 +1292,8 @@ const db = configured && window.supabase?.createClient
 let currentUser=null, isAdmin=false, records=[], cuts=[];
 const $=id=>document.getElementById(id);
 function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),3000)}
-function modal(title,desc,body){$("modalTitle").textContent=title;$("modalDesc").textContent=desc||"";$("modalBody").innerHTML=body;$("modal").classList.add("show")}
-function closeModal(){$("modal").classList.remove("show")}
+function modal(title,desc,body){$("modalTitle").textContent=title;$("modalDesc").textContent=desc||"";$("modalBody").innerHTML=body;$("modal").classList.add("show");document.body.classList.add("modal-open")}
+function closeModal(){$("modal").classList.remove("show");document.body.classList.remove("modal-open")}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 // 封面容错：按字段顺序尝试所有已有图片地址，避免 cover_url 失效时忽略其他可用字段。
 function coverCandidates(a){return [...new Set([a?.cover_url,a?.cover_image_url,a?.cover_image,a?.poster_url,a?.image_url,a?.cover,a?.coverUrl,a?.coverImageUrl,a?.coverImage,a?.posterUrl,a?.imageUrl].map(v=>String(v||"").trim()).filter(v=>/^https?:\/\//i.test(v)))]}
