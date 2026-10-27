@@ -1702,7 +1702,7 @@ function handleAuthUrlError(){
  try{history.replaceState(null,"",location.pathname+location.search.split("?")[0]);}catch(_){}
  const expired=code==="otp_expired"||/invalid or has expired|expired/i.test(desc);
  modal(expired?"密码恢复链接已过期":"密码恢复验证失败",
-   expired?"Supabase 未能验证这封邮件中的链接，因此暂时不能设置新密码。":"这次密码恢复验证没有完成，请重新申请恢复邮件。",
+   expired?"无法验证这封邮件中的链接，因此暂时不能设置新密码。":"这次密码恢复验证没有完成，请重新申请恢复邮件。",
    `<div class="notice">${expired?"请回到网站的“登录 / 注册”，输入注册邮箱，点击“忘记密码？发送重置邮件”。等邮件发送限流解除后，只使用最新收到的那封邮件，并尽快点击其中的链接。":"请重新申请密码恢复邮件，并使用最新邮件中的链接。"}</div><div class="row"><button class="btn primary" id="authErrorLogin" type="button">返回登录</button></div>`);
  $("authErrorLogin").onclick=()=>{closeModal();authDialog()};
  return true;
