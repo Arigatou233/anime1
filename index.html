@@ -22,12 +22,12 @@ body:before{background:radial-gradient(ellipse at 10% 12%,#fff 0 5%,transparent 
 .navlinks{gap:3px;justify-content:center}.navlinks a{font-size:14px;padding:10px 11px;border-radius:0;white-space:nowrap}
 .navlinks a.active{background:transparent;border-bottom:3px solid #4d80f5}
 .user-chip{padding:5px 9px;border-radius:13px}.user-chip img{width:30px;height:30px}
-.hero{height:232px;min-height:232px;padding:54px 0 25px;background-image:linear-gradient(90deg,rgba(223,239,255,.1),rgba(220,236,255,.02)),url("banner.png");background-position:center 43%;background-size:cover;border-bottom:1px solid #dceaff}
-.hero:before,.hero:after{display:none}.hero .wrap{z-index:2}
+.hero{border-bottom:1px solid #dceaff}
+.hero .wrap{z-index:2}
 .hero h1{font-size:44px;margin:5px 0 2px;letter-spacing:0;color:#142b5b;text-shadow:0 1px 2px #fff8}
 .hero p{font-size:17px;color:#415b84;max-width:560px}
 .hero .eyebrow{display:none}
-.hero-art{display:none}
+
 #status{display:none!important}
 .stats{display:none}
 .layout{grid-template-columns:minmax(0,2.2fr) minmax(350px,.92fr);gap:14px;margin-top:-1px;align-items:start}
@@ -1101,15 +1101,15 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 
 
 /* 修复详情弹窗顶部被遮挡、关闭按钮点不到；移除简介卡片后的紧凑布局 */
-#modal{z-index:10000!important;align-items:flex-start!important;justify-content:center!important;overflow-y:auto!important;overflow-x:hidden!important;padding: max(12px, env(safe-area-inset-top)) 12px 12px!important;}
-#modal .dialog{position:relative!important;width:min(780px,100%)!important;max-height:calc(100dvh - max(24px, env(safe-area-inset-top) + 12px))!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;overscroll-behavior:contain!important;}
-#modal .dialog>div:first-child{position:sticky!important;top:0!important;z-index:20!important;display:flex!important;align-items:center!important;justify-content:space-between!important;flex:0 0 auto!important;gap:14px!important;padding:16px 20px!important;background:rgba(255,255,255,.98)!important;border-bottom:1px solid #e7edf7!important;}
-#modal .dialog>div:first-child>div{flex:1 1 auto!important;min-width:0!important;padding:0!important;}
-#modal .dialog>div:first-child h2{padding:0!important;margin:0!important;max-width:100%!important;font-size:clamp(18px,2.3vw,23px)!important;line-height:1.35!important;overflow-wrap:anywhere!important;}
-#modal .dialog>div:first-child p{padding:4px 0 0!important;margin:0!important;font-size:12px!important;color:#8190aa!important;}
-#modal .dialog>div:first-child #close{position:relative!important;z-index:30!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-width:68px!important;min-height:38px!important;margin:0!important;padding:8px 13px!important;pointer-events:auto!important;white-space:nowrap!important;align-self:center!important;}
-#modalBody{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;padding:16px 20px 22px!important;}
-#modal .detail-intro{display:none!important;}
+
+
+
+
+
+
+
+
+
 @media(max-width:560px){
  #modal{padding: max(8px, env(safe-area-inset-top)) 7px 8px!important;}
  #modal .dialog{max-height:calc(100dvh - max(16px, env(safe-area-inset-top) + 8px))!important;border-radius:16px!important;}
@@ -1636,7 +1636,7 @@ body{background:linear-gradient(180deg,#f4f8ff 0,#f9fbff 380px,#f8faff 100%)}
 #modal[data-detail-view="true"] .episode-tab-panel{border:1px solid #e7edf8!important;background:linear-gradient(180deg,#fff,#fcfdff)!important;border-radius:15px!important;padding:5px 16px!important;box-shadow:0 4px 15px rgba(49,79,135,.035)!important}
 #modal[data-detail-view="true"] .episode-tab-panel .episode-points{margin:0!important;padding:0!important}
 #modal[data-detail-view="true"] .episode-tab-panel .point-row{min-height:54px!important;padding:12px 2px!important;align-items:center!important}
-#modal[data-detail-view="true"] .episode-tab-panel .point-row:last-child{border-bottom:0!important}
+
 #modal[data-detail-view="true"] .episode-tab-panel .point-content{align-items:center!important;gap:15px!important}
 #modal[data-detail-view="true"] .episode-tab-panel .point-time{min-width:60px!important;text-align:center!important}
 #modal[data-detail-view="true"] .episode-tab{font-family:inherit!important}
@@ -1647,7 +1647,7 @@ body{background:linear-gradient(180deg,#f4f8ff 0,#f9fbff 380px,#f8faff 100%)}
  padding:12px 4px!important;
  border-bottom:1px dashed #e7edf7!important;
 }
-#modal[data-detail-view="true"] .episode-tab-panel .point-row:last-child{border-bottom:0!important}
+
 #modal[data-detail-view="true"] .episode-tab-panel .point-content{
  display:grid!important;grid-template-columns:74px minmax(0,1fr)!important;
  align-items:center!important;gap:14px!important;width:100%!important;
@@ -2303,12 +2303,12 @@ function modal(title,desc,body){
  const isAuth=!!root.querySelector(".auth-shell");
  root.classList.toggle("modal-auth-mode",isAuth);
  root.classList.toggle("modal-standard-mode",!isAuth);
- const isLogoutConfirm=!!root.querySelector("#logoutConfirm");
+ const isLogoutConfirm=!!root.querySelector("#logoutConfirm")||!!root.querySelector("#pendingYes");
  root.classList.toggle("modal-logout-confirm",isLogoutConfirm);
   // 退出确认时强制隐藏公共弹窗的关闭按钮；其他弹窗恢复。
   const sharedClose=$("close");
   if(sharedClose){if(isLogoutConfirm){sharedClose.hidden=true;sharedClose.style.setProperty("display","none","important");}else{sharedClose.hidden=false;sharedClose.style.removeProperty("display");}}
- const closeButton=isLogoutConfirm?root.querySelector("#logoutCancel"):(isAuth?root.querySelector(".auth-shell-close"):$("close"));
+ const closeButton=isLogoutConfirm?(root.querySelector("#logoutCancel")||root.querySelector("#pendingNo")):(isAuth?root.querySelector(".auth-shell-close"):$("close"));
  closeButton?.focus({preventScroll:true});
  // 仅将无需滚动的番剧详情弹窗垂直居中；长内容仍从顶部展示并可滚动。
  root.classList.remove("detail-short-modal");
@@ -2760,11 +2760,7 @@ async function loadPublicAuthorProfiles(userIds){
   }
  }catch(e){console.warn("公开资料暂不可用",e)}
 }
-function authorProfileForProposal(p){
- const saved=p?.payload?.author_profile||{};
- const live=publicAuthorProfiles.get(p?.user_id)||{};
- return {name:live.name||saved.name||saved.username,avatar_url:live.avatar_url||saved.avatar_url||saved.avatar};
-}
+
 function authorInfoFromUser(user){
  const m=user?.user_metadata||{};
  return {name:String(m.username||m.display_name||'').trim()||'未设置用户名',avatar_url:String(m.avatar_url||'').trim()};
@@ -2880,8 +2876,9 @@ function proposalDialog(){if(!currentUser){toast("请先登录后再投稿");aut
 }
 
 let pendingEditId=null;
+let pendingEditOwnerId=null;
 function resetPendingEdit(){
- pendingEditId=null;
+ pendingEditId=null;pendingEditOwnerId=null;
  document.getElementById("pendingEditNotice")?.remove();
  const b=document.getElementById("inlineSubmitButton");if(b)b.textContent="➤ 提交投稿";
 }
@@ -2902,7 +2899,7 @@ function editPendingProposal(id){
  if(!p||!currentUser||p.user_id!==currentUser.id||p.status!=="pending"){toast("只能编辑自己的待审核投稿");return}
  const d=p.payload||{},form=document.getElementById("inlineProposalForm");
  if(!form){toast("投稿表单暂时不可用");return}
- form.reset();pendingEditId=id;
+ form.reset();pendingEditId=id;pendingEditOwnerId=currentUser.id;
  document.getElementById("submissionType").value=p.action==="add_cut"?"add_cut":"create_anime";
  updateSubmissionType();
  if(p.action==="add_cut"){
@@ -3244,7 +3241,7 @@ $("inlineProposalForm").addEventListener("submit",async e=>{
  submit.disabled=true;submit.textContent=isAdmin?"正在发布……":"正在提交……";
  try{
   const editId=pendingEditId;
-  if(editId&&!myPostsCache?.some(p=>String(p.id)===String(editId)&&p.user_id===currentUser.id&&p.status==="pending")){toast("待审核投稿信息已过期，请重新打开编辑");resetPendingEdit();return}
+  if(editId&&(pendingEditOwnerId!==currentUser.id||!myPostsCache?.some(p=>String(p.id)===String(editId)&&p.user_id===currentUser.id&&p.status==="pending"))){toast("待审核投稿信息已过期，请重新打开编辑");resetPendingEdit();return}
   const inserted=editId
    ? await db.from("proposals").update({action,payload:{...payload,author_profile:authorInfoFromUser(currentUser)}}).eq("id",editId).eq("user_id",currentUser.id).eq("status","pending").select("id").maybeSingle()
    : await db.from("proposals").insert({user_id:currentUser.id,action,payload:{...payload,author_profile:authorInfoFromUser(currentUser)},status:"pending"}).select("id").single();
