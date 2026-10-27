@@ -6,7 +6,8 @@
 <link rel="icon" type="image/jpeg" href="avatar.jpeg">
 <link rel="apple-touch-icon" href="avatar.jpeg">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
+<style id="archive-site-styles">
+
 :root{--bg:#f3f8ff;--paper:rgba(255,255,255,.92);--ink:#142b5b;--muted:#7186b2;--line:#dce8ff;--brand:#477cff;--soft:#e9efff;--shadow:0 12px 32px rgba(68,113,196,.10)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#d9eaff 0,#f6faff 430px,#f4f8ff 100%);min-height:100vh}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 8% 18%,#fff 0 5%,transparent 23%),radial-gradient(ellipse at 28% 24%,#fff 0 6%,transparent 24%),radial-gradient(ellipse at 82% 18%,#fff 0 7%,transparent 26%),radial-gradient(ellipse at 95% 35%,#fff 0 5%,transparent 22%),linear-gradient(155deg,#c9e2ff,#edf6ff 45%,#f9fbff)}
 .wrap{width:min(1480px,calc(100% - 42px));margin:auto}.top{position:sticky;top:0;z-index:4;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid #dbe7fb;padding:10px 0}.nav{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;font-size:25px;white-space:nowrap}.mark{width:54px;height:54px;object-fit:cover;border-radius:15px;box-shadow:0 4px 12px #537dc522}.navlinks{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.navlinks a{color:#274477;text-decoration:none;font-weight:700;padding:11px 13px;border-radius:12px}.navlinks a:hover,.navlinks a.active{background:#edf3ff;color:#3974ff}.btn{border:1px solid #dce7ff;border-radius:12px;padding:10px 15px;font-weight:750;cursor:pointer;background:white;color:var(--ink);transition:.18s}.btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px #426fbd18}.primary{background:linear-gradient(120deg,#4d82ff,#3970f8);border-color:transparent;color:#fff}.plain{background:rgba(255,255,255,.86);color:#34558c}.hero{position:relative;overflow:hidden;min-height:220px;padding:42px 0 34px;background:linear-gradient(100deg,rgba(223,239,255,.76),rgba(220,236,255,.18)),radial-gradient(ellipse at 14% 120%,#fff 0 15%,transparent 35%),radial-gradient(ellipse at 40% 120%,#fff 0 12%,transparent 30%);border-bottom:1px solid #dceaff}.hero:before,.hero:after{content:"";position:absolute;pointer-events:none;background:#fff;border-radius:100px;filter:blur(1px);opacity:.82}.hero:before{width:300px;height:55px;right:19%;bottom:4px;box-shadow:-90px 12px 0 4px #fff,-30px -20px 0 8px #fff,72px 3px 0 13px #fff}.hero:after{width:230px;height:42px;right:3%;bottom:8px;box-shadow:-65px -12px 0 7px #fff,48px 3px 0 8px #fff}.hero .wrap{position:relative;z-index:1}.hero h1{font-size:clamp(30px,4vw,48px);line-height:1.2;margin:8px 0 10px;letter-spacing:1px}.hero p{font-size:17px;margin:0;color:#6883b4}.hero-art{position:absolute;z-index:1;right:7%;bottom:-110px;width:clamp(210px,28vw,380px);height:auto;max-height:330px;object-fit:contain;object-position:top;filter:drop-shadow(0 10px 18px #5878a022);mask-image:linear-gradient(to bottom,#000 75%,transparent 100%)}.eyebrow{font-size:12px;letter-spacing:3px;color:#7795c6;font-weight:800}.layout{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(320px,.9fr);gap:18px;align-items:start;margin:0 auto 18px;position:relative;z-index:2}.panel{background:var(--paper);border:1px solid #e0eaff;border-radius:18px;padding:18px;margin:0 0 16px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}.panel h2{font-size:19px;margin:0 0 14px}.stats{display:flex;gap:12px;flex-wrap:wrap;margin:16px auto}.stat{flex:1;min-width:110px;background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:15px;padding:12px 16px;box-shadow:0 5px 18px #537dc50a}.stat b{display:block;font-size:22px;color:#3976ff}.filters{display:grid;grid-template-columns:1fr 160px 140px;gap:10px;margin-top:12px}.field{width:100%;padding:11px 12px;border:1px solid #dce7fb;border-radius:10px;background:#fff;font:inherit;color:var(--ink);outline:none}.field:focus{border-color:#7fa6ff;box-shadow:0 0 0 3px #4d82ff18}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:rgba(255,255,255,.91);border:1px solid #e0eaff;border-radius:16px;padding:15px;box-shadow:0 6px 18px #537dc509;transition:.18s}.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.cover{height:185px;border-radius:12px;background:linear-gradient(135deg,#e7f0ff,#edf8ff);display:grid;place-items:center;font-size:38px;margin-bottom:12px;overflow:hidden}.cover img{width:100%;height:100%;object-fit:cover}.card h3{margin:0 0 4px;color:#172f62}.pill{display:inline-block;padding:3px 9px;background:#e9efff;color:#4775ed;border-radius:99px;font-size:12px}.modal{display:none;position:fixed;inset:0;background:#172c5088;z-index:5;padding:16px;align-items:center;justify-content:center}.modal.show{display:flex}.dialog{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;width:min(650px,100%);max-height:90vh;overflow:auto;box-shadow:0 25px 80px #19376b30}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}.notice{padding:10px 13px;border-radius:12px;background:#edf4ff;color:#5073ad;margin:10px 0;font-size:13px}.item{border:1px solid var(--line);padding:12px;border-radius:12px;margin:9px 0;background:#fbfdff}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#20365e;color:white;border-radius:10px;padding:10px 14px;display:none;max-width:90vw;z-index:10}.toast.show{display:block}.cover-preview{display:none;max-width:120px;max-height:160px;object-fit:cover;border:1px solid var(--line);border-radius:10px;margin-top:8px}.user-chip{display:flex;align-items:center;gap:9px;padding:6px 12px;border-radius:99px;background:#fff;border:1px solid var(--line);white-space:nowrap}.user-chip img{width:34px;height:34px;object-fit:cover;border-radius:50%}footer{text-align:center;padding:22px;color:#7890bc;font-size:12px}@media(max-width:900px){.wrap{width:calc(100% - 26px)}.layout{grid-template-columns:1fr}.hero-art{right:2%;opacity:.62;width:240px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{align-items:flex-start;flex-wrap:wrap}.navlinks{order:3;width:100%;justify-content:center}.brand{font-size:20px}.mark{width:44px;height:44px}}@media(max-width:560px){.cards{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.grid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:30px 0 25px;min-height:190px}.hero-art{right:-20px;width:190px;bottom:-72px;opacity:.48}.hero h1{font-size:32px;max-width:65%}.hero p{font-size:14px;max-width:65%}.brand{font-size:18px}.navlinks a{padding:7px 9px;font-size:13px}.layout{gap:10px}.panel{padding:13px}.cover{height:220px}}
@@ -1125,7 +1126,7 @@ footer{text-align:center!important;width:100%;padding:18px 12px!important}
 
 
 /* 修复二级弹窗滚动穿透：打开弹窗时锁定底层页面，只允许弹窗内容区域滚动 */
-html.modal-open, body.modal-open{overflow:hidden!important;height:100%!important;overscroll-behavior:none!important}
+html.modal-open, body.modal-open{overflow:hidden!important;overscroll-behavior:none!important}
 body.modal-open{position:fixed!important;width:100%!important;left:0!important;right:0!important}
 #modal{position:fixed!important;inset:0!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
 #modal .dialog{overflow:hidden!important;overscroll-behavior:contain!important}
@@ -1499,9 +1500,245 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .review-tabs .review-tab:focus-visible{outline:2px solid var(--archive-accent);outline-offset:2px}
 @media(max-width:680px){#cards .season-items{grid-template-columns:minmax(0,1fr)!important}.review-tabs{gap:3px}.review-tab{padding:9px 5px}}
 @media(prefers-reduced-motion:reduce){.card,.btn,.navlinks a{transition:none!important}}
-</style>
 
-<style id="compact-card-spacing-final">
+/* 短篇详情居中偏上，同时允许触摸滑动；长篇详情继续独立滚动 */
+#modal.show.detail-short-modal{align-items:center!important;overflow-y:auto!important;overscroll-behavior-y:contain!important;touch-action:pan-y!important;}
+#modal.detail-short-modal .dialog{transform:translate3d(0,calc(-3vh + var(--detail-spring-y,0px)),0);margin-top:12px!important;margin-bottom:12px!important;touch-action:pan-y!important;transition:transform .36s cubic-bezier(.2,1.35,.35,1)!important;will-change:transform;}
+#modal.detail-short-modal.detail-spring-dragging .dialog{transition:none!important;}
+@media(prefers-reduced-motion:reduce){#modal.detail-short-modal .dialog{transition:none!important}}
+@media(max-height:560px){#modal.detail-short-modal .dialog{transform:none;}}
+/* 详情弹窗即使内容较少，也允许纵向手势与内部滚动。 */
+#modal.show[data-detail-view="true"]{overflow-y:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch}
+#modal.show[data-detail-view="true"] .dialog{overscroll-behavior-y:contain}
+#modal.show[data-detail-view="true"] #modalBody{overflow-y:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch}
+
+/* ===== 精致横向卡片 A · 完整结构改版 ===== */
+#cards .season-group{background:#fff!important;border:1px solid #e2eafa!important;border-radius:22px!important;box-shadow:0 9px 34px rgba(49,77,137,.055)!important;overflow:hidden!important}
+#cards .season-heading{min-height:58px!important;padding:11px 20px!important;background:#f5f8ff!important;border-bottom:1px solid #e7eefb!important}
+#cards .season-calendar-icon{width:34px!important;height:34px!important;border-radius:10px!important;background:#e6edff!important}
+#cards .season-title-text{font-size:17px!important}
+#cards .season-count{padding:5px 11px!important;font-size:12px!important}
+#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:14px!important;background:#fff!important}
+#cards .season-items .directory-card{display:flex!important;align-items:center!important;gap:14px!important;padding:11px!important;min-height:0!important;height:144px!important;border-radius:16px!important;background:#fff!important;border:1px solid #e2e9f6!important;box-shadow:0 2px 10px rgba(37,66,119,.045)!important;cursor:pointer!important;position:relative!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background-color .18s ease!important}
+#cards .season-items .directory-card:hover{transform:translateY(-2px)!important;background:#fcfdff!important;border-color:#adc5f8!important;box-shadow:0 10px 24px rgba(54,89,153,.10)!important}
+#cards .season-items .directory-card:focus-visible{outline:3px solid #7296f0!important;outline-offset:2px!important}
+#cards .season-items .directory-poster{flex:0 0 88px!important;width:88px!important;min-width:88px!important;height:122px!important;min-height:122px!important;margin:0!important;border-radius:10px!important;background:#f0f4fb!important;box-shadow:0 3px 10px rgba(34,57,107,.11)!important;overflow:hidden!important}
+#cards .season-items .directory-poster img{width:100%!important;height:100%!important;object-fit:contain!important}
+#cards .season-items .directory-card .card-main{height:100%!important;flex:1!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;min-width:0!important;padding:3px 1px!important;gap:7px!important}
+#cards .directory-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-width:0}
+#cards .directory-card-top h3{font-size:16px!important;line-height:1.35!important;margin:0!important;font-weight:750!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;color:#253d6a!important}
+#cards .directory-card-chevron{font-size:25px;line-height:20px;color:#a1b3d3;transition:transform .2s,color .2s}
+#cards .directory-card:hover .directory-card-chevron{color:#5277e3;transform:translateX(3px)}
+#cards .directory-card .card-meta{gap:6px!important;margin:0!important}
+#cards .directory-card .card-meta .pill{font-size:11px!important;padding:4px 8px!important;border-radius:7px!important;background:#edf3ff!important;color:#5c78b5!important}
+#cards .directory-card .card-bottom{margin-top:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;flex-wrap:nowrap!important}
+#cards .directory-stats{color:#7a8ca9;font-size:12px;white-space:nowrap}
+#cards .directory-stat-number{color:#4765a1;font-weight:800;font-size:13px}
+#cards .directory-stat-divider{color:#c5d0e1;margin:0 4px}
+#cards .directory-card .card-actions{display:flex!important;gap:5px!important;flex-wrap:nowrap!important}
+#cards .directory-card .card-actions .btn{font-size:11px!important;min-height:30px!important;padding:5px 9px!important;border-radius:9px!important;white-space:nowrap!important}
+#cards .directory-card .directory-detail-button{background:#eff4ff!important;color:#4269c9!important;border:1px solid #e0e9ff!important;font-weight:750!important}
+#cards .directory-card .directory-detail-button:hover{background:#e2ebff!important}
+@media(max-width:980px){#cards .season-items{grid-template-columns:minmax(0,1fr)!important}}
+@media(max-width:520px){#cards .season-items{gap:9px!important;padding:10px!important}#cards .season-items .directory-card{height:130px!important;gap:10px!important;padding:9px!important}#cards .season-items .directory-poster{flex-basis:79px!important;width:79px!important;min-width:79px!important;height:110px!important;min-height:110px!important}#cards .directory-card-top h3{font-size:14px!important}#cards .directory-stats{font-size:11px}#cards .directory-card .card-actions .btn{padding:5px 7px!important;font-size:10px!important}#cards .season-heading{padding:10px 12px!important}}
+@media(prefers-reduced-motion:reduce){#cards .directory-card,#cards .directory-card-chevron{transition:none!important}}
+
+/* C · 全站统一精修：档案列表 / 视图切换 / 季度折叠 */
+:root{--archive-primary:#5377df;--archive-line:#e3eaf6;--archive-ink:#293d62;--archive-muted:#8392ab;--archive-shadow:0 8px 26px rgba(42,72,127,.065)}
+body{background:linear-gradient(180deg,#f4f8ff 0,#f9fbff 380px,#f8faff 100%)}
+.panel{border-color:var(--archive-line);box-shadow:var(--archive-shadow)}
+#directory{border-radius:20px!important;padding:21px 23px 17px!important}
+#directory>h2{font-size:22px!important;letter-spacing:.2px}
+#directory .filters{gap:10px!important;align-items:center}
+#directory .filters .field{min-height:42px;border-radius:12px}
+.directory-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:13px;border-top:1px solid #ebeff8}
+.directory-toolbar-caption{display:flex;align-items:center;gap:8px;font-size:12px;color:#7588a8;font-weight:650}
+.directory-toolbar-dot{width:7px;height:7px;border-radius:50%;background:#80a0f2;box-shadow:0 0 0 4px #edf3ff}
+.directory-view-switch{display:flex;gap:3px;padding:4px;background:#f0f4fc;border:1px solid #e2eaf8;border-radius:12px}
+.directory-view-button{border:0;border-radius:9px;background:transparent;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:7px 11px;color:#6e82a4;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.directory-view-button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8}
+.directory-view-button.is-active{background:white;color:#4b6dce;box-shadow:0 2px 8px rgba(47,81,149,.1)}
+.season-heading{padding:0!important}
+.season-toggle .season-title-group{flex:1;min-width:0}
+#cards .directory-card{transition:transform .18s,box-shadow .18s,border-color .18s}
+@media(hover:hover){#cards .directory-card:hover{transform:translateY(-2px);box-shadow:0 11px 25px rgba(45,77,135,.12);border-color:#bfd0ef}}
+#cards.directory-grid-view .season-items{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:15px!important}
+#cards.directory-grid-view .directory-card{display:flex!important;flex-direction:column!important;height:auto!important;min-height:0!important;padding:10px!important;gap:10px!important;align-items:stretch!important}
+#cards.directory-grid-view .directory-poster{width:100%!important;height:auto!important;aspect-ratio:3/4!important;min-height:0!important;max-height:none!important;border-radius:12px!important}
+#cards.directory-grid-view .directory-poster img{width:100%!important;height:100%!important;object-fit:contain!important}
+#cards.directory-grid-view .card-main{width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;gap:8px!important;flex:1!important}
+#cards.directory-grid-view .directory-card-top{align-items:flex-start}
+#cards.directory-grid-view .directory-card h3{font-size:13px!important;line-height:1.5!important;min-height:39px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#cards.directory-grid-view .directory-card-chevron{display:none!important}
+#cards.directory-grid-view .card-meta{gap:5px!important}
+#cards.directory-grid-view .card-bottom{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;margin-top:auto!important}
+#cards.directory-grid-view .directory-stats{font-size:11px!important}
+#cards.directory-grid-view .card-actions{display:flex!important;flex-wrap:wrap!important}
+#cards.directory-grid-view .directory-detail-button{flex:1}
+@media(max-width:1000px){#cards.directory-grid-view .season-items{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:700px){#cards.directory-grid-view .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#directory{padding:15px!important}.directory-toolbar{margin-top:10px}}
+@media(max-width:380px){.directory-view-button{padding:7px 8px}.directory-toolbar-caption{font-size:11px}}
+@media(prefers-reduced-motion:reduce){#cards .directory-card,.directory-view-button{transition:none!important}}
+.season-static-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:14px 17px;color:inherit;text-align:left;box-sizing:border-box}
+
+/* 详情弹窗：极简分集列表 D 方案，覆盖历史多轮卡片样式 */
+#modal[data-detail-view="true"] .dialog{width:min(840px,calc(100vw - 24px))!important;max-width:840px!important}
+#modal[data-detail-view="true"] .cut-section-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;margin:0 0 18px!important;padding:0 2px!important}
+#modal[data-detail-view="true"] .cut-section-head h3{font-size:19px!important;color:#273c61!important;margin:0!important}
+#modal[data-detail-view="true"] .cut-total{font-size:13px!important;font-weight:500!important;color:#7c889b!important;background:transparent!important;border:0!important;padding:0!important}
+#modal[data-detail-view="true"] .episode-list{display:flex!important;flex-direction:column!important;gap:13px!important}
+#modal[data-detail-view="true"] .episode-card{border:1px solid #e2e6ee!important;border-radius:19px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;padding:0 18px!important}
+#modal[data-detail-view="true"] .episode-heading{display:flex!important;justify-content:space-between!important;align-items:center!important;background:transparent!important;border:0!important;padding:16px 0 7px!important}
+#modal[data-detail-view="true"] .episode-number{display:flex!important;align-items:center!important;gap:12px!important;font-size:17px!important;font-weight:800!important;color:#253958!important}
+#modal[data-detail-view="true"] .episode-film-icon{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border-radius:10px!important;background:#f1f4f9!important;color:#70819c!important;font-size:22px!important;font-weight:400!important}
+#modal[data-detail-view="true"] .episode-count{font-size:12px!important;font-weight:500!important;color:#7c8ba3!important;background:none!important;border:0!important;padding:0!important}
+#modal[data-detail-view="true"] .episode-points{padding:2px 0 6px!important;display:block!important}
+#modal[data-detail-view="true"] .point-row{display:flex!important;align-items:center!important;gap:12px!important;background:transparent!important;border:0!important;border-radius:0!important;border-bottom:1px solid #edf0f5!important;margin:0!important;padding:15px 4px!important;box-shadow:none!important}
+#modal[data-detail-view="true"] .point-row:last-child{border-bottom:0!important}
+#modal[data-detail-view="true"] .point-content{display:flex!important;align-items:baseline!important;gap:19px!important;flex:1!important;min-width:0!important}
+#modal[data-detail-view="true"] .point-time{display:block!important;flex:0 0 65px!important;font-size:16px!important;font-weight:800!important;color:#293d60!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;line-height:1.6!important}
+#modal[data-detail-view="true"] .point-type{display:block!important;margin:0!important;font-size:14px!important;line-height:1.7!important;color:#52637c!important;white-space:pre-wrap!important}
+#modal[data-detail-view="true"] .point-edit{flex:0 0 auto!important;margin-left:auto!important}
+@media(max-width:560px){#modal[data-detail-view="true"] .episode-card{padding:0 12px!important;border-radius:15px!important}#modal[data-detail-view="true"] .episode-heading{padding:12px 0 4px!important}#modal[data-detail-view="true"] .episode-number{font-size:15px!important;gap:8px!important}#modal[data-detail-view="true"] .episode-film-icon{width:29px!important;height:29px!important;font-size:19px!important}#modal[data-detail-view="true"] .point-row{padding:11px 0!important}#modal[data-detail-view="true"] .point-content{gap:11px!important}#modal[data-detail-view="true"] .point-time{font-size:14px!important;flex-basis:51px!important}#modal[data-detail-view="true"] .point-type{font-size:13px!important}#modal[data-detail-view="true"] .cut-section-head{align-items:baseline!important}#modal[data-detail-view="true"] .cut-total{font-size:11px!important}}
+
+/* 详情集数图标：动漫风格的四格线条图标，替换旧 EP 与方格字符 */
+#modal[data-detail-view="true"] .episode-number::before{content:none!important;display:none!important}
+#modal[data-detail-view="true"] .episode-grid-icon{display:inline-grid!important;place-items:center!important;flex:0 0 36px!important;width:36px!important;height:36px!important;border-radius:11px!important;background:linear-gradient(145deg,#f1f5ff,#e9efff)!important;color:#4868ae!important;box-shadow:inset 0 0 0 1px #dce6fb!important}
+#modal[data-detail-view="true"] .episode-grid-icon svg{display:block;width:25px;height:25px;overflow:visible}
+@media(max-width:560px){#modal[data-detail-view="true"] .episode-grid-icon{flex-basis:31px!important;width:31px!important;height:31px!important;border-radius:9px!important}#modal[data-detail-view="true"] .episode-grid-icon svg{width:22px;height:22px}}
+
+/* 季度栏最终紧凑修正：去除标题与内层容器重复 padding */
+#cards .season-heading{min-height:0!important;height:auto!important;padding:0!important;line-height:1.25!important}
+#cards .season-heading .season-static-heading{min-height:0!important;padding:9px 16px!important;box-sizing:border-box!important;align-items:center!important}
+#cards .season-heading .season-calendar-icon{width:30px!important;height:30px!important;flex:0 0 30px!important;border-radius:9px!important}
+#cards .season-heading .season-title-text{font-size:15px!important;line-height:1.3!important}
+#cards .season-heading .season-count{padding:4px 10px!important;font-size:11px!important;line-height:1.4!important}
+@media(max-width:520px){#cards .season-heading .season-static-heading{padding:8px 11px!important}#cards .season-heading .season-calendar-icon{width:28px!important;height:28px!important;flex-basis:28px!important}}
+
+/* 方案 C：分集导航 + 单集记录，避免多集卡片纵向堆叠 */
+#modal[data-detail-view="true"] .episode-tabs{display:flex!important;flex-wrap:wrap;gap:8px;margin:0 0 16px;padding:4px 0 2px}
+#modal[data-detail-view="true"] .episode-tab{appearance:none;border:1px solid #e0e8f7;border-radius:12px;background:#f7f9fe;color:#617496;padding:10px 13px;font:700 13px/1.3 inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .16s,border-color .16s,color .16s}
+#modal[data-detail-view="true"] .episode-tab:hover{border-color:#adc2f3;background:#edf3ff}
+#modal[data-detail-view="true"] .episode-tab.is-selected{background:#5274d9;color:#fff;border-color:#5274d9;box-shadow:0 4px 12px rgba(67,104,200,.15)}
+#modal[data-detail-view="true"] .episode-tab-count{font-size:11px;border-radius:20px;padding:2px 6px;background:rgba(127,152,196,.12);font-weight:600}
+#modal[data-detail-view="true"] .episode-tab.is-selected .episode-tab-count{background:rgba(255,255,255,.2)}
+#modal[data-detail-view="true"] .episode-tab-panel[hidden]{display:none!important}
+#modal[data-detail-view="true"] .episode-tab-panels{display:block!important}
+#modal[data-detail-view="true"] .episode-tab-panel{padding:0 17px!important;border-radius:15px!important}
+#modal[data-detail-view="true"] .episode-tab-panel .episode-heading{padding:14px 0 6px!important}
+#modal[data-detail-view="true"] .episode-tab-panel .point-row{padding:12px 4px!important}
+#modal[data-detail-view="true"] .episode-tab:focus-visible{outline:3px solid #abc1fa;outline-offset:2px}
+@media(max-width:560px){#modal[data-detail-view="true"] .episode-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;overscroll-behavior-x:contain;padding-bottom:8px}#modal[data-detail-view="true"] .episode-tab{white-space:nowrap;flex-shrink:0;padding:9px 11px}#modal[data-detail-view="true"] .episode-tab-panel{padding:0 11px!important}}
+@media(prefers-reduced-motion:reduce){#modal[data-detail-view="true"] .episode-tab{transition:none}}
+
+/* 方案 C 精修：已选集数不再重复显示，记录直接跟随导航 */
+#modal[data-detail-view="true"] .episode-tab-panels{margin-top:5px!important}
+#modal[data-detail-view="true"] .episode-tab-panel{border:1px solid #e7edf8!important;background:linear-gradient(180deg,#fff,#fcfdff)!important;border-radius:15px!important;padding:5px 16px!important;box-shadow:0 4px 15px rgba(49,79,135,.035)!important}
+#modal[data-detail-view="true"] .episode-tab-panel .episode-points{margin:0!important;padding:0!important}
+#modal[data-detail-view="true"] .episode-tab-panel .point-row{min-height:54px!important;padding:12px 2px!important;align-items:center!important}
+#modal[data-detail-view="true"] .episode-tab-panel .point-row:last-child{border-bottom:0!important}
+#modal[data-detail-view="true"] .episode-tab-panel .point-content{align-items:center!important;gap:15px!important}
+#modal[data-detail-view="true"] .episode-tab-panel .point-time{min-width:60px!important;text-align:center!important}
+#modal[data-detail-view="true"] .episode-tab{font-family:inherit!important}
+@media(max-width:560px){#modal[data-detail-view="true"] .episode-tab-panel{padding:4px 11px!important}#modal[data-detail-view="true"] .episode-tab-panel .point-content{gap:10px!important}}
+
+/* 时间点与概括：精致的双色信息行 */
+#modal[data-detail-view="true"] .episode-tab-panel .point-row{
+ padding:12px 4px!important;
+ border-bottom:1px dashed #e7edf7!important;
+}
+#modal[data-detail-view="true"] .episode-tab-panel .point-row:last-child{border-bottom:0!important}
+#modal[data-detail-view="true"] .episode-tab-panel .point-content{
+ display:grid!important;grid-template-columns:74px minmax(0,1fr)!important;
+ align-items:center!important;gap:14px!important;width:100%!important;
+}
+#modal[data-detail-view="true"] .episode-tab-panel .point-time{
+ box-sizing:border-box!important;display:inline-flex!important;
+ align-items:center!important;justify-content:center!important;
+ width:74px!important;min-width:0!important;min-height:37px!important;
+ padding:7px 9px!important;margin:0!important;
+ border:1px solid #dce7fd!important;border-left:3px solid #7595ec!important;
+ border-radius:9px!important;background:linear-gradient(135deg,#f1f6ff,#eaf1ff)!important;
+ color:#4165b3!important;font-size:14px!important;font-weight:800!important;
+ line-height:1.25!important;letter-spacing:.15px!important;
+ font-variant-numeric:tabular-nums!important;white-space:nowrap!important;
+}
+#modal[data-detail-view="true"] .episode-tab-panel .point-type{
+ display:block!important;min-width:0!important;
+ padding:0!important;margin:0!important;background:transparent!important;
+ border:0!important;color:#344766!important;font-size:14px!important;
+ font-weight:550!important;line-height:1.65!important;overflow-wrap:anywhere!important;
+}
+@media(max-width:560px){
+ #modal[data-detail-view="true"] .episode-tab-panel .point-content{grid-template-columns:66px minmax(0,1fr)!important;gap:10px!important}
+ #modal[data-detail-view="true"] .episode-tab-panel .point-time{width:66px!important;min-height:34px!important;font-size:12px!important;padding:7px 5px!important}
+ #modal[data-detail-view="true"] .episode-tab-panel .point-type{font-size:13px!important}
+}
+
+/* B 方案：极简文字时间点 + 柔和竖向分隔线 */
+#modal[data-detail-view="true"] .episode-tab-panel .point-row{
+ padding:13px 3px!important;border-bottom:1px solid #edf0f5!important;
+}
+#modal[data-detail-view="true"] .episode-tab-panel .point-row:last-child{border-bottom:0!important}
+#modal[data-detail-view="true"] .episode-tab-panel .point-content{
+ display:grid!important;grid-template-columns:61px minmax(0,1fr)!important;
+ gap:16px!important;align-items:center!important;width:100%!important;
+}
+#modal[data-detail-view="true"] .episode-tab-panel .point-time{
+ box-sizing:border-box!important;display:block!important;width:61px!important;
+ min-width:0!important;min-height:0!important;padding:0!important;margin:0!important;
+ border:0!important;border-radius:0!important;background:transparent!important;
+ color:#8295b4!important;font-size:14px!important;font-weight:650!important;
+ line-height:1.6!important;letter-spacing:0!important;text-align:left!important;
+ font-variant-numeric:tabular-nums!important;white-space:nowrap!important;
+}
+#modal[data-detail-view="true"] .episode-tab-panel .point-type{
+ border-left:1px solid #e4e9f2!important;padding:1px 0 1px 15px!important;
+ background:transparent!important;color:#40516c!important;
+ font-size:14px!important;font-weight:450!important;line-height:1.6!important;
+ overflow-wrap:anywhere!important;
+}
+@media(max-width:560px){
+ #modal[data-detail-view="true"] .episode-tab-panel .point-content{grid-template-columns:52px minmax(0,1fr)!important;gap:10px!important}
+ #modal[data-detail-view="true"] .episode-tab-panel .point-time{width:52px!important;font-size:13px!important}
+ #modal[data-detail-view="true"] .episode-tab-panel .point-type{padding-left:10px!important;font-size:13px!important}
+}
+
+/* 首页轻量升级：欢迎语 + 实时数据 + 最近收录 */
+#homeWelcome{min-height:0!important;padding:28px 34px!important;margin:18px 0 17px!important}
+#homeWelcome:before{right:29%!important;opacity:.48!important}
+#homeWelcome .home-welcome-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(310px,.8fr);align-items:center;gap:28px;position:relative;z-index:1}
+#homeWelcome .home-welcome-copy{min-width:0}
+#homeWelcome .home-kicker,.home-recent-kicker{display:block;color:#849bd0;font-size:10px;font-weight:750;letter-spacing:2.2px;margin-bottom:10px}
+#homeWelcome h2{max-width:none!important;font-size:clamp(23px,2.1vw,30px)!important;margin:0 0 9px!important}
+#homeWelcome p{max-width:none!important;margin:0 0 20px!important;font-size:14px!important;line-height:1.75!important}
+#homeWelcome #browseDirectoryBtn{margin:0!important;min-height:42px!important;padding:9px 18px!important;font-size:13px!important;gap:18px!important;border-radius:12px!important}
+#homeWelcome #browseDirectoryBtn:before,#homeWelcome #browseDirectoryBtn:after{content:none!important;display:none!important}
+.home-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.home-metric{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:20px 20px 18px;background:rgba(255,255,255,.76);border:1px solid #e4ebfa;border-radius:17px;box-shadow:0 6px 19px rgba(77,108,164,.045)}
+.home-metric-icon{color:#8fa7d9;background:#f0f4fd;border-radius:9px;width:30px;height:30px;display:grid;place-items:center;font-size:18px;line-height:1}
+.home-metric b{font-size:27px;line-height:1.2;color:#435e92;font-variant-numeric:tabular-nums}
+.home-metric>span:last-child{font-size:12px;color:#8998b1}
+.home-recent{padding:0 3px 28px;margin:0!important}
+.home-recent-header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:0 0 13px;padding:0 3px}
+.home-recent-kicker{margin:0 0 4px;font-size:9px;letter-spacing:1.8px}
+.home-recent h2{font-size:19px;color:#31496f;margin:0;font-weight:800}
+.home-see-all{border:0;background:transparent;color:#748dbb;font-size:12px;font-weight:700;cursor:pointer;padding:8px}
+.home-see-all:hover{color:#486bc1}
+.home-recent-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.home-recent-card{appearance:none;text-align:left;min-width:0;display:flex;align-items:center;gap:12px;padding:12px;background:rgba(255,255,255,.88);border:1px solid #e4eafa;border-radius:15px;cursor:pointer;transition:border-color .15s,transform .15s,box-shadow .15s}
+.home-recent-card:hover{border-color:#b6c9ef;transform:translateY(-2px);box-shadow:0 7px 20px rgba(73,103,160,.08)}
+.home-recent-cover{width:49px;height:65px;flex:0 0 49px;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#edf3fd,#dfe9f8);display:grid;place-items:center;color:#8da5cf;font-size:20px}
+.home-recent-cover img{display:block;width:100%;height:100%;object-fit:cover}
+.home-recent-info{display:flex;flex-direction:column;gap:7px;min-width:0;flex:1}
+.home-recent-title{font-size:13px;font-weight:750;color:#3d5278;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.home-recent-meta{font-size:11px;color:#91a0b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-recent-arrow{color:#b1c1df;font-size:20px;flex:0 0 auto}
+.home-recent-empty{grid-column:1/-1;padding:24px;text-align:center;color:#91a0b8;font-size:13px;background:#ffffffaa;border:1px dashed #dfe7f5;border-radius:15px}
+@media(max-width:850px){#homeWelcome .home-welcome-layout{grid-template-columns:1fr;gap:18px}.home-recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#homeWelcome{padding:22px 19px!important;border-radius:18px!important}#homeWelcome h2{font-size:22px!important}#homeWelcome p{font-size:13px!important}.home-metrics{gap:9px}.home-metric{padding:14px;gap:6px;border-radius:13px}.home-metric b{font-size:24px}.home-recent-list{grid-template-columns:1fr;gap:9px}.home-recent-card{padding:9px 11px}.home-recent-cover{width:42px;height:56px;flex-basis:42px}}
+
+
 /* Final compact spacing pass: preserve the whole poster while removing excess blank space. */
 #cards .season-items{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;padding:12px!important;align-items:start!important}
 #cards .season-items .card{height:auto!important;min-height:0!important;align-self:start!important;border-radius:13px!important}
@@ -1622,22 +1859,378 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 #myProps .post-more summary{font-size:12px}
 @media(max-width:760px){#myProps .posts-list{grid-template-columns:minmax(0,1fr);gap:10px}#myProps .post-card{padding:13px}}
 @media(max-width:420px){#myProps .posts-heading{padding:10px 11px}#myProps .post-card h4{font-size:16px}#myProps .post-meta span{font-size:10px}}
+
+/* 2026 archive directory: premium, restrained visual refresh */
+#cards{--directory-ink:#273d69;--directory-muted:#8392ae;--directory-border:#e2eaf8;--directory-blue:#5376db}
+#cards .season-group{margin:0 0 22px!important;border:1px solid #dce6f8!important;border-radius:22px!important;overflow:hidden;background:#fff!important;box-shadow:0 10px 32px rgba(57,83,139,.055)!important}
+#cards .season-heading{min-height:68px;padding:14px 22px!important;background:linear-gradient(110deg,#eef3ff 0%,#f8fbff 76%)!important;border-bottom:1px solid #e5ecf9!important;gap:12px!important}
+#cards .season-title-text{font-size:19px!important;letter-spacing:.15px;color:#2d436f!important}
+#cards .season-calendar-icon{width:39px!important;height:39px!important;border-radius:12px!important;display:grid!important;place-items:center!important;background:#e3ecff!important;color:#5175d8!important}
+#cards .season-calendar-icon svg{width:21px!important;height:21px!important}
+#cards .season-count{padding:7px 13px!important;border-radius:999px!important;background:#fff!important;color:#657ca8!important;border:1px solid #dce7fa!important;box-shadow:0 3px 8px rgba(57,83,139,.04)!important;white-space:nowrap}
+#cards .season-items{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;padding:16px!important;background:linear-gradient(180deg,#fbfcff,#fff)!important}
+#cards .season-items .card{display:flex!important;flex-direction:row!important;align-items:stretch!important;gap:15px!important;min-width:0!important;min-height:168px!important;margin:0!important;padding:12px!important;border:1px solid #e1e9f7!important;border-radius:17px!important;background:#fff!important;box-shadow:0 3px 12px rgba(54,83,137,.045)!important;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease!important;overflow:hidden!important}
+#cards .season-items .card:hover{transform:translateY(-2px)!important;border-color:#bdd0f8!important;box-shadow:0 12px 26px rgba(57,88,153,.105)!important}
+#cards .season-items .cover{flex:0 0 104px!important;width:104px!important;height:145px!important;min-width:104px!important;min-height:145px!important;margin:0!important;padding:0!important;border-radius:11px!important;background:linear-gradient(145deg,#edf2fc,#f6f9ff)!important;overflow:hidden!important;box-shadow:0 2px 7px rgba(49,75,120,.09)!important}
+#cards .season-items .cover img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important}
+#cards .season-items .card-main{display:flex!important;flex:1!important;min-width:0!important;flex-direction:column!important;align-items:stretch!important;padding:3px 1px!important}
+#cards .season-items .card-main h3{font-size:17px!important;font-weight:750!important;line-height:1.4!important;color:var(--directory-ink)!important;margin:0 0 9px!important;overflow-wrap:anywhere!important}
+#cards .season-items .card-meta{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:5px!important;color:var(--directory-muted)!important;font-size:12px!important}
+#cards .season-items .card-meta .pill{font-size:11px!important;padding:4px 9px!important;border-radius:8px!important;background:#eef3ff!important;color:#5874bc!important;font-weight:650!important}
+#cards .season-items .card-year{font-size:12px!important;margin-left:3px!important;color:#8b98af!important}
+#cards .season-items .card-bottom{margin-top:auto!important;display:flex!important;align-items:end!important;justify-content:space-between!important;gap:7px!important;flex-wrap:wrap!important}
+#cards .season-items .record-count{padding:6px 9px!important;border-radius:9px!important;font-size:11px!important;white-space:nowrap!important;background:#f1f5fb!important;color:#7183a5!important}
+#cards .season-items .card-actions{display:flex!important;gap:6px!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+#cards .season-items .card-actions .btn{min-height:33px!important;padding:6px 10px!important;border-radius:10px!important;font-size:12px!important;font-weight:650!important;background:#fff!important;border:1px solid #d8e4fa!important;color:#4f6ca6!important;box-shadow:none!important}
+#cards .season-items .card-actions .btn:hover{background:#eef4ff!important;border-color:#a9c1f6!important;color:#365bb0!important}
+#cards .season-items .card-actions .btn.danger:hover{background:#fff1f1!important;border-color:#f1c8c8!important;color:#bb4545!important}
+#cards .season-items .card-actions .btn:focus-visible{outline:2px solid #577fe5!important;outline-offset:2px!important}
+@media(min-width:1500px){#cards .season-items{gap:16px!important;padding:18px!important}}
+@media(max-width:860px){#cards .season-items{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;padding:12px!important}#cards .season-heading{min-height:58px;padding:11px 14px!important}#cards .season-title-text{font-size:16px!important}}
+@media(max-width:480px){#cards .season-group{border-radius:16px!important;margin-bottom:14px!important}#cards .season-items .card{gap:10px!important;padding:10px!important;min-height:145px!important;border-radius:13px!important}#cards .season-items .cover{flex-basis:84px!important;width:84px!important;min-width:84px!important;height:120px!important;min-height:120px!important}#cards .season-items .card-main h3{font-size:14px!important;margin-bottom:6px!important}#cards .season-items .card-bottom{align-items:flex-end!important}#cards .season-items .record-count{font-size:10px!important}#cards .season-items .card-actions .btn{min-height:30px!important;padding:5px 8px!important;font-size:11px!important}}
+@media(prefers-reduced-motion:reduce){#cards .season-items .card{transition:none!important}}
+
+
+
+/* 仅保留网格显示：按钮固定在卡片内容的右下角 */
+#cards .season-items{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+#cards .directory-card{display:flex!important;flex-direction:column!important;align-items:stretch!important;height:auto!important;min-height:0!important;padding:11px!important;gap:10px!important}
+#cards .directory-card .directory-poster{width:100%!important;height:auto!important;max-height:none!important;min-height:0!important;aspect-ratio:3/4!important;border-radius:11px!important;padding:6px!important;box-sizing:border-box!important}
+#cards .directory-card .directory-poster img{width:100%!important;height:100%!important;object-fit:contain!important}
+#cards .directory-card .card-main{display:flex!important;flex-direction:column!important;flex:1!important;min-width:0!important;width:100%!important;gap:7px!important}
+#cards .directory-card .card-bottom{display:flex!important;flex-direction:column!important;gap:9px!important;margin-top:auto!important;align-items:stretch!important}
+#cards .directory-card .card-actions{display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;margin-top:auto!important}
+#cards .directory-card .directory-detail-button{flex:0 0 auto!important;width:auto!important;margin-left:auto!important;padding:8px 12px!important;min-height:34px!important;white-space:nowrap}
+#cards .directory-card .directory-card-chevron{display:none!important}
+.back-to-top:first-letter{font-size:inherit!important}
+@media(max-width:1000px){#cards .season-items{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:700px){#cards .season-items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#cards .directory-card{padding:9px!important}}
+@media(max-width:360px){#cards .season-items{grid-template-columns:minmax(0,1fr)!important}}
+/* detail-button-alignment-tweak
+/* 查看详情按钮向下微调，与左侧小字的下缘形成更协调的视觉基线 */
+#cards .directory-card .directory-detail-button{transform:translateY(5px)!important}
+@media(max-width:700px){#cards .directory-card .directory-detail-button{transform:translateY(4px)!important}}
+*/
+
+
+/* 统计文字的下边缘 = 查看详情按钮的上边缘；不使用 transform 位移 */
+#cards .directory-card .card-bottom{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important}
+#cards .directory-card .directory-stats{display:block!important;line-height:20px!important;margin:0!important;padding:0!important}
+#cards .directory-card .card-actions{display:flex!important;justify-content:flex-end!important;align-items:flex-start!important;gap:6px!important;margin:0!important;padding:0!important}
+#cards .directory-card .directory-detail-button{transform:none!important;margin-top:0!important;position:relative!important;top:0!important}
+@media(max-width:700px){#cards .directory-card .directory-detail-button{transform:none!important}}
+
+
+/* 上边框与统计文字行的下边界对齐，避免受旧 flex 覆盖规则影响 */
+#cards.directory-grid-view .season-items .directory-card .card-bottom,
+#cards .season-items .directory-card .card-bottom{
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+ grid-template-rows:20px auto!important;row-gap:0!important;
+ align-items:stretch!important;justify-items:stretch!important;
+ margin-top:auto!important;padding:0!important;
+}
+#cards.directory-grid-view .season-items .directory-card .directory-stats,
+#cards .season-items .directory-card .directory-stats{
+ grid-row:1!important;line-height:20px!important;height:20px!important;
+ display:block!important;margin:0!important;padding:0!important;
+}
+#cards.directory-grid-view .season-items .directory-card .card-actions,
+#cards .season-items .directory-card .card-actions{
+ grid-row:2!important;display:flex!important;justify-content:flex-end!important;
+ align-items:flex-start!important;gap:6px!important;
+ margin:0!important;padding:0!important;transform:none!important;
+}
+#cards.directory-grid-view .season-items .directory-card .directory-detail-button,
+#cards .season-items .directory-card .directory-detail-button{
+ align-self:flex-start!important;margin-top:0!important;margin-bottom:0!important;
+ top:auto!important;transform:none!important;position:static!important;
+}
+
+
+/* 季度分组：去除过高的浅蓝色标题区域 */
+#cards .season-heading{min-height:0!important;padding:10px 16px!important;background:linear-gradient(100deg,#f4f7ff,#fcfdff)!important}
+#cards .season-static-heading{min-height:0!important;gap:10px!important}
+#cards .season-calendar-icon{width:34px!important;height:34px!important;flex-basis:34px!important;border-radius:10px!important}
+#cards .season-calendar-icon svg{width:19px!important;height:19px!important}
+#cards .season-title-text{font-size:16px!important;gap:8px!important}
+#cards .season-count{font-size:12px!important;padding:5px 10px!important}
+/* 详情：集数是分组标题，时间点是正文数据，视觉上明显区分 */
+#modal[data-detail-view="true"] .episode-list{gap:10px!important}
+#modal[data-detail-view="true"] .episode-card{border-color:#e5eafa!important;border-radius:14px!important;padding:0 14px!important}
+#modal[data-detail-view="true"] .episode-heading{padding:10px 0 8px!important;border-bottom:1px solid #edf1fa!important}
+#modal[data-detail-view="true"] .episode-number{font-size:15px!important;gap:9px!important;color:#304d85!important}
+#modal[data-detail-view="true"] .episode-grid-icon{width:28px!important;height:28px!important;flex-basis:28px!important;border-radius:8px!important;background:#edf3ff!important}
+#modal[data-detail-view="true"] .episode-grid-icon svg{width:19px!important;height:19px!important}
+#modal[data-detail-view="true"] .episode-count{font-size:11px!important;color:#7b8fae!important;background:#f4f7fc!important;border-radius:999px!important;padding:4px 8px!important}
+#modal[data-detail-view="true"] .episode-points{padding:0 0 3px!important}
+#modal[data-detail-view="true"] .point-row{padding:10px 2px!important;gap:10px!important}
+#modal[data-detail-view="true"] .point-content{align-items:center!important;gap:12px!important}
+#modal[data-detail-view="true"] .point-time{flex:0 0 58px!important;font-size:13px!important;font-variant-numeric:tabular-nums!important;line-height:1.4!important;color:#4772c7!important;background:#edf3ff!important;border:1px solid #e1eafd!important;border-radius:7px!important;padding:5px 7px!important;text-align:center!important}
+#modal[data-detail-view="true"] .point-type{font-size:13px!important;line-height:1.5!important;color:#4d5e78!important}
+@media(max-width:560px){
+ #cards .season-heading{padding:9px 11px!important}
+ #cards .season-calendar-icon{width:30px!important;height:30px!important;flex-basis:30px!important}
+ #modal[data-detail-view="true"] .episode-card{padding:0 10px!important}
+ #modal[data-detail-view="true"] .point-time{flex-basis:53px!important;font-size:12px!important;padding:4px 6px!important}
+ #modal[data-detail-view="true"] .point-content{gap:9px!important}
+}
+
+
+/* 首页：欢迎与最近更新双栏，与第一张参考图一致 */
+.home-dashboard-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:stretch;margin:22px 0 30px}
+#homeWelcome,#homeRecent{margin:0!important;min-width:0;min-height:330px;box-sizing:border-box;border:1px solid #e1e9fa!important;border-radius:23px!important;background:linear-gradient(145deg,#fff 0%,#f7f9ff 100%)!important;box-shadow:0 8px 28px rgba(80,111,168,.06)!important;padding:28px!important}
+#homeWelcome .home-welcome-layout{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:20px!important;height:100%}
+#homeWelcome .home-welcome-copy{display:flex;flex-direction:column;align-items:flex-start}
+#homeWelcome .home-kicker{font-size:10px!important;letter-spacing:2.4px!important}
+#homeWelcome h2{font-size:clamp(23px,2.15vw,30px)!important;letter-spacing:.3px}
+#homeWelcome .home-metrics{order:2;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
+#homeWelcome .home-metric{display:grid!important;grid-template-columns:58px minmax(0,1fr)!important;grid-template-rows:auto auto!important;align-items:center!important;column-gap:13px!important;row-gap:3px!important;padding:18px!important;border-radius:15px!important;background:linear-gradient(135deg,#f1f5ff,#f8faff)!important;border:0!important}
+#homeWelcome .home-metric:nth-child(2){background:linear-gradient(135deg,#f6f3fc,#faf8ff)!important}
+#homeWelcome .home-metric-icon{grid-row:1/3!important;display:grid!important;place-items:center!important;width:54px!important;height:54px!important;border-radius:13px!important;background:#e5edff!important;color:#6985ca!important;font-size:29px!important}
+#homeWelcome .home-metric:nth-child(2) .home-metric-icon{background:#eee7fa!important;color:#8a83c3!important}
+#homeWelcome .home-metric b{font-size:30px!important;line-height:1.1!important;color:#506b9e!important}
+#homeWelcome .home-metric>span:last-child{font-size:13px!important;color:#8190ae!important}
+#homeWelcome #browseDirectoryBtn{order:3!important;margin-top:2px!important;padding:12px 24px!important;border-radius:15px!important}
+#homeWelcome #browseDirectoryBtn [aria-hidden="true"]{display:none!important}
+#homeRecent{display:flex!important;flex-direction:column!important}
+#homeRecent .home-recent-header{margin:0 0 19px!important;padding:0!important}
+#homeRecent .home-recent-kicker{font-size:10px!important;letter-spacing:2px!important;margin-bottom:7px!important}
+#homeRecent h2{font-size:23px!important}
+#homeRecent .home-recent-list{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:11px!important;flex:1}
+#homeRecent .home-recent-card{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;overflow:hidden!important;padding:0!important;border-radius:14px!important;background:white!important}
+#homeRecent .home-recent-cover{display:block!important;width:100%!important;height:130px!important;flex:none!important;border-radius:0!important;background:#eff3fb!important;overflow:hidden!important}
+#homeRecent .home-recent-cover img{width:100%!important;height:100%!important;object-fit:cover!important}
+#homeRecent .home-recent-info{display:block!important;padding:12px 11px!important;min-width:0!important}
+#homeRecent .home-recent-title{display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;font-size:12px!important;line-height:1.55!important;min-height:37px!important}
+#homeRecent .home-recent-meta{font-size:11px!important;margin-top:6px!important;line-height:1.5!important}
+#homeRecent .home-recent-arrow{display:none!important}
+#homeRecent .home-see-all{display:none!important}
+@media(max-width:1050px){.home-dashboard-grid{grid-template-columns:1fr!important}#homeWelcome,#homeRecent{min-height:0!important}}
+@media(max-width:560px){.home-dashboard-grid{gap:14px;margin:15px 0 20px}#homeWelcome,#homeRecent{padding:20px 16px!important;border-radius:18px!important}#homeWelcome .home-metric{grid-template-columns:1fr!important;grid-template-rows:auto auto auto!important;gap:6px!important;padding:13px!important}#homeWelcome .home-metric-icon{grid-row:auto!important;width:39px!important;height:39px!important;font-size:22px!important}#homeWelcome .home-metric b{font-size:25px!important}#homeRecent .home-recent-list{gap:8px!important}#homeRecent .home-recent-cover{height:90px!important}#homeRecent .home-recent-info{padding:9px 7px!important}#homeRecent .home-recent-title{font-size:11px!important}#homeRecent .home-recent-meta{font-size:10px!important}}
+
+
+/* 首页紧凑化：缩小双栏、封面、内边距，避免进入首页就需要滚动 */
+.home-dashboard-grid{gap:16px!important;margin:14px 0 18px!important}
+#homeWelcome,#homeRecent{min-height:0!important;padding:19px 23px!important;border-radius:19px!important}
+#homeWelcome .home-welcome-layout{gap:13px!important}
+#homeWelcome .home-kicker,#homeRecent .home-recent-kicker{margin-bottom:5px!important;font-size:9px!important}
+#homeWelcome h2{font-size:clamp(21px,1.9vw,27px)!important;margin-bottom:5px!important}
+#homeWelcome p{margin-bottom:12px!important;font-size:13px!important;line-height:1.55!important}
+#homeWelcome #browseDirectoryBtn{min-height:37px!important;padding:8px 16px!important;font-size:13px!important}
+#homeWelcome .home-metrics{gap:10px!important}
+#homeWelcome .home-metric{grid-template-columns:44px minmax(0,1fr)!important;column-gap:10px!important;padding:12px!important}
+#homeWelcome .home-metric-icon{width:42px!important;height:42px!important;font-size:22px!important}
+#homeWelcome .home-metric b{font-size:25px!important}
+#homeWelcome .home-metric>span:last-child{font-size:12px!important}
+#homeRecent .home-recent-header{margin-bottom:12px!important}
+#homeRecent h2{font-size:21px!important}
+#homeRecent .home-recent-list{gap:9px!important}
+#homeRecent .home-recent-cover{height:100px!important}
+#homeRecent .home-recent-info{padding:9px 10px!important}
+#homeRecent .home-recent-title{min-height:0!important;font-size:12px!important;line-height:1.4!important}
+#homeRecent .home-recent-meta{font-size:10px!important;margin-top:5px!important}
+@media(max-width:560px){#homeWelcome,#homeRecent{padding:16px!important}#homeWelcome .home-metric{grid-template-columns:1fr!important;gap:4px!important;padding:10px!important}#homeWelcome .home-metric-icon{width:34px!important;height:34px!important;font-size:19px!important}#homeRecent .home-recent-cover{height:76px!important}#homeRecent .home-recent-info{padding:7px!important}}
+
+
+/* 首页专属区块：任何非首页页面都彻底隐藏 */
+.home-dashboard-grid.page-hidden{display:none!important}
+#homeRecent.page-hidden,#homeWelcome.page-hidden{display:none!important}
+
+
+/* 审核列表独立页面，与我的投稿相同的双列平铺结构 */
+#adminReviewPage{margin:15px auto 28px;width:calc(100% - 48px);max-width:1560px;box-sizing:border-box}
+#adminReviewPage.page-hidden{display:none!important}
+#adminReviewPage .admin-review-heading{padding:17px 22px;margin-bottom:14px;background:linear-gradient(110deg,#f5f8ff,#fff);border:1px solid #dfe8f9;border-radius:16px}
+#adminReviewPage .admin-review-heading h2{font-size:22px;margin:0 0 5px;color:#2c416d}
+#adminReviewPage .admin-review-heading p{font-size:13px;color:#8a9bb9;margin:0}
+#adminReviewPage .review-tabs{margin-bottom:15px!important}
+#adminReviewContent{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+#adminReviewContent>.review-tabs,#adminReviewContent>.review-bulk,#adminReviewContent>.review-pagination,#adminReviewContent>.review-empty{grid-column:1/-1}
+#adminReviewContent .review-entry{min-width:0;margin:0!important;padding:17px 19px!important;border-radius:17px!important;border:1px solid #e0e9fa!important;background:linear-gradient(145deg,#fff,#fafcff)!important;box-shadow:0 5px 18px rgba(69,98,153,.035)}
+#adminReviewContent .review-entry-head{align-items:center;gap:12px}
+#adminReviewContent .review-entry .proposal-summary{max-width:100%;overflow-wrap:anywhere}
+#adminReviewContent .review-entry .proposal-field{min-width:0}
+#adminReviewContent .review-entry .proposal-field a{overflow-wrap:anywhere}
+#adminReviewContent .review-entry .review-done{margin-bottom:0}
+@media(max-width:780px){#adminReviewContent{grid-template-columns:1fr}#adminReviewPage{width:calc(100% - 24px)}}
+
+
+#adminReviewContent .review-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;padding:5px!important;border:1px solid #e4ebfa!important;background:#f2f5fc!important;border-radius:15px!important;margin:0 0 16px!important}
+#adminReviewContent .review-tab{display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;border:1px solid transparent!important;border-radius:11px!important;padding:11px 12px!important;background:transparent!important;color:#8393b3!important;font-size:13px!important;font-weight:750!important;box-shadow:none!important;transition:background .15s,border-color .15s,color .15s!important}
+#adminReviewContent .review-tab:hover{background:#fff9!important;color:#5675b8!important}
+#adminReviewContent .review-tab.selected{background:linear-gradient(135deg,#6f95ef,#5575e4)!important;color:white!important;border-color:#6689e7!important;box-shadow:0 4px 12px #5879d62b!important}
+#adminReviewContent .review-tab span{font-size:11px!important;padding:2px 8px!important;border-radius:99px!important;background:#e5ebf8!important;color:#7186b1!important}
+#adminReviewContent .review-tab.selected span{background:#ffffff35!important;color:white!important}
+#adminReviewContent .review-entry-head:has(.review-status:only-child){justify-content:flex-end!important;margin-bottom:4px!important}
+#cards,#homeRecentList,#adminReviewContent{overflow-anchor:none}
+@media(max-width:560px){#adminReviewContent .review-tabs{gap:3px!important}#adminReviewContent .review-tab{font-size:12px!important;padding:9px 4px!important;gap:4px!important}#adminReviewContent .review-tab span{padding:2px 5px!important}}
+
+
+#adminReviewContent .review-entry-meta{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;min-height:30px!important;margin:0 0 10px!important}
+#adminReviewContent .review-entry-action{font-size:12px!important;line-height:1.5!important;color:#7e90af!important;min-width:0!important}
+#adminReviewContent .review-entry-meta .review-status{flex:0 0 auto!important;margin:0 0 0 auto!important;align-self:center!important}
+@media(max-width:560px){#adminReviewContent .review-entry-meta{gap:7px!important}#adminReviewContent .review-entry-action{font-size:11px!important}}
+
+#adminReviewPage{margin-top:10px!important}#adminReviewContent>.review-tabs{margin-top:0!important}
+
+#modal #editAnimeForm textarea.field{width:100%;min-height:90px;resize:vertical;line-height:1.6;font:inherit;box-sizing:border-box}
+#modal #editAnimeForm label{font-weight:650;color:#566a91}
+
+
+/* 番剧名称与番剧分类合并为一个信息卡片，内部两栏 */
+#submit .anime-meta-subgrid{grid-template-columns:minmax(0,2fr) minmax(200px,1fr)!important;gap:10px!important}
+#submit .anime-meta-combined{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(140px,1fr);gap:15px;align-items:center;padding:11px 14px;border:1px solid #e2e9f8;border-radius:14px;background:linear-gradient(180deg,#fff,#f9fbff);min-width:0}
+#submit .anime-meta-combined .combined-meta-field{padding:0!important;border:0!important;background:transparent!important;border-radius:0!important;box-shadow:none!important;min-width:0}
+#submit .anime-meta-combined .combined-meta-field+.combined-meta-field{border-left:1px solid #e5ebf7!important;padding-left:15px!important}
+#submit .anime-meta-combined .field{min-width:0;width:100%;box-sizing:border-box}
+@media(max-width:850px){#submit .anime-meta-subgrid{grid-template-columns:minmax(0,1fr)!important}}
+@media(max-width:560px){#submit .anime-meta-combined{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:8px;padding:9px}#submit .anime-meta-combined .combined-meta-field+.combined-meta-field{padding-left:8px!important}}
+
+
+/* 番剧名称与分类共用外框，内部上下排列 */
+#submit .anime-meta-combined{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:12px 18px!important}
+#submit .anime-meta-combined .combined-meta-field{width:100%!important;box-sizing:border-box!important;padding:10px 0!important;min-width:0!important}
+#submit .anime-meta-combined .combined-meta-field+.combined-meta-field{border-left:0!important;border-top:1px solid #e5ebf7!important;padding-left:0!important;padding-top:16px!important;margin-top:7px!important}
+#submit .anime-meta-combined .combined-meta-field label{display:block!important;margin-bottom:9px!important}
+#submit .anime-meta-combined .combined-meta-field .field{width:100%!important;box-sizing:border-box!important}
+@media(max-width:560px){#submit .anime-meta-combined{padding:10px 13px!important}#submit .anime-meta-combined .combined-meta-field+.combined-meta-field{padding-left:0!important}}
+
+
+/* 右侧季度、年份和左侧名称、分类使用相同的双行卡片 */
+#submit .anime-meta-season-year{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:12px 18px!important}
+#submit .anime-meta-season-year .combined-meta-field{width:100%!important;box-sizing:border-box!important;padding:10px 0!important;min-width:0!important}
+#submit .anime-meta-season-year .combined-meta-field+.combined-meta-field{border-left:0!important;border-top:1px solid #e5ebf7!important;padding-left:0!important;padding-top:16px!important;margin-top:7px!important}
+#submit .anime-meta-season-year .combined-meta-field label{display:block!important;margin-bottom:9px!important}
+#submit .anime-meta-season-year select.field{width:100%!important;box-sizing:border-box!important}
+@media(max-width:560px){#submit .anime-meta-season-year{padding:10px 13px!important}}
+
+
+/* 时间点与说明同一行，左窄右宽；手机端也保持同排 */
+#submit .cut-time-row{display:grid!important;grid-template-columns:minmax(120px,0.72fr) minmax(0,2fr) auto!important;gap:10px!important;align-items:end!important}
+#submit .cut-time-row>div{min-width:0!important}
+#submit .cut-time-row .cut-description{resize:none!important;overflow-y:auto!important}
+@media(max-width:620px){#submit .cut-time-row{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)!important;gap:8px!important}#submit .cut-time-row .cut-remove{grid-column:1/-1!important;justify-self:end!important}#submit .cut-time-row input.field,#submit .cut-time-row textarea.field{font-size:12px!important;padding-left:9px!important;padding-right:9px!important}}
+
+
+/* 时间点与说明：标签和输入框也在同一横行，减少纵向高度 */
+#submit .cut-time-row{display:grid!important;grid-template-columns:minmax(220px,.85fr) minmax(290px,1.7fr) auto!important;align-items:center!important;gap:12px!important;padding:9px 12px!important;min-height:0!important}
+#submit .cut-time-row .cut-inline-time,#submit .cut-time-row .cut-inline-desc{display:flex!important;flex-direction:row!important;align-items:center!important;gap:9px!important;min-width:0!important}
+#submit .cut-time-row .cut-inline-time label,#submit .cut-time-row .cut-inline-desc label{display:block!important;flex:0 0 auto!important;margin:0!important;white-space:nowrap!important;font-size:13px!important;line-height:1.2!important}
+#submit .cut-time-row .cut-inline-time .field,#submit .cut-time-row .cut-inline-desc .field{flex:1 1 auto!important;width:1px!important;min-width:0!important;height:39px!important;min-height:39px!important;max-height:39px!important;margin:0!important;padding:8px 11px!important;font-size:13px!important}
+#submit .cut-time-row .cut-remove{align-self:center!important}
+@media(max-width:720px){#submit .cut-time-row{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}#submit .cut-time-row .cut-remove{grid-column:auto!important;justify-self:end!important}#submit .cut-time-row .cut-inline-time label,#submit .cut-time-row .cut-inline-desc label{min-width:55px!important}}
+
+
+/* 一集的集数、时间点和说明并排在同一条记录上 */
+#submit .cut-submit-row{display:grid!important;grid-template-columns:minmax(175px,215px) minmax(0,1fr)!important;gap:8px 12px!important;align-items:start!important;padding:12px!important}
+#submit .cut-submit-row>.cut-submit-row-head{grid-column:1/-1!important;margin-bottom:0!important}
+#submit .cut-submit-row>.cut-episode-head,#submit .cut-submit-row>.existing-episode-controls{grid-column:1!important;grid-row:2!important;min-width:0!important;min-height:59px!important;box-sizing:border-box!important;margin:0!important;padding:8px 10px!important;border:1px solid #e8eef9!important;border-radius:10px!important;background:#f7f9ff!important;display:flex!important;align-items:center!important;gap:8px!important;flex-wrap:nowrap!important}
+#submit .cut-submit-row>.cut-episode-head .episode-input-wrap{display:flex!important;align-items:center!important;gap:8px!important;width:100%!important;min-width:0!important}
+#submit .cut-submit-row>.cut-episode-head label{white-space:nowrap!important;margin:0!important;flex:none!important;font-size:13px!important}
+#submit .cut-submit-row>.cut-episode-head input{width:100%!important;min-width:0!important;max-width:none!important;height:39px!important;margin:0!important;padding:8px 9px!important}
+#submit .cut-submit-row>.cut-time-list{grid-column:2!important;grid-row:2!important;min-width:0!important;gap:8px!important}
+#submit .cut-submit-row .cut-time-row{grid-template-columns:minmax(185px,.9fr) minmax(0,1.5fr) auto!important;gap:8px!important;padding:8px 10px!important;min-height:59px!important;box-sizing:border-box!important}
+#submit .cut-submit-row>.cut-episode-actions{grid-column:1/-1!important;margin:0!important}
+@media(max-width:780px){#submit .cut-submit-row{grid-template-columns:1fr!important}#submit .cut-submit-row>.cut-episode-head,#submit .cut-submit-row>.existing-episode-controls{grid-column:1!important;grid-row:auto!important}#submit .cut-submit-row>.cut-time-list{grid-column:1!important;grid-row:auto!important}#submit .cut-submit-row .cut-time-row{grid-template-columns:1fr!important}}
+
+
+/* 两个大框，左三项右三项，均为纵向排列；禁止 display:contents 拆散记录区 */
+#submit #inlineProposalForm>.anime-meta-grid{display:block!important;margin:0 0 15px!important}
+#submit #newAnimeFields{display:block}
+#submit #newAnimeFields[style*="none"]{display:none!important}
+#submit #newAnimeFields>.anime-meta-subgrid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:16px!important;align-items:stretch!important;margin:0 0 18px!important}
+#submit #newAnimeFields .anime-meta-combined{display:flex!important;flex-direction:column!important;gap:0!important;min-width:0!important;padding:6px 18px!important;border:1px solid #dfe8f9!important;border-radius:18px!important;background:linear-gradient(180deg,#fff,#f9fbff)!important;box-sizing:border-box!important}
+#submit #newAnimeFields .anime-meta-combined>.anime-meta-field{display:flex!important;flex-direction:column!important;gap:9px!important;min-width:0!important;flex:1 1 0!important;padding:14px 0!important;margin:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;box-sizing:border-box!important}
+#submit #newAnimeFields .anime-meta-combined>.anime-meta-field+.anime-meta-field{border-top:1px solid #e4ebf7!important;border-left:0!important}
+#submit #newAnimeFields .anime-meta-combined label{font-size:13px!important;font-weight:700!important;line-height:1.4!important;margin:0!important}
+#submit #newAnimeFields .anime-meta-combined .field{height:43px!important;min-height:43px!important;width:100%!important;box-sizing:border-box!important;margin:0!important;padding:8px 12px!important;font-size:13px!important}
+#submit #inlineProposalForm>.anime-meta-grid>#existingAnimeFields{display:none}
+#submit #inlineProposalForm>.anime-meta-grid>#existingAnimeFields[style*="block"]{display:block!important}
+#submit #inlineSubmitButton{width:100%!important;max-width:none!important;height:auto!important;min-height:46px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:12px 18px!important;margin-top:12px!important;grid-column:auto!important;grid-row:auto!important}
+#submit .cut-submit-block{display:block!important;width:100%!important;min-width:0!important;grid-column:auto!important;grid-row:auto!important}
+@media(max-width:720px){#submit #newAnimeFields>.anime-meta-subgrid{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}#submit #newAnimeFields .anime-meta-combined{padding:4px 14px!important}#submit #newAnimeFields .anime-meta-combined>.anime-meta-field{padding:12px 0!important}}
+
+
+/* 两个资料大框内部不再使用分隔横线，靠间距区分三个字段 */
+#submit #newAnimeFields .anime-meta-combined>.anime-meta-field+.anime-meta-field,
+#submit #newAnimeFields .anime-meta-season-year .combined-meta-field+.combined-meta-field,
+#submit #newAnimeFields .anime-meta-combined .combined-meta-field+.combined-meta-field{
+ border-top:0!important;border-left:0!important;padding-top:14px!important;margin-top:0!important;
+}
+/* 提交按钮：取消宽度100%和网格拉伸，恢复普通按钮大小 */
+#submit #inlineProposalForm{display:block!important}
+#submit #inlineSubmitButton{
+ display:inline-flex!important;width:auto!important;max-width:230px!important;
+ min-width:156px!important;height:42px!important;min-height:42px!important;
+ padding:0 22px!important;margin:18px auto 2px!important;
+ border-radius:12px!important;align-items:center!important;justify-content:center!important;
+ font-size:14px!important;font-weight:750!important;line-height:1.2!important;
+ flex:none!important;grid-column:auto!important;grid-row:auto!important;
+}
+#submit #inlineProposalForm{ text-align:center!important }
+#submit #inlineProposalForm>.anime-meta-grid,
+#submit #inlineProposalForm .cut-submit-block,
+#submit #inlineProposalForm #existingAnimeFields{text-align:left!important}
+@media(max-width:560px){#submit #inlineSubmitButton{min-width:145px!important;height:40px!important;min-height:40px!important}}
+
+.logout-confirm-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:12px 0 3px}.logout-confirm-actions .btn{min-width:112px!important;width:auto!important;min-height:42px!important;padding:10px 19px!important;border-radius:12px!important;flex:none!important}@media(max-width:520px){.logout-confirm-actions{display:grid;grid-template-columns:1fr 1fr}.logout-confirm-actions .btn{min-width:0!important;width:100%!important;padding:10px 8px!important}}
+#modal.modal-logout-confirm #close{display:none!important}
+
+/* 全站轻量通知：成功、提醒、错误共用统一的圆角浮层 */
+#toast{position:fixed!important;left:50%!important;right:auto!important;bottom:24px!important;top:auto!important;transform:translate(-50%,12px)!important;max-width:min(90vw,540px)!important;min-width:0!important;padding:12px 19px 12px 43px!important;border-radius:13px!important;border:1px solid #e2e9f6!important;background:#fff!important;color:#405476!important;box-shadow:0 12px 38px rgba(42,65,115,.14)!important;font-size:13px!important;line-height:1.55!important;font-weight:600!important;z-index:99999!important;pointer-events:none!important}
+#toast.show{transform:translate(-50%,0)!important}
+#toast:before{content:"✓";position:absolute;left:16px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#e7f6ee;color:#39966c;font-size:12px}
+#toast[data-kind="info"]:before{content:"i";background:#e8efff;color:#5b7dd7;font-weight:800}
+#toast[data-kind="error"]:before{content:"!";background:#fff0f0;color:#cc6470;font-weight:800}
+.archive-confirm-backdrop{position:fixed;inset:0;z-index:100100;background:rgba(28,45,79,.42);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:18px;box-sizing:border-box}
+.archive-confirm-dialog{width:min(100%,400px);background:#fff;border:1px solid #e0e8f8;border-radius:21px;box-shadow:0 20px 65px rgba(22,42,85,.19);padding:26px;box-sizing:border-box}
+.archive-confirm-dialog h3{margin:0 0 10px;color:#2c416c;font-size:20px;line-height:1.4}
+.archive-confirm-dialog p{margin:0 0 23px;color:#8796b0;font-size:13px;line-height:1.7}
+.archive-confirm-actions{display:flex;justify-content:flex-end;gap:11px}
+.archive-confirm-actions button{border-radius:12px;min-width:88px;padding:10px 18px;font:700 13px inherit;cursor:pointer;border:1px solid #dce5f8;transition:filter .15s}
+.archive-confirm-no{background:#f8faff;color:#617499}.archive-confirm-yes{background:#5578e9;color:white;border-color:#5578e9!important}
+.archive-confirm-actions button:hover{filter:brightness(.97)}
+@media(max-width:500px){.archive-confirm-dialog{padding:21px}.archive-confirm-actions button{flex:1}}
+
+
+.pending-post-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin:12px 0 4px}
+.pending-post-actions .btn{font-size:12px!important;border-radius:10px!important;padding:8px 13px!important;min-height:34px!important}
+.pending-post-actions .pending-cancel{color:#b75d6b!important;background:#fff6f7!important;border:1px solid #f5dfe3!important}
+.pending-edit-notice{padding:12px 15px;margin:0 0 16px;border-radius:12px;border:1px solid #d8e6fc;background:#f0f6ff;color:#4d70ae;font-size:13px;font-weight:650}
+
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
 <body>
 <header class="top"><div class="wrap nav"><div class="brand"><button type="button" class="brand-refresh" onclick="window.location.reload()" title="刷新网页" aria-label="点击网站头像刷新网页"><img class="mark" src="avatar.jpeg" alt="番剧档案库头像"></button>番剧档案库</div><nav class="navlinks"><a href="#" class="active" data-page="home"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.8 10.5 8.2-7 8.2 7v9.2a1.3 1.3 0 0 1-1.3 1.3H5.1a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.5h6V21"/></svg>首页</a><a href="#" data-page="directory"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.2 4.2"/><path d="M8.3 10.8h5"/></svg>番剧列表</a><a href="#" id="navMyPosts" data-page="my-posts" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>我的投稿</a><a href="#" id="navAdmin" data-page="admin" style="display:none"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5.5c0 4.7-3.3 7.8-8 9.5-4.7-1.7-8-4.8-8-9.5V6z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>审核列表</a></nav><div class="user-chip"><div class="profile-identity"><button class="default-avatar" id="roleBadge" type="button" aria-label="账号菜单" aria-expanded="false" title="账号菜单"></button><button type="button" id="headerUsername" class="header-username" hidden aria-label="打开账号菜单"></button></div><div class="account-menu-wrap" id="accountMenuWrap"><div class="account-menu" id="accountMenu"><button type="button" id="changePasswordBtn"><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.1 2.1-.06-.06A1.7 1.7 0 0 0 15.76 18l-.1.04V21h-3v-.1a1.7 1.7 0 0 0-1.18-1.62 1.7 1.7 0 0 0-1.88.34l-.06.06-2.1-2.1.06-.06A1.7 1.7 0 0 0 7 15.64L6.96 15H4v-3h.1a1.7 1.7 0 0 0 1.62-1.18 1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.1-2.1.06.06A1.7 1.7 0 0 0 9.36 7L10 6.96V4h3v.1a1.7 1.7 0 0 0 1.18 1.62 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.1 2.1-.06.06A1.7 1.7 0 0 0 18 9.36L18.04 10H21v3h-.1A1.7 1.7 0 0 0 19.4 15Z"/></svg></span><span>账号设置</span></button><button type="button" class="logout" id="logoutBtn"><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5M15 12H3M12 3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6"/></svg></span><span>退出登录</span></button></div></div><button class="btn plain" id="authBtn" type="button">登录 / 注册</button><button class="btn primary" id="submitBtn" type="button"><span aria-hidden="true">＋</span> 投稿</button></div></div></header>
 <section class="hero" id="home"><div class="wrap"><div class="eyebrow">ANIME CUT ARCHIVE</div><h1>番剧档案库</h1><p>记录每一部番剧的删减 · 让喜欢的作品更完整</p><div id="status" class="notice">正在连接云端……</div></div><img class="hero-art" src="avatar.jpeg" alt="银发眼镜动漫女孩"></section>
-<main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><section class="panel page-section" id="homeWelcome" data-page-section="home"><h2>欢迎来到番剧档案库</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><div class="search-wrap"><input class="field" id="search" placeholder="搜索番剧名称…" autocomplete="off"><button class="search-clear" id="clearSearch" type="button" aria-label="清空搜索框" title="清空搜索">×</button></div><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
+<main class="wrap"><section class="stats"><div class="stat"><b id="animeCount">—</b><span class="muted">收录番剧</span></div><div class="stat"><b id="cutCount">—</b><span class="muted">删减记录</span></div><div class="stat"><b id="userState">访客</b><span class="muted">当前状态</span></div></section><div class="home-dashboard-grid"><section class="panel page-section" id="homeWelcome" data-page-section="home"><div class="home-welcome-layout"><div class="home-welcome-copy"><span class="home-kicker">WELCOME TO THE ARCHIVE</span><h2>欢迎来到番剧档案库</h2><p class="muted">记录每一部番剧的删减 · 让喜欢的作品更完整。</p><button class="btn primary" type="button" id="browseDirectoryBtn">浏览番剧列表</button></div><div class="home-metrics" aria-label="档案库实时统计"><div class="home-metric"><span class="home-metric-icon" aria-hidden="true">▤</span><b id="homeAnimeCount">—</b><span>已收录番剧</span></div><div class="home-metric"><span class="home-metric-icon" aria-hidden="true">◴</span><b id="homeCutCount">—</b><span>删减时间点</span></div></div></div></section><section class="home-recent page-section" id="homeRecent" data-page-section="home"><div class="home-recent-header"><div><span class="home-recent-kicker">LATEST ENTRIES</span><h2>最近更新</h2></div></div><div id="homeRecentList" class="home-recent-list"><div class="home-recent-empty">正在加载番剧档案…</div></div></section></div><section class="admin-review-page page-section page-hidden" id="adminReviewPage" data-page-section="admin">
+ 
+ <div id="adminReviewContent"><div class="review-empty">正在读取审核记录…</div></div>
+ </section><div class="layout page-hidden" id="contentLayout"><div><section class="panel page-section page-hidden" id="directory" data-page-section="directory"><h2>番剧列表</h2><div class="filters"><div class="search-wrap"><input class="field" id="search" placeholder="搜索番剧名称…" autocomplete="off"><button class="search-clear" id="clearSearch" type="button" aria-label="清空搜索框" title="清空搜索">×</button></div><select class="field" id="season"><option value="">全部季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" id="year"><option value="">全部年份</option></select></div><div class="directory-toolbar"><div class="directory-toolbar-caption"><span class="directory-toolbar-dot"></span><span id="directoryVisibleCount">正在加载番剧…</span></div></div></section><section id="cards" class="cards page-section page-hidden" data-page-section="directory"></section><section class="panel page-section page-hidden" id="my-posts" data-page-section="my-posts"><div id="myProps"></div></section></div><aside class="panel page-section page-hidden" id="submit" data-page-section="submit"><h2>提交投稿</h2><p class="muted" id="submitIntro">选择投稿类型：新增番剧，或给已收录番剧补充删减记录。</p>
 <form id="inlineProposalForm" class="inline-form">
 <div class="anime-meta-grid">
-  <div class="anime-meta-field"><label for="submissionType">投稿类型</label><select class="field" name="submission_type" id="submissionType"><option value="create_anime">新增番剧</option><option value="add_cut">给已收录番剧投稿</option></select></div>
+  
   <div id="newAnimeFields" class="anime-new-fields">
     <div class="anime-meta-grid anime-meta-subgrid">
-      <div class="anime-meta-field"><label for="newAnimeTitle">番剧名称 <b style="color:#ef6c78">*</b></label><input class="field" name="title" id="newAnimeTitle" required placeholder="请输入番剧名称"></div>
-      <div class="anime-meta-field"><label for="newAnimeCategory">番剧分类</label><select class="field" name="category" id="newAnimeCategory"><option>TV动画</option><option>剧场版</option><option>OVA</option><option>ONA</option><option>其他</option></select></div>
-      <div class="anime-meta-field"><label>季度 / 年份 <b style="color:#ef6c78">*</b></label><div class="inline-two"><select class="field" name="season" id="newAnimeSeason" required><option value="">季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select><select class="field" name="year" id="newAnimeYear" required><option value="">年份</option></select></div></div>
+      <div class="anime-meta-combined anime-meta-left">
+      <div class="anime-meta-field"><label for="submissionType">投稿类型</label><select class="field" name="submission_type" id="submissionType"><option value="create_anime">新增番剧</option><option value="add_cut">给已收录番剧投稿</option></select></div>
+      <div class="anime-meta-field combined-meta-field"><label for="newAnimeTitle">番剧名称 <b style="color:#ef6c78">*</b></label><input class="field" name="title" id="newAnimeTitle" required placeholder="请输入番剧名称"></div>
+      <div class="anime-meta-field combined-meta-field"><label for="newAnimeCategory">番剧分类</label><select class="field" name="category" id="newAnimeCategory"><option>TV动画</option><option>剧场版</option><option>OVA</option><option>ONA</option><option>其他</option></select></div>
+      </div>
+      <div class="anime-meta-combined anime-meta-season-year"><div class="anime-meta-field combined-meta-field"><label for="newAnimeSeason">季度 <b style="color:#ef6c78">*</b></label><select class="field" name="season" id="newAnimeSeason" required><option value="">请选择季度</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select></div><div class="anime-meta-field combined-meta-field"><label for="newAnimeYear">年份 <b style="color:#ef6c78">*</b></label><select class="field" name="year" id="newAnimeYear" required><option value="">请选择年份</option></select></div><div class="anime-meta-field cover-meta-field"><label for="inlineCoverUrl">封面图片 URL <b style="color:#ef6c78">*</b></label><input class="field" name="cover_url" id="inlineCoverUrl" type="url" required placeholder="粘贴封面图片链接"></div></div>
     </div>
-<label for="inlineCoverUrl">封面图片 URL <b style="color:#ef6c78">*</b></label><input class="field" name="cover_url" id="inlineCoverUrl" type="url" required placeholder="粘贴图片直链（必填）">
 <div class="cut-submit-block"><div class="cut-submit-head"><strong>添加记录</strong></div><div id="newAnimeCuts"></div></div>
 </div>
 <div id="existingAnimeFields" style="display:none">
@@ -1648,8 +2241,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 </div>
 <button class="btn primary" id="inlineSubmitButton" type="submit" style="width:100%;margin-top:12px">➤ 提交投稿</button>
 </form></aside></div></main><footer>© 2026 番剧档案库　|　让每一部番剧都值得被记住</footer>
-<div class="modal" id="modal"><div class="dialog"><div style="display:flex;justify-content:space-between;gap:10px"><div><h2 id="modalTitle" style="margin:0">窗口</h2><p class="muted" id="modalDesc"></p></div><button class="btn plain" id="close">关闭</button></div><div id="modalBody"></div></div></div><div class="toast" id="toast"></div><button id="backToTop" class="back-to-top" type="button" aria-label="回到顶部" title="回到顶部">↑<span>回到顶部</span></button>
-<script>
+<div class="modal" id="modal"><div class="dialog"><div style="display:flex;justify-content:space-between;gap:10px"><div><h2 id="modalTitle" style="margin:0">窗口</h2><p class="muted" id="modalDesc"></p></div><button class="btn plain" id="close">关闭</button></div><div id="modalBody"></div></div></div><div class="toast" id="toast"></div><button id="backToTop" class="back-to-top" type="button" aria-label="回到顶部" title="回到顶部"><span>回到顶部</span></button>
+<script>try{if("scrollRestoration" in history)history.scrollRestoration="manual"}catch(e){};window.addEventListener("load",()=>{if(!location.hash)window.scrollTo({top:0,behavior:"instant"})},{once:true});</script><script>
 /* 填入你的 Supabase Project URL 与 Publishable key。不要填写 Secret/service_role key。 */
 const SUPABASE_URL = "https://zmrrygvatvcxlegycydw.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_9AVSujXZOvBGwVK6DoSvOA__GjsnX4S";
@@ -1659,8 +2252,49 @@ const db = configured && window.supabase?.createClient
   : null;
 let currentUser=null, isAdmin=false, records=[], cuts=[];
 const $=id=>document.getElementById(id);
-function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),3000)}
+let archiveToastTimer;
+function toast(s){
+ const el=$("toast");if(!el)return;
+ const message=String(s??"");
+ const kind=/失败|错误|无法|不可用|找不到|不能为空|无权限|没有审核权限/.test(message)?"error":/请|等待|需要|当前没有|正在|暂未|检查|尚未/.test(message)?"info":"success";
+ el.dataset.kind=kind;el.textContent=message;el.classList.add("show");
+ clearTimeout(archiveToastTimer);archiveToastTimer=setTimeout(()=>el.classList.remove("show"),3500);
+}
+
+function archiveConfirm(title,description="",confirmText="是"){
+ return new Promise(resolve=>{
+  const shade=document.createElement("div");shade.className="archive-confirm-backdrop";
+  shade.innerHTML=`<div class="archive-confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="archiveConfirmTitle" aria-describedby="archiveConfirmDesc"><h3 id="archiveConfirmTitle"></h3><p id="archiveConfirmDesc"></p><div class="archive-confirm-actions"><button type="button" class="archive-confirm-no">否</button><button type="button" class="archive-confirm-yes"></button></div></div>`;
+  shade.querySelector("#archiveConfirmTitle").textContent=title;
+  shade.querySelector("#archiveConfirmDesc").textContent=description;
+  shade.querySelector(".archive-confirm-yes").textContent=confirmText;
+  let done=false;
+  const finish=value=>{if(done)return;done=true;document.removeEventListener("keydown",onKey,true);shade.remove();resolve(value)};
+  const onKey=e=>{if(e.key==="Escape"){e.preventDefault();e.stopImmediatePropagation();finish(false)}else if(e.key==="Tab"){const buttons=[...shade.querySelectorAll("button")];if(e.shiftKey&&document.activeElement===buttons[0]){e.preventDefault();buttons[1].focus()}else if(!e.shiftKey&&document.activeElement===buttons[1]){e.preventDefault();buttons[0].focus()}}};
+  shade.querySelector(".archive-confirm-no").onclick=()=>finish(false);
+  shade.querySelector(".archive-confirm-yes").onclick=()=>finish(true);
+  shade.addEventListener("click",e=>{if(e.target===shade)finish(false)});
+  document.body.append(shade);document.addEventListener("keydown",onKey,true);
+  shade.querySelector(".archive-confirm-no").focus();
+ });
+}
+function archiveMessage(title,message){
+ const shade=document.createElement("div");shade.className="archive-confirm-backdrop";
+ shade.innerHTML=`<div class="archive-confirm-dialog" role="alertdialog" aria-modal="true"><h3></h3><p style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:45vh;overflow:auto"></p><div class="archive-confirm-actions"><button class="archive-confirm-yes" type="button">知道了</button></div></div>`;
+ shade.querySelector("h3").textContent=title;shade.querySelector("p").textContent=message;
+ const close=()=>{shade.remove();document.removeEventListener("keydown",onKey,true)};
+ const onKey=e=>{if(e.key==="Escape"){e.stopImmediatePropagation();close()}};
+ shade.querySelector("button").onclick=close;document.body.append(shade);document.addEventListener("keydown",onKey,true);shade.querySelector("button").focus();
+}
+
+let modalSavedScrollY=null;
 function modal(title,desc,body){
+ if(!document.getElementById("modal").dataset.detailView)document.getElementById("modal").dataset.detailView="false";
+ // 锁定背景时保留滚动位置，避免 position:fixed 将列表跳回顶部。
+ if(modalSavedScrollY===null){
+  modalSavedScrollY=window.scrollY||document.documentElement.scrollTop||0;
+  document.body.style.top=`-${modalSavedScrollY}px`;
+ }
  const heading=$("modalTitle"),subtitle=$("modalDesc"),content=$("modalBody"),root=$("modal");
  heading.textContent=title||"";subtitle.textContent=desc||"";
  subtitle.hidden=!desc;content.innerHTML=body;content.scrollTop=0;
@@ -1669,13 +2303,75 @@ function modal(title,desc,body){
  const isAuth=!!root.querySelector(".auth-shell");
  root.classList.toggle("modal-auth-mode",isAuth);
  root.classList.toggle("modal-standard-mode",!isAuth);
- const closeButton=isAuth?root.querySelector(".auth-shell-close"):$("close");
+ const isLogoutConfirm=!!root.querySelector("#logoutConfirm");
+ root.classList.toggle("modal-logout-confirm",isLogoutConfirm);
+  // 退出确认时强制隐藏公共弹窗的关闭按钮；其他弹窗恢复。
+  const sharedClose=$("close");
+  if(sharedClose){if(isLogoutConfirm){sharedClose.hidden=true;sharedClose.style.setProperty("display","none","important");}else{sharedClose.hidden=false;sharedClose.style.removeProperty("display");}}
+ const closeButton=isLogoutConfirm?root.querySelector("#logoutCancel"):(isAuth?root.querySelector(".auth-shell-close"):$("close"));
  closeButton?.focus({preventScroll:true});
+ // 仅将无需滚动的番剧详情弹窗垂直居中；长内容仍从顶部展示并可滚动。
+ root.classList.remove("detail-short-modal");
+ if(!isAuth && root.dataset.detailView === "true"){
+  requestAnimationFrame(()=>{
+   if(!root.classList.contains("show") || root.dataset.detailView !== "true")return;
+   const dialog=root.querySelector(".dialog");
+   const available=window.innerHeight-Math.max(32,window.innerHeight*.10);
+   if(dialog && dialog.scrollHeight<=available)root.classList.add("detail-short-modal");
+  });
+ }
 }
+// 手机端短详情弹窗：阻尼拖动 + 松手回弹；长详情保持原生滚动。
+(function initDetailSpring(){
+ const root=$('modal');
+ let startY=0, startX=0, dragging=false, pointerId=null;
+ const reset=()=>{
+  const dialog=root.querySelector('.dialog');
+  root.classList.remove('detail-spring-dragging');
+  if(dialog)dialog.style.removeProperty('--detail-spring-y');
+  dragging=false;pointerId=null;
+ };
+ root.addEventListener('touchstart',e=>{
+  if(!root.classList.contains('detail-short-modal')||e.touches.length!==1)return;
+  if(e.target.closest('button,input,select,textarea,a,[contenteditable="true"]'))return;
+  const t=e.touches[0];startY=t.clientY;startX=t.clientX;pointerId=t.identifier;dragging=true;
+ },{passive:true});
+ root.addEventListener('touchmove',e=>{
+  if(!dragging||!root.classList.contains('detail-short-modal'))return;
+  const t=Array.from(e.changedTouches).find(x=>x.identifier===pointerId);
+  if(!t)return;
+  const dx=t.clientX-startX,dy=t.clientY-startY;
+  if(Math.abs(dx)>Math.abs(dy))return;
+  // 短内容无真实滚动距离时，使用视觉位移模拟 iOS 弹簧。
+  if(e.cancelable)e.preventDefault();
+  root.classList.add('detail-spring-dragging');
+  const displacement=Math.sign(dy)*Math.min(44,Math.abs(dy)*.24);
+  root.querySelector('.dialog')?.style.setProperty('--detail-spring-y',displacement+'px');
+ },{passive:false});
+ root.addEventListener('touchend',reset,{passive:true});
+ root.addEventListener('touchcancel',reset,{passive:true});
+ // 仅在弹窗真正关闭且仍有拖动状态时重置，避免观察器反复触发自身。
+ new MutationObserver(()=>{
+  if(!root.classList.contains('show') && (dragging || root.classList.contains('detail-spring-dragging')))reset();
+ }).observe(root,{attributes:true,attributeFilter:['class']});
+})();
 function closeModal(){
  $("modal").classList.remove("show");
- $("modal").classList.remove("modal-auth-mode","modal-standard-mode");
+ $("modal").classList.remove("modal-auth-mode","modal-standard-mode","detail-short-modal","modal-logout-confirm");
+  const sharedClose=$("close");if(sharedClose){sharedClose.hidden=false;sharedClose.style.removeProperty("display");}
+ $("modal").dataset.detailView="false";
  document.body.classList.remove("modal-open");
+ if(modalSavedScrollY!==null){
+  const y=modalSavedScrollY;
+  modalSavedScrollY=null;
+  // 位置恢复必须瞬间完成：覆盖 html 的全局 smooth，避免先跳到顶部再动画滚回。
+  const htmlEl=document.documentElement;
+  const oldBehavior=htmlEl.style.scrollBehavior;
+  htmlEl.style.setProperty("scroll-behavior","auto","important");
+  document.body.style.removeProperty("top");
+  window.scrollTo({left:0,top:y,behavior:"instant"});
+  requestAnimationFrame(()=>{htmlEl.style.scrollBehavior=oldBehavior;});
+ }
 }
 document.addEventListener("keydown",e=>{
  if(e.key==="Escape"&&$("modal")?.classList.contains("show"))closeModal();
@@ -1695,6 +2391,15 @@ window.handleCoverImageError=function(img){
  img.onerror=null;img.alt="封面暂不可用";img.style.display="none";
 };
 
+async function refreshKeepingPosition(){
+ const y=window.scrollY||document.documentElement.scrollTop||0;
+ const html=document.documentElement;
+ const previous=html.style.getPropertyValue("scroll-behavior");
+ const priority=html.style.getPropertyPriority("scroll-behavior");
+ html.style.setProperty("scroll-behavior","auto","important");
+ try{await refresh();window.scrollTo({top:y,behavior:"instant"});}
+ finally{requestAnimationFrame(()=>{if(previous)html.style.setProperty("scroll-behavior",previous,priority);else html.style.removeProperty("scroll-behavior")})}
+}
 async function refresh(){
  if(!db){$("status").textContent="Supabase 未加载或配置无效。请检查网络、Supabase URL 和 Publishable key。";$ ("authBtn").disabled=false;return}
  const {data:sessionData}=await db.auth.getSession();currentUser=sessionData.session?.user||null;
@@ -1713,7 +2418,7 @@ async function refresh(){
  if(c.error){$("status").textContent="读取删减记录失败："+c.error.message;return}
  // 关键：番剧列表先加载、删减记录后加载；记录加载完成后必须重新生成已有集数选项。
  refreshExistingEpisodeOptions();
- $("status").textContent="云端已连接 · 数据来自 Supabase";$("animeCount").textContent=records.length;$("cutCount").textContent=cuts.length;
+ $("status").textContent="云端已连接 · 数据来自 Supabase";$("animeCount").textContent=records.length;$("cutCount").textContent=cuts.length;renderHomeHighlights();
  const years=[...new Set(records.map(x=>x.year).filter(Boolean))].sort((a,b)=>b-a), old=$("year").value;
  $("year").innerHTML='<option value="">全部年份</option>'+years.map(y=>`<option value="${y}">${y} 年</option>`).join("");$("year").value=old;
  render();
@@ -1729,6 +2434,46 @@ function rebuildCutStats(){
   stat.episodes.add(String(c.episode??c.episode_number??c.episode_no??"未填写"));
  }
 }
+let directoryViewMode="grid";
+function setDirectoryView(mode){
+ directoryViewMode="grid";
+ const cards=$("cards");if(cards)cards.classList.toggle("directory-grid-view",directoryViewMode==="grid");
+ for(const [id,value] of [["directoryViewList","list"],["directoryViewGrid","grid"]]){
+  const button=$(id);if(!button)continue;
+  button.classList.toggle("is-active",directoryViewMode===value);
+  button.setAttribute("aria-pressed",String(directoryViewMode===value));
+ }
+ try{sessionStorage.setItem("animeDirectoryView",directoryViewMode)}catch(e){}
+}
+document.addEventListener("click",event=>{
+ const btn=event.target.closest?.("#directoryViewList,#directoryViewGrid");
+ if(btn)setDirectoryView(btn.id==="directoryViewGrid"?"grid":"list");
+
+});
+
+
+function renderHomeHighlights(){
+ const animeTotal=document.getElementById("homeAnimeCount"),cutTotal=document.getElementById("homeCutCount"),list=document.getElementById("homeRecentList");
+ if(animeTotal)animeTotal.textContent=records.length;
+ if(cutTotal)cutTotal.textContent=cuts.length;
+ if(!list)return;
+ const dateOf=a=>{const v=a?.created_at||a?.updated_at||"";const t=Date.parse(v);return Number.isFinite(t)?t:0};
+ const sorted=records.slice().sort((a,b)=>dateOf(b)-dateOf(a));
+ if(!sorted.length){list.innerHTML='<div class="home-recent-empty">暂无已收录的番剧，欢迎稍后再来看看。</div>';return}
+ list.innerHTML=sorted.slice(0,3).map(a=>{
+  const stat=cutStatsByAnime.get(String(a.id));
+  const cover=String(a.cover_url||a.cover||"");
+  const image= /^https?:\/\//i.test(cover)?`<img src="${esc(cover)}" alt="" loading="lazy" onerror="this.style.display='none'">`:"◈";
+  const meta=[a.year?String(a.year)+" 年":"",a.season||"",(stat?.count||0)+" 个时间点"].filter(Boolean).join(" · ");
+  return `<button type="button" class="home-recent-card" data-home-anime="${esc(a.id)}"><span class="home-recent-cover">${image}</span><span class="home-recent-info"><span class="home-recent-title">${esc(a.title||"未命名番剧")}</span><span class="home-recent-meta">${esc(meta)}</span></span><span class="home-recent-arrow" aria-hidden="true">›</span></button>`;
+ }).join("");
+}
+document.addEventListener("click",event=>{
+ const recent=event.target.closest?.("[data-home-anime]");
+ if(recent){showDetail(recent.dataset.homeAnime);return}
+ 
+});
+
 function render(){
  const q=$("search").value.trim().toLowerCase(),s=$("season").value,y=$("year").value;
  const seasonOrder={"春季":0,"夏季":1,"秋季":2,"冬季":3};
@@ -1741,38 +2486,54 @@ function render(){
    if(as!==bs)return as-bs;
    return String(a.title||"").localeCompare(String(b.title||""),"zh-CN");
  });
- const cardHtml=a=>{const stat=cutStatsByAnime.get(String(a.id));const episodeCount=stat?.episodes.size||0;const cutCount=stat?.count||0;return `<article class="card"><div class="cover">${coverImageMarkup(a)}</div><div class="card-main"><h3>${esc(a.title)}</h3><div class="muted card-meta"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.season||"季度待补")}</span><span class="card-year">${esc(a.year||"年份待补")}年</span></div><div class="card-bottom"><span class="pill record-count">${episodeCount} 集 · ${cutCount} 条记录</span><div class="card-actions"><button class="btn plain" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?`<button class="btn plain" onclick="editAnime('${a.id}')">编辑</button><button class="btn plain danger" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></div></div></article>`};
+ const cardHtml=a=>{const stat=cutStatsByAnime.get(String(a.id));const episodeCount=stat?.episodes.size||0;const cutCount=stat?.count||0;return `<article class="card directory-card" tabindex="0" role="button" aria-label="查看${esc(a.title)}的详情" data-anime-id="${esc(a.id)}"><div class="cover directory-poster">${coverImageMarkup(a)}</div><div class="card-main"><div class="directory-card-top"><h3>${esc(a.title)}</h3><span class="directory-card-chevron" aria-hidden="true">›</span></div><div class="muted card-meta"><span class="pill">${esc(a.category||"TV动画")}</span><span class="pill">${esc(a.year||"年份待补")} · ${esc(a.season||"季度待补")}</span></div><div class="card-bottom"><span class="directory-stats"><span class="directory-stat-number">${episodeCount}</span> 集 <span class="directory-stat-divider">/</span> <span class="directory-stat-number">${cutCount}</span> 条记录</span><div class="card-actions"><button class="btn plain directory-detail-button" onclick="showDetail('${a.id}')">查看详情</button>${isAdmin?`<button class="btn plain" onclick="editAnime('${a.id}')">编辑</button><button class="btn plain danger" onclick="deleteAnime('${a.id}')">删除</button>`:""}</div></div></div></article>`};
+ if($("directoryVisibleCount"))$("directoryVisibleCount").textContent=`共 ${list.length} 部番剧 · ${new Set(list.map(a=>`${a.year||""}/${a.season||""}`)).size} 个季度分组`;
+ setDirectoryView(directoryViewMode);
  if(!list.length){$("cards").innerHTML='<div class="panel" style="grid-column:1/-1">暂无符合条件的公开番剧记录。</div>';return;}
  const groups=new Map();
  list.forEach(a=>{const year=a.year?`${a.year} 年`:`年份待补`,season=a.season||"季度待补",key=`${year}｜${season}`;if(!groups.has(key))groups.set(key,{year:a.year,season,items:[]});groups.get(key).items.push(a);});
- $("cards").innerHTML=[...groups.values()].map(g=>`<section class="season-group"><h3 class="season-heading"><span class="season-title-group"><span class="season-calendar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/></svg></span><span class="season-title-text"><strong>${esc(g.year||"年份待补")}</strong><span class="season-title-separator"></span><strong>${esc(g.season)}</strong></span></span><span class="season-count">${g.items.length} 部</span></h3> <div class="season-items">${g.items.map(cardHtml).join("")}</div></section>`).join("");
+ $("cards").innerHTML=[...groups.values()].map(g=>`<section class="season-group"><h3 class="season-heading"><div class="season-static-heading"><span class="season-title-group"><span class="season-calendar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/></svg></span><span class="season-title-text"><strong>${esc(g.year||"年份待补")}</strong><span class="season-title-separator"></span><strong>${esc(g.season)}</strong></span></span><span class="season-count">${g.items.length} 部</span></div></h3> <div class="season-items">${g.items.map(cardHtml).join("")}</div></section>`).join("");
 }
+
+// 整张卡片可点击；内层编辑、删除及详情按钮保持原有操作。
+document.addEventListener("click",event=>{
+ const card=event.target.closest?.("#cards .directory-card");
+ if(!card||event.target.closest("button,a,input,select,textarea"))return;
+ showDetail(card.dataset.animeId);
+});
+document.addEventListener("keydown",event=>{
+ if(event.key!=="Enter"&&event.key!==" ")return;
+ const card=event.target.closest?.("#cards .directory-card");
+ if(!card||event.target!==card)return;
+ event.preventDefault();showDetail(card.dataset.animeId);
+});
 
 window.editAnime=function(id){
  if(!isAdmin){toast("只有管理员可以修改已发布番剧");return}
  const a=records.find(x=>String(x.id)===String(id));if(!a){toast("找不到这部番剧");return}
  const coverValue=a.cover_url||a.cover_image_url||a.cover_image||a.poster_url||a.image_url||a.cover||"";
- modal("修改已发布番剧","只修改番剧名称、年份、季度、分类和封面。",`<form id="editAnimeForm" class="grid">
+ modal("编辑番剧资料","修改番剧名称、年份、季度、分类及封面；删减记录请在番剧详情中编辑。",`<form id="editAnimeForm" class="grid">
  <div class="full"><label>番剧名称 *</label><input class="field" name="title" required value="${esc(a.title||"")}"></div>
  <div><label>年份</label><input class="field" name="year" type="number" min="1950" max="2100" value="${esc(a.year||"")}"></div>
  <div><label>季度</label><select class="field" name="season"><option value="">未填写</option>${["春季","夏季","秋季","冬季"].map(x=>`<option value="${x}" ${a.season===x?"selected":""}>${x}</option>`).join("")}</select></div>
  <div><label>分类</label><select class="field" name="category">${["TV动画","剧场版","OVA","ONA","其他"].map(x=>`<option value="${x}" ${((a.category||"TV动画")===x)?"selected":""}>${x}</option>`).join("")}</select></div>
+ 
  <div class="full"><label>封面图片 URL *</label><input class="field" id="editCoverUrl" name="cover_url" type="url" required value="${esc(coverValue)}" placeholder="粘贴可公开访问的图片直链"><div style="display:flex;align-items:center;gap:12px;margin-top:8px"><img id="editCoverPreview" src="${esc(coverValue)}" alt="封面预览" style="width:72px;height:96px;object-fit:cover;border-radius:8px;border:1px solid #dce7fb;${coverValue?'':'display:none'}" onerror="this.style.display='none'"><small class="muted">封面链接必填；请使用无需登录即可访问的图片直链。</small></div></div>
- <div class="full"><button class="btn primary" type="submit" style="width:100%">保存当前页修改的信息</button></div></form>`);
+ <div class="full"><button class="btn primary" type="submit" style="width:100%">保存番剧资料</button></div></form>`);
  const coverInput=$("editCoverUrl"),coverPreview=$("editCoverPreview");coverInput?.addEventListener("input",()=>{const u=coverInput.value.trim();coverPreview.style.display=u?"block":"none";if(u)coverPreview.src=u;else coverPreview.removeAttribute("src")});
- $("editAnimeForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.currentTarget),title=String(f.get("title")||"").trim(),cover=String(f.get("cover_url")||"").trim();if(!title){toast("番剧名称不能为空");return}if(!cover){toast("封面图片 URL 为必填项");return}
+ $("editAnimeForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.currentTarget),title=String(f.get("title")||"").trim(),cover=String(f.get("cover_url")||"").trim();if(!title){toast("番剧名称不能为空");return}if(!cover){toast("请填写封面图片 URL");return}
  const saveBtn=e.currentTarget.querySelector('button[type="submit"]');saveBtn.disabled=true;saveBtn.textContent="正在保存…";
- try{const r=await db.rpc("admin_update_anime",{p_anime_id:id,p_title:title,p_year:f.get("year")?Number(f.get("year")):null,p_season:String(f.get("season")||"")||null,p_description:a.description??null});if(r.error){toast("修改失败："+r.error.message);return}
- const extra=await db.from("anime").update({category:String(f.get("category")||"TV动画"),cover_url:cover}).eq("id",id);if(extra.error){toast("分类或封面保存失败："+extra.error.message+"。请先在 Supabase 执行压缩包内的‘修复分类字段.sql’，再重新保存。");await refresh();return}
- closeModal();toast("番剧信息已保存");await refresh();
- }catch(err){toast("保存失败："+(err?.message||String(err)))}finally{if(saveBtn){saveBtn.disabled=false;saveBtn.textContent="保存当前页修改的信息"}}
+ try{const r=await db.rpc("admin_update_anime",{p_anime_id:id,p_title:title,p_year:f.get("year")?Number(f.get("year")):null,p_season:String(f.get("season")||"")||null,p_description:a.description||null});if(r.error){toast("修改失败："+r.error.message);return}
+ const extra=await db.from("anime").update({category:String(f.get("category")||"TV动画"),cover_url:cover}).eq("id",id);if(extra.error){toast("分类或封面保存失败："+extra.error.message+"。请先在 Supabase 执行压缩包内的‘修复分类字段.sql’，再重新保存。");await refreshKeepingPosition();return}
+ closeModal();toast("番剧资料已更新");await refreshKeepingPosition();
+ }catch(err){toast("保存失败："+(err?.message||String(err)))}finally{if(saveBtn){saveBtn.disabled=false;saveBtn.textContent="保存番剧资料"}}
  };
 };
 window.deleteAnime=function(id){
  if(!isAdmin){toast("只有管理员可以删除已发布番剧");return}
  const a=records.find(x=>x.id===id);if(!a)return;
  modal("删除已发布番剧",`确定删除「${esc(a.title)}」吗？此操作会同时删除这部番剧关联的全部删减记录，且无法撤销。`, `<div class="row" style="justify-content:flex-end"><button class="btn primary" style="background:#c43d52" id="confirmDeleteAnime">确认删除</button></div>`);
- $("confirmDeleteAnime").onclick=async()=>{const b=$("confirmDeleteAnime");b.disabled=true;b.textContent="正在删除…";const r=await db.rpc("admin_delete_anime",{p_anime_id:id});if(r.error){toast("删除失败："+r.error.message);b.disabled=false;b.textContent="确认删除";return}closeModal();toast("番剧及其删减记录已删除");await refresh();};
+ $("confirmDeleteAnime").onclick=async()=>{const b=$("confirmDeleteAnime");b.disabled=true;b.textContent="正在删除…";const r=await db.rpc("admin_delete_anime",{p_anime_id:id});if(r.error){toast("删除失败："+r.error.message);b.disabled=false;b.textContent="确认删除";return}closeModal();toast("番剧已删除，相关记录已同步删除");await refresh();};
 };
 function showDetail(id){
  const a=records.find(x=>String(x.id)===String(id)),cs=cuts.filter(c=>String(c.anime_id)===String(id));
@@ -1784,23 +2545,37 @@ function showDetail(id){
  const episodeEntries=[...episodeMap.entries()].sort((a,b)=>{const an=Number(a[0]),bn=Number(b[0]);if(Number.isFinite(an)&&Number.isFinite(bn))return an-bn;if(Number.isFinite(an))return -1;if(Number.isFinite(bn))return 1;return a[0].localeCompare(b[0],"zh-CN")});
  // 按时间点从早到晚排序；无法识别的时间（如“未知”）放在最后。
  const timeSeconds=value=>{const m=String(value??"").match(/(?:^|\D)(\d{1,2}):(\d{2})(?::(\d{2}))?/);if(!m)return Infinity;return m[3]!==undefined?(Number(m[1])*3600+Number(m[2])*60+Number(m[3])):(Number(m[1])*60+Number(m[2]));};
- const cutHtml=episodeEntries.length?`<div class="cut-section-head"><div><h3>记录</h3><p>同一集的多个时间点已归在一起，按时间从早到晚排列</p></div><span class="cut-total">${cs.length} 条记录</span></div><div class="episode-list">${episodeEntries.map(([ep,items])=>{const sortedItems=items.slice().sort((a,b)=>timeSeconds(a.time_point??a.timepoint??a.cut_time??"未知")-timeSeconds(b.time_point??b.timepoint??b.cut_time??"未知"));return `<section class="episode-card"><div class="episode-heading"><span class="episode-number">第 ${esc(ep)} 集</span><span class="episode-count">${items.length} 个时间点</span></div><div class="episode-points">${sortedItems.map((c,i)=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">◷ ${esc(tp)}</span><span class="point-type">${esc(desc)}</span></div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`}).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
+ const cutHtml=episodeEntries.length?`<div class="cut-section-head"><h3>删减记录</h3><span class="cut-total">已收录 ${episodeEntries.length} 集 · 共 ${cs.length} 个时间点</span></div><div class="episode-tabs" role="tablist" aria-label="选择集数">${episodeEntries.map(([ep,items],idx)=>`<button type="button" class="episode-tab ${idx===0?"is-selected":""}" role="tab" aria-selected="${idx===0}" tabindex="${idx===0?"0":"-1"}" data-episode-index="${idx}">第 ${esc(ep)} 集<span class="episode-tab-count">${items.length}</span></button>`).join("")}</div><div class="episode-list episode-tab-panels">${episodeEntries.map(([ep,items],idx)=>{const sortedItems=items.slice().sort((a,b)=>timeSeconds(a.time_point??a.timepoint??a.cut_time??"未知")-timeSeconds(b.time_point??b.timepoint??b.cut_time??"未知"));return `<section class="episode-card episode-tab-panel" role="tabpanel" data-episode-index="${idx}" ${idx===0?"":"hidden"}><div class="episode-points">${sortedItems.map(c=>{const tp=c.time_point??c.timepoint??c.cut_time??"未知",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"暂无说明";return `<article class="point-row"><div class="point-content"><span class="point-time">${esc(tp)}</span><span class="point-type">${esc(desc)}</span></div>${isAdmin?`<button class="btn plain point-edit" onclick="editCutRecord('${c.id}')">编辑</button>`:""}</article>`}).join("")}</div></section>`}).join("")}</div>`:'<div class="empty-cuts"><span>✦</span><b>暂未收录删减记录</b><p>添加记录后，每集的时间点会自动归类显示。</p></div>';
+ $("modal").dataset.detailView="true";
  modal(a.title,`${a.year||""} 年 · ${a.season||""}`,cutHtml)
 }
+document.addEventListener("click",event=>{
+ const tab=event.target.closest?.("#modal[data-detail-view='true'] .episode-tab");
+ if(!tab)return;
+ const root=tab.closest(".episode-tabs")?.parentElement;
+ if(!root)return;
+ const index=tab.dataset.episodeIndex;
+ root.querySelectorAll(".episode-tab").forEach(b=>{
+  const active=b.dataset.episodeIndex===index;
+  b.classList.toggle("is-selected",active);
+  b.setAttribute("aria-selected",String(active));
+  b.tabIndex=active?0:-1;
+ });
+ root.querySelectorAll(".episode-tab-panel").forEach(panel=>{
+  panel.hidden=panel.dataset.episodeIndex!==index;
+ });
+});
 window.editCutRecord=function(id){
  if(!isAdmin){toast("只有管理员可以修改已发布删减记录");return}
  const c=cuts.find(x=>String(x.id)===String(id));if(!c){toast("找不到这条删减记录");return}
  const ep=c.episode??c.episode_number??c.episode_no??"",tp=c.time_point??c.timepoint??c.cut_time??"",desc=c.description??c.cut_description??c.summary??c.overview??c.note??"",source=c.source_note??"";
  modal("编辑删减记录","可修改集数、时间点和类型。保存后直接更新公开记录。",`<form id="editCutForm"><label>集数 *</label><input class="field" name="episode" type="number" min="1" required value="${esc(ep)}"><label>时间点 *</label><input class="field" name="time_point" required value="${esc(tp)}" placeholder="例如 08:24–09:10；不确定可填未知"><label>类型 *</label><textarea class="field" name="description" rows="3" required>${esc(desc)}</textarea><button class="btn primary" type="submit" style="margin-top:12px">保存修改</button></form>`);
- $("editCutForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.currentTarget),episode=Number(f.get("episode")),time_point=String(f.get("time_point")||"").trim(),description=String(f.get("description")||"").trim();if(!episode||episode<1||!time_point||!description){toast("请填写集数、时间点和删减概况");return}const r=await db.from("cut_records").update({episode,time_point,description}).eq("id",id);if(r.error){toast("修改失败："+r.error.message+"。请确认 cut_records 的管理员更新权限。");return}closeModal();toast("删减记录已更新");await refresh();showDetail(c.anime_id)};
+ $("editCutForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.currentTarget),episode=Number(f.get("episode")),time_point=String(f.get("time_point")||"").trim(),description=String(f.get("description")||"").trim();if(!episode||episode<1||!time_point||!description){toast("请填写集数、时间点和说明");return}const r=await db.from("cut_records").update({episode,time_point,description}).eq("id",id);if(r.error){toast("修改失败："+r.error.message+"。请确认 cut_records 的管理员更新权限。");return}closeModal();toast("删减记录已更新");await refresh();showDetail(c.anime_id)};
 };
 
 function authDialog(){
  if(!db){toast("登录服务未初始化：请检查网络是否能加载 Supabase，并确认 URL / Publishable key 正确");return}
- if(currentUser){
-   db.auth.signOut().then(({error})=>{if(error){toast("退出失败："+error.message);return}toast("已退出登录");refresh()}).catch(e=>toast("退出失败："+(e?.message||e)));
-   return;
- }
+ if(currentUser){confirmLogout();return;}
  modal("","",`<div class="auth-shell auth-login-shell">
   <button type="button" class="auth-shell-close" id="authShellClose">关闭</button>
   <div class="auth-shell-head">
@@ -1853,7 +2628,7 @@ function authDialog(){
 
 function registerDialog(){
  if(!db){toast("登录服务未初始化：请检查网络是否能加载 Supabase，并确认 URL / Publishable key 正确");return}
- if(currentUser){toast("你已经登录了");return}
+ if(currentUser){toast("当前账号已登录");return}
  modal("","",`<div class="auth-shell auth-register-shell">
   <button type="button" class="auth-shell-close" id="registerShellClose">关闭</button>
   <div class="auth-shell-head">
@@ -1903,7 +2678,7 @@ function registerDialog(){
 
 async function sendEmailLoginCode(){
  const f=$("authForm"),feedback=$("authFeedback");
- if(!f){toast("登录窗口未就绪，请关闭后重新打开");return}
+ if(!f){toast("加载失败，请重新打开登录窗口");return}
  if(!db){if(feedback){feedback.style.display="block";feedback.textContent="登录服务未初始化，请刷新页面后重试。"}else toast("登录服务未初始化，请刷新页面后重试。");return}
  const email=f.querySelector('[name="email"]').value.trim();
  if(feedback)feedback.style.display="block";
@@ -1919,7 +2694,7 @@ async function sendEmailLoginCode(){
    return;
   }
   if(feedback)feedback.textContent="登录验证码发送请求已提交。请检查邮箱（包括垃圾邮件），收到后输入验证码并点击“验证并登录”。";
-  else toast("登录验证码发送请求已提交，请检查邮箱。");
+  else toast("验证码已发送，请检查邮箱");
  }catch(e){
   const message="验证码发送失败："+(e?.message||String(e));
   if(feedback)feedback.textContent=message;else toast(message);
@@ -1938,7 +2713,7 @@ async function verifyEmailLoginCode(){
  try{
   const r=await db.auth.verifyOtp({email,token,type:"email"});
   if(r.error){if(feedback)feedback.textContent="验证失败："+r.error.message+"。请检查验证码是否正确或已过期。";return}
-  toast("验证码登录成功");closeModal();await refresh();
+  toast("登录成功");closeModal();await refresh();
  }catch(e){if(feedback)feedback.textContent="验证失败："+(e?.message||String(e))}
  finally{if(btn)btn.disabled=false}
 }
@@ -2029,8 +2804,8 @@ function showAccountSettings(){
    if(profileUpdate.error||!profileUpdate.data?.length)syncWarning="；公开资料未同步，请执行配套 SQL 并检查 RLS 权限";
    else publicAuthorProfiles.set(currentUser.id,{name,avatar_url:avatarUrl});
   }catch(e){syncWarning="；公开资料未同步"}
-  msg.textContent='个人资料已保存至账号'+syncWarning;
-  toast(syncWarning?'账号资料已保存，公开资料同步待配置':'个人资料已保存');
+  msg.textContent='个人资料已更新至账号'+syncWarning;
+  toast(syncWarning?'账号资料已保存，部分信息暂未同步':'个人资料已更新');
   updateProfileBadge();
  });
  run('settingEmailForm','settingEmailMessage',async(f,msg)=>{
@@ -2048,7 +2823,7 @@ function showAccountSettings(){
   if(check.error){msg.textContent='当前密码验证失败。如果账号没有设置密码，请通过密码重置流程设置密码。';return}
   const r=await db.auth.updateUser({password:pass});
   if(r.error){msg.textContent='修改失败：'+r.error.message;return}
-  f.reset();msg.textContent='密码已修改成功';toast('密码修改成功');
+  f.reset();msg.textContent='当前密码已变更';toast('当前密码已变更');
  });
 }
 function showChangePasswordDialog(){
@@ -2070,7 +2845,7 @@ function showChangePasswordDialog(){
    feedback.textContent="旧密码验证成功，正在更新新密码……";
    const r=await db.auth.updateUser({password:a});
    if(r.error){feedback.textContent="修改失败："+r.error.message;return}
-   closeModal();toast("密码修改成功");
+   closeModal();toast("当前密码已变更");
   }catch(err){feedback.textContent="修改失败："+(err?.message||String(err));}
   finally{submit.disabled=false}
  };
@@ -2079,7 +2854,7 @@ function showUpdatePasswordDialog(){
  if(!db || recoveryDialogShown)return;
  recoveryDialogShown=true;
  modal("设置新密码","密码重置验证已打开，请设置新密码。",`<form id="updatePasswordForm" novalidate><label>新密码（至少 6 位）</label><input class="field" name="newPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请输入新密码"><p><label>再次输入新密码</label><input class="field" name="confirmPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="请再次输入新密码"></p><button class="btn primary" type="submit">保存新密码</button><p id="updatePasswordFeedback" class="notice" style="display:none"></p></form>`);
- const form=$("updatePasswordForm");form.onsubmit=async e=>{e.preventDefault();const feedback=$("updatePasswordFeedback"),a=form.querySelector('[name="newPassword"]').value,b=form.querySelector('[name="confirmPassword"]').value;feedback.style.display="block";if(a.length<6){feedback.textContent="新密码至少需要 6 位。";return}if(a!==b){feedback.textContent="两次输入的密码不一致，请重新检查。";return}const submit=form.querySelector('button[type="submit"]');submit.disabled=true;feedback.textContent="正在保存新密码……";try{const r=await db.auth.updateUser({password:a});if(r.error){feedback.textContent="修改失败："+r.error.message;return}await db.auth.signOut();closeModal();toast("密码已修改，请使用新密码重新登录");}catch(err){feedback.textContent="修改失败："+(err?.message||String(err));}finally{submit.disabled=false}};
+ const form=$("updatePasswordForm");form.onsubmit=async e=>{e.preventDefault();const feedback=$("updatePasswordFeedback"),a=form.querySelector('[name="newPassword"]').value,b=form.querySelector('[name="confirmPassword"]').value;feedback.style.display="block";if(a.length<6){feedback.textContent="新密码至少需要 6 位。";return}if(a!==b){feedback.textContent="两次输入的密码不一致，请重新检查。";return}const submit=form.querySelector('button[type="submit"]');submit.disabled=true;feedback.textContent="正在保存新密码……";try{const r=await db.auth.updateUser({password:a});if(r.error){feedback.textContent="修改失败："+r.error.message;return}await db.auth.signOut();closeModal();toast("当前密码已变更，请使用新密码重新登录");}catch(err){feedback.textContent="修改失败："+(err?.message||String(err));}finally{submit.disabled=false}};
 }
 async function authSubmit(mode){
  const f=$("authForm"),feedback=$("authFeedback");
@@ -2098,11 +2873,79 @@ async function authSubmit(mode){
  }catch(e){if(feedback)feedback.textContent="请求失败："+(e?.message||String(e));}
  finally{buttons.forEach(b=>b.disabled=false)}
 }
-function proposalDialog(){if(!currentUser){toast("请先登录后再投稿");authDialog();return}modal("提交审核申请","内容不会立即公开，需管理员批准后合并",`<form id="proposalForm" class="grid"><div class="full"><label>申请类型</label><select class="field" name="action"><option value="create_anime">新增番剧</option><option value="add_cut">为已有番剧新增删减记录</option></select></div><div class="full"><label>番剧名称</label><input class="field" name="title" required placeholder="准确的番剧名称"></div><div><label>年份</label><input class="field" name="year" type="number" min="1950" max="2100"></div><div><label>季度</label><select class="field" name="season"><option value="">请选择</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select></div><div><label>集数（新增删减记录时填写）</label><input class="field" name="episode" type="number" min="1"></div><div><label>时间点（例如 08:24）</label><input class="field" name="time_point" placeholder="08:24"></div><div class="full"><label>删减说明 / 简介</label><textarea class="field" name="description" rows="3" required></textarea></div><div class="full"><label>番剧封面图片 URL（选填）</label><input class="field" name="cover_url" id="coverUrl" type="url" placeholder="https://... 图片链接"></div><div class="full"><label>来源或版本备注</label><input class="field" name="source_note"></div><div class="full"><button class="btn primary" type="submit">提交待审核</button></div></form>`);
+function proposalDialog(){if(!currentUser){toast("请先登录后再投稿");authDialog();return}modal("提交审核申请","内容不会立即公开，需管理员批准后合并",`<form id="proposalForm" class="grid"><div class="full"><label>申请类型</label><select class="field" name="action"><option value="create_anime">新增番剧</option><option value="add_cut">为已有番剧新增删减记录</option></select></div><div class="full"><label>番剧名称</label><input class="field" name="title" required placeholder="准确的番剧名称"></div><div><label>年份</label><input class="field" name="year" type="number" min="1950" max="2100"></div><div><label>季度</label><select class="field" name="season"><option value="">请选择</option><option>春季</option><option>夏季</option><option>秋季</option><option>冬季</option></select></div><div><label>集数（新增删减记录时填写）</label><input class="field" name="episode" type="number" min="1"></div><div><label>时间点（例如 08:24）</label><input class="field" name="time_point" placeholder="08:24"></div><div class="full"><label>删减说明</label><textarea class="field" name="description" rows="3" required></textarea></div><div class="full"><label>番剧封面图片 URL（选填）</label><input class="field" name="cover_url" id="coverUrl" type="url" placeholder="https://... 图片链接"></div><div class="full"><label>来源或版本备注</label><input class="field" name="source_note"></div><div class="full"><button class="btn primary" type="submit">提交待审核</button></div></form>`);
   $("proposalForm").onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));const payload={title:d.title.trim(),year:d.year?Number(d.year):null,season:d.season||null,episode:d.episode?Number(d.episode):null,time_point:d.time_point.trim(),description:d.description.trim(),source_note:d.source_note.trim(),cover_url:(d.cover_url||"").trim()||null};
- if(d.action==="add_cut"&&(!payload.episode||!payload.time_point)){toast("新增删减记录需要填写集数和时间点");return}
- const r=await db.from("proposals").insert({user_id:currentUser.id,action:d.action,payload,status:"pending"});if(r.error){toast("投稿失败："+r.error.message);return}myPostsCache=null;closeModal();toast("已提交，等待管理员审核");};
+ if(d.action==="add_cut"&&(!payload.episode||!payload.time_point)){toast("请填写集数和删减时间点");return}
+ const r=await db.from("proposals").insert({user_id:currentUser.id,action:d.action,payload,status:"pending"});if(r.error){toast("投稿失败："+r.error.message);return}myPostsCache=null;closeModal();toast("投稿成功，等待审核");};
 }
+
+let pendingEditId=null;
+function resetPendingEdit(){
+ pendingEditId=null;
+ document.getElementById("pendingEditNotice")?.remove();
+ const b=document.getElementById("inlineSubmitButton");if(b)b.textContent="➤ 提交投稿";
+}
+function loadCutsForEdit(containerId,cuts,newAnime){
+ const root=document.getElementById(containerId);root.innerHTML="";
+ const groups=new Map();
+ for(const c of cuts){const key=String(c.episode||"");if(!groups.has(key))groups.set(key,[]);groups.get(key).push(c)}
+ if(!groups.size){makeCutRow(containerId);return}
+ for(const [ep,items] of groups){
+  makeCutRow(containerId,{...items[0],episode:ep});
+  const card=root.lastElementChild;
+  const list=card.querySelector(".cut-time-list");
+  for(const item of items.slice(1))addTimePointRow(list,item);
+ }
+}
+function editPendingProposal(id){
+ const p=myPostsCache?.find(x=>String(x.id)===String(id));
+ if(!p||!currentUser||p.user_id!==currentUser.id||p.status!=="pending"){toast("只能编辑自己的待审核投稿");return}
+ const d=p.payload||{},form=document.getElementById("inlineProposalForm");
+ if(!form){toast("投稿表单暂时不可用");return}
+ form.reset();pendingEditId=id;
+ document.getElementById("submissionType").value=p.action==="add_cut"?"add_cut":"create_anime";
+ updateSubmissionType();
+ if(p.action==="add_cut"){
+  document.getElementById("existingAnimeSearch").value="";updateSubmissionType();
+  document.getElementById("existingAnimeSelect").value=d.anime_id||"";
+  refreshExistingEpisodeOptions();
+  loadCutsForEdit("existingAnimeCuts",Array.isArray(d.cuts)&&d.cuts.length?d.cuts:[{episode:d.episode,time_point:d.time_point,description:d.description||d.cut_description}],false);
+ }else{
+  for(const [key,value] of [["newAnimeTitle",d.title],["newAnimeSeason",d.season],["newAnimeYear",d.year],["newAnimeCategory",d.category],["inlineCoverUrl",d.cover_url]]){
+   const field=document.getElementById(key);if(field&&value!=null)field.value=value;
+  }
+  loadCutsForEdit("newAnimeCuts",Array.isArray(d.cuts)?d.cuts:[],true);
+ }
+ document.getElementById("pendingEditNotice")?.remove();
+ const notice=document.createElement("div");notice.id="pendingEditNotice";notice.className="pending-edit-notice";
+ notice.textContent="编辑待审核投稿 · 保存后将更新原投稿并等待审核";form.prepend(notice);
+ document.getElementById("inlineSubmitButton").textContent="保存并重新投稿";
+ navigatePage("submit");window.scrollTo({top:0,behavior:"instant"});
+}
+async function cancelPendingProposal(id){
+ const p=myPostsCache?.find(x=>String(x.id)===String(id));
+ if(!p||!currentUser||p.user_id!==currentUser.id||p.status!=="pending"){toast("只能取消自己的待审核投稿");return}
+ modal("取消投稿","确定取消这条待审核投稿吗？",'<div class="logout-confirm-actions"><button type="button" class="btn plain" id="pendingNo">否</button><button type="button" class="btn primary" id="pendingYes">是</button></div>');
+ document.getElementById("pendingNo").onclick=closeModal;
+ document.getElementById("pendingYes").onclick=async()=>{
+  const btn=document.getElementById("pendingYes");btn.disabled=true;
+  try{
+   const r=await db.from("proposals").delete().eq("id",id).eq("user_id",currentUser.id).eq("status","pending").select("id");
+   if(r.error){toast("取消失败："+r.error.message);return}
+   if(!r.data?.length){toast("投稿状态已变化，请刷新后重试");closeModal();myPostsCache=null;await myProposals(1,true);return}
+   if(pendingEditId===id)resetPendingEdit();
+   closeModal();myPostsCache=null;reviewCache=null;toast("投稿已取消");await myProposals(1,true);
+  }catch(err){toast("取消失败："+(err?.message||String(err)))}
+  finally{btn.disabled=false}
+ };
+}
+document.addEventListener("click",event=>{
+ const edit=event.target.closest?.("[data-pending-edit]");
+ if(edit){editPendingProposal(edit.dataset.pendingEdit);return}
+ const del=event.target.closest?.("[data-pending-delete]");
+ if(del)cancelPendingProposal(del.dataset.pendingDelete);
+});
+
 let myPostsCache=null;
 let myPostsCacheUserId=null;
 let myPostsRequest=null;
@@ -2122,7 +2965,7 @@ async function myProposals(page=1,force=false){
   catch(e){host.innerHTML=`<div class="posts-empty posts-error">暂时无法读取投稿记录<br><small>${esc(e.message)}</small></div>`;return}
  }
  const items=myPostsCache;
- const statusInfo={pending:["待审核","pending"],approved:["已通过","approved"],rejected:["已驳回","rejected"]};
+ const statusInfo={pending:["待审核","pending"],approved:["已通过","approved"],rejected:["投稿已驳回","rejected"]};
  const perPage=12, totalPages=Math.max(1,Math.ceil(items.length/perPage));
  page=Math.min(Math.max(1,page),totalPages);
  const visible=items.slice((page-1)*perPage,page*perPage);
@@ -2130,14 +2973,14 @@ async function myProposals(page=1,force=false){
    const payload=p.payload||{}, st=statusInfo[p.status]||[p.status||"未知状态","unknown"];
    const date=p.created_at?new Date(p.created_at).toLocaleString("zh-CN",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}):"提交时间未知";
    const note=p.admin_note?`<div class="post-note"><b>审核备注</b><span>${esc(p.admin_note)}</span></div>`:"";
-   return `<article class="post-card"><div class="post-card-top">${authorBadge(payload.author_profile||authorInfoFromUser(currentUser))}<span class="post-kind"><span class="post-kind-icon">${p.action==="add_cut"?"✂":"▣"}</span>${esc(proposalActionName(p.action))}</span><span class="post-status ${st[1]}"><i></i>${esc(st[0])}</span></div><h4>${esc(payload.title||"未命名番剧")}</h4><div class="post-meta"><span>◷ ${esc(date)}</span>${payload.year?`<span>${esc(payload.year)} 年</span>`:""}${payload.season?`<span>${esc(payload.season)}</span>`:""}${payload.episode?`<span>第 ${esc(payload.episode)} 集</span>`:""}</div>${payload.time_point?`<div class="post-detail"><b>时间点</b><span>${esc(payload.time_point)}</span></div>`:""}${payload.description||payload.cut_description?`<div class="post-description">${esc(payload.description||payload.cut_description)}</div>`:""}${note}<details class="post-more"><summary>查看详情</summary>${proposalSummary(payload)}</details></article>`;
+   return `<article class="post-card"><div class="post-card-top">${authorBadge(payload.author_profile||authorInfoFromUser(currentUser))}<span class="post-kind"><span class="post-kind-icon">${p.action==="add_cut"?"✂":"▣"}</span>${esc(proposalActionName(p.action))}</span><span class="post-status ${st[1]}"><i></i>${esc(st[0])}</span></div><h4>${esc(payload.title||"未命名番剧")}</h4><div class="post-meta"><span>◷ ${esc(date)}</span>${payload.year?`<span>${esc(payload.year)} 年</span>`:""}${payload.season?`<span>${esc(payload.season)}</span>`:""}${payload.episode?`<span>第 ${esc(payload.episode)} 集</span>`:""}</div>${payload.time_point?`<div class="post-detail"><b>时间点</b><span>${esc(payload.time_point)}</span></div>`:""}${payload.description||payload.cut_description?`<div class="post-description">${esc(payload.description||payload.cut_description)}</div>`:""}${note}${p.status==="pending"?`<div class="pending-post-actions"><button type="button" class="btn plain" data-pending-edit="${esc(p.id)}">编辑重新投稿</button><button type="button" class="btn plain pending-cancel" data-pending-delete="${esc(p.id)}">取消投稿</button></div>`:""}<details class="post-more"><summary>查看详情</summary>${proposalSummary(payload)}</details></article>`;
  }).join("")}</div>${totalPages>1?`<div class="posts-pagination"><button class="btn plain" type="button" ${page===1?"disabled":""} onclick="myProposals(${page-1})">上一页</button><span>第 ${page} / ${totalPages} 页</span><button class="btn plain" type="button" ${page===totalPages?"disabled":""} onclick="myProposals(${page+1})">下一页</button></div>`:""}`:`<div class="posts-empty"><div class="posts-empty-icon">✉</div><b>还没有投稿记录</b><p>提交番剧或删减记录后，会在这里显示审核进度。</p><button class="btn primary" type="button" onclick="navigatePage('submit')">＋ 去投稿</button></div>`;
 }
 function proposalActionName(action){return action==="add_cut"?"新增删减记录":action==="create_anime"?"新增番剧":action||"投稿"}
 function proposalSummary(payload={}){
  const rows=[
   ["年份",payload.year],["季度",payload.season],["分类",payload.category],
-  ["集数",payload.episode],["删减时间",payload.time_point],["删减概况",payload.cut_description],["删减来源",payload.cut_source_note],["说明/简介",payload.description],
+  ["集数",payload.episode],["删减时间",payload.time_point],["删减概况",payload.cut_description],["删减来源",payload.cut_source_note],["删减说明",payload.description],
   ["封面",payload.cover_url],["来源",payload.source_note]
  ].filter(([k,v])=>v!==null&&v!==undefined&&String(v).trim()!=="");
  const cuts=Array.isArray(payload.cuts)?payload.cuts:[];
@@ -2148,12 +2991,12 @@ function proposalSummary(payload={}){
 let reviewCache=null;
 let reviewCurrentPage=1;
 async function adminReview(view="all",page=1,force=false){
- if(!isAdmin){toast("当前账号不是管理员");return}
+ if(!isAdmin){toast("没有审核权限");return}
  // Tab switches use already loaded records; no repeated database query.
  if(!reviewCache||force){
   const r=await db.from("proposals").select("*").in("status",["pending","approved"]).order("created_at",{ascending:false});
   if(r.error){toast("读取审核记录失败："+r.error.message);return}
-  reviewCache=r.data||[];await loadPublicAuthorProfiles(reviewCache.map(p=>p.user_id));
+  reviewCache=r.data||[];loadPublicAuthorProfiles(reviewCache.map(p=>p.user_id)).then(()=>{if(document.getElementById("adminReviewPage")&&!document.getElementById("adminReviewPage").classList.contains("page-hidden"))adminReview(view,reviewCurrentPage)}).catch(()=>{});
  }
  reviewCurrentPage=page;
  const items=reviewCache,pending=items.filter(p=>p.status==="pending"),approved=items.filter(p=>p.status==="approved");
@@ -2189,8 +3032,7 @@ async function adminReview(view="all",page=1,force=false){
  const cards=visible.map(p=>{
   const isApproved=p.status==="approved";
   const date=p.created_at?new Date(p.created_at).toLocaleString("zh-CN"):"";
-  return `<div class="item review-entry"><div class="review-entry-head"><b>${esc(p.payload?.title||"未命名番剧")}</b><span class="review-status ${isApproved?"is-approved":"is-pending"}">${isApproved?"✓ 已通过":"◷ 待审核"}</span></div>
-   <div class="muted" style="font-size:12px;margin:6px 0">${esc(proposalActionName(p.action))}${date?" · "+esc(date):""}</div>
+  return `<div class="item review-entry"><div class="review-entry-meta"><span class="review-entry-action">${esc(proposalActionName(p.action))}${date?" · "+esc(date):""}</span><span class="review-status ${isApproved?"is-approved":"is-pending"}">${isApproved?"✓ 已通过":"◷ 待审核"}</span></div>
    ${authorBadge(publicAuthorProfiles.get(p.user_id)||knownAuthors.get(p.user_id)||p.payload?.author_profile)}${proposalSummary(p.payload||{})}
    ${isApproved?'<p class="review-done">该投稿已审核通过。</p>':`<input class="field" id="note-${p.id}" placeholder="审核备注（选填）"><div class="row"><button class="btn plain" onclick="review('${p.id}','reject')">驳回</button><button class="btn primary" onclick="review('${p.id}','approve')">通过并发布</button></div>`}
   </div>`;
@@ -2198,22 +3040,17 @@ async function adminReview(view="all",page=1,force=false){
  const empty=view==="approved"?"暂无已通过的投稿记录。":view==="pending"?"当前没有待审核投稿。":"暂无投稿审核记录。";
  const pagination=pages>1?`<div class="review-pagination"><button type="button" class="btn plain" ${safePage<=1?"disabled":""} onclick="adminReview('${view}',${safePage-1})">上一页</button><span>${safePage} / ${pages} 页</span><button type="button" class="btn plain" ${safePage>=pages?"disabled":""} onclick="adminReview('${view}',${safePage+1})">下一页</button></div>`:"";
  const body=tabs+bulkBar+(cards||`<div class="review-empty">${empty}</div>`)+pagination;
- const existing=document.getElementById("modal");
- const title=document.getElementById("modalTitle");
- // Keep the modal mounted and only update the list: prevents flashing and expensive full modal reinitialization.
- if(existing&&existing.classList.contains("show")&&title&&title.textContent==="投稿审核"){
-  const target=document.getElementById("modalBody");
-  if(target){target.innerHTML=body;target.scrollTop=0;return}
- }
+ const target=document.getElementById("adminReviewContent");
+ if(target){target.innerHTML=body;return}
  modal("投稿审核","查看投稿审核状态，并处理尚未审核的内容。",body);
 }
 
 async function batchApproveAll(){
- if(!isAdmin){toast("当前账号不是管理员");return}
+ if(!isAdmin){toast("没有审核权限");return}
  const r=await db.from("proposals").select("id,action,payload").eq("status","pending").order("created_at");
  if(r.error){toast("读取待审核列表失败："+r.error.message);return}
  const pending=r.data||[];if(!pending.length){toast("当前没有待审核投稿");await adminReview();return}
- if(!confirm(`确定一键同意全部 ${pending.length} 条待审核投稿吗？这会把投稿发布到正式档案，请确认内容正确。`))return;
+ if(!await archiveConfirm(`确定通过全部 ${pending.length} 条待审核投稿吗？`,"通过后将发布到正式档案。", "确认通过"))return;
  const btn=$("approveAllBtn");if(btn){btn.disabled=true;btn.textContent="正在批量处理…"}
  let approved=0;const failures=[];
  for(let i=0;i<pending.length;i++){
@@ -2226,8 +3063,8 @@ async function batchApproveAll(){
   }catch(err){failures.push(`${p.payload?.title||p.id}：${err?.message||String(err)}`)}
  }
  await refresh();await adminReview();
- if(failures.length){const nl=String.fromCharCode(10);alert(`批量审核完成。成功：${approved} 条；失败：${failures.length} 条。${nl}${nl}失败详情：${nl}${failures.slice(0,12).join(nl)}${failures.length>12?nl+"其余失败项请在审核列表逐条检查。":""}`)}
- else toast(`批量审核完成：已同意 ${approved} 条投稿`);
+ if(failures.length){const nl=String.fromCharCode(10);archiveMessage("批量审核结果",`已通过 ${approved} 条，失败 ${failures.length} 条。${nl}${nl}失败详情：${nl}${failures.slice(0,12).join(nl)}${failures.length>12?nl+"其余失败项请在审核列表逐条检查。":""}`)}
+ else toast(`已通过 ${approved} 条投稿`);
 }
 async function syncApprovedProposal(proposalId){
  const q=await db.from("proposals").select("*").eq("id",proposalId).maybeSingle();if(q.error||!q.data)return;
@@ -2250,10 +3087,12 @@ async function syncApprovedProposal(proposalId){
  }else if(p.action==="add_cut"&&pl.anime_id){await insertCuts(pl.anime_id)}
 }
 async function review(id,decision){
- reviewCache=null;const note=$("note-"+id)?.value||"";const r=await db.rpc("review_proposal",{p_proposal_id:id,p_decision:decision,p_admin_note:note});if(r.error){const msg=r.error.message||String(r.error);if(msg.includes("正式档案中找不到该番剧")){toast("发布失败：档案里还没有这部番剧。请先新增番剧并审核通过，再提交删减记录。");}else if(msg.includes("管理员")||msg.includes("admin")){toast("审核失败：当前账号没有管理员权限，请检查 profiles.is_admin。");}else{toast("审核失败："+msg);}return}if(decision==="approve")await syncApprovedProposal(id);toast(decision==="approve"?"已批准并同步发布番剧/删减记录":"已驳回");adminReview();refresh()}
+ reviewCache=null;const note=$("note-"+id)?.value||"";const r=await db.rpc("review_proposal",{p_proposal_id:id,p_decision:decision,p_admin_note:note});if(r.error){const msg=r.error.message||String(r.error);if(msg.includes("正式档案中找不到该番剧")){toast("发布失败：档案里还没有这部番剧。请先新增番剧并审核通过，再提交删减记录。");}else if(msg.includes("管理员")||msg.includes("admin")){toast("审核失败：当前账号没有管理员权限，请检查 profiles.is_admin。");}else{toast("审核失败："+msg);}return}if(decision==="approve")await syncApprovedProposal(id);toast(decision==="approve"?"审核通过，已发布":"投稿已驳回");adminReview();refresh()}
 window.navigatePage=function(page){
  document.querySelectorAll("[data-page]").forEach(el=>el.classList.toggle("active",el.dataset.page===page));
  const welcome=$("homeWelcome"), layout=$("contentLayout");
+ const homeDashboard=document.querySelector(".home-dashboard-grid");
+ if(homeDashboard)homeDashboard.classList.toggle("page-hidden",page!=="home");
  if(welcome)welcome.classList.toggle("page-hidden",page!=="home");
  if(layout){layout.classList.toggle("page-hidden",page==="home"||page==="admin");layout.classList.toggle("page-single",["directory","submit","my-posts"].includes(page));}
  document.querySelectorAll("[data-page-section]").forEach(el=>{
@@ -2262,16 +3101,25 @@ window.navigatePage=function(page){
  });
  if(page==="my-posts")myProposals();
  if(page==="admin")adminReview();
- window.scrollTo({top:0,behavior:"smooth"});
+ window.scrollTo({top:0,behavior:"instant"});
 };
 document.querySelectorAll("[data-page]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();navigatePage(el.dataset.page)}));
 const quickSubmitBtn=$("submitBtn");if(quickSubmitBtn)quickSubmitBtn.onclick=()=>navigatePage("submit");const submitPanelBtn=$("submitPanelBtn"); if(submitPanelBtn) submitPanelBtn.onclick=()=>navigatePage("submit");
-const browseDirectoryBtn=$("browseDirectoryBtn"); if(browseDirectoryBtn){browseDirectoryBtn.type="button";browseDirectoryBtn.addEventListener("click",e=>{e.preventDefault();navigatePage("directory");requestAnimationFrame(()=>$("directory")?.scrollIntoView({behavior:"smooth",block:"start"}));});}
+const browseDirectoryBtn=$("browseDirectoryBtn"); if(browseDirectoryBtn){browseDirectoryBtn.type="button";browseDirectoryBtn.addEventListener("click",e=>{e.preventDefault();navigatePage("directory");});}
 $("authBtn").onclick=authDialog;
 $("headerUsername").onclick=()=>$("roleBadge").click();
 $("roleBadge").onclick=()=>{if(!currentUser){toast("请先登录");return}const menu=$("accountMenu"),opening=!menu.classList.contains("open");menu.classList.toggle("open",opening);$("roleBadge").setAttribute("aria-expanded",String(opening));};
 $("changePasswordBtn").onclick=()=>{if($("accountMenu"))$("accountMenu").classList.remove("open");$("roleBadge").setAttribute("aria-expanded","false");showAccountSettings();};
-$("logoutBtn").onclick=async()=>{if($("accountMenu"))$("accountMenu").classList.remove("open");try{const r=await db.auth.signOut();if(r.error){toast("退出失败："+r.error.message);return}toast("已退出登录");await refresh();}catch(e){toast("退出失败："+(e?.message||String(e)));}};
+async function confirmLogout(){
+ modal("退出登录","确定要退出当前账号吗？",`<div class="logout-confirm-actions"><button type="button" class="btn plain" id="logoutCancel">否</button><button type="button" class="btn primary" id="logoutConfirm">是</button></div>`);
+ $("logoutCancel").onclick=()=>closeModal();
+ $("logoutConfirm").onclick=async()=>{
+  const btn=$("logoutConfirm");btn.disabled=true;btn.textContent="正在退出…";
+  try{const r=await db.auth.signOut();if(r.error){toast("退出失败："+r.error.message);btn.disabled=false;btn.textContent="是";return}closeModal();toast("已安全退出登录");await refresh()}
+  catch(e){toast("退出失败："+(e?.message||String(e)));btn.disabled=false;btn.textContent="是"}
+ };
+}
+$("logoutBtn").onclick=()=>{if($("accountMenu"))$("accountMenu").classList.remove("open");confirmLogout()};
 document.addEventListener("click",e=>{const wrap=$("accountMenuWrap");if(wrap&&!wrap.contains(e.target)&&e.target!==$("roleBadge")){$("accountMenu")?.classList.remove("open");$("roleBadge")?.setAttribute("aria-expanded","false");}});
 $("close").onclick=closeModal;$("modal").onclick=null;let animeSearchTimer;
 $("search").addEventListener("input",()=>{
@@ -2347,7 +3195,7 @@ function refreshExistingEpisodeOptions(){
 
 function addTimePointRow(list,values={}){
  const row=document.createElement('div');row.className='cut-time-row';
- row.innerHTML=`<div><label>时间点 *</label><input class="field cut-time" value="${esc(values.time_point||"")}" placeholder="08:24–09:10 或 未知"></div><div><label>类型 / 说明 *</label><textarea class="field cut-description" rows="1" placeholder="字幕和谐、画面删减、对白修改等">${esc(values.description||"")}</textarea></div><button class="cut-remove" type="button" data-remove-time>移除</button>`;
+ row.innerHTML=`<div class="cut-inline-time"><label>时间点 *</label><input class="field cut-time" value="${esc(values.time_point||"")}" placeholder="例如 16:23"></div><div class="cut-inline-desc"><label>说明 *</label><input class="field cut-description" value="${esc(values.description||"")}" placeholder="例如 字幕丢失 10s"></div><button class="cut-remove" type="button" data-remove-time>移除</button>`;
  row.querySelector('[data-remove-time]').addEventListener('click',()=>{if(list.querySelectorAll('.cut-time-row').length<=1)return;row.remove();renumberTimeRows(list)});
  list.appendChild(row);renumberTimeRows(list);
 }
@@ -2395,12 +3243,20 @@ $("inlineProposalForm").addEventListener("submit",async e=>{
  }catch(err){toast(err.message||String(err));return}
  submit.disabled=true;submit.textContent=isAdmin?"正在发布……":"正在提交……";
  try{
-  const inserted=await db.from("proposals").insert({user_id:currentUser.id,action,payload:{...payload,author_profile:authorInfoFromUser(currentUser)},status:"pending"}).select("id").single();
-  if(inserted.error){toast("投稿失败："+inserted.error.message);return}
-  if(isAdmin){const reviewed=await db.rpc("review_proposal",{p_proposal_id:inserted.data.id,p_decision:"approve",p_admin_note:"管理员投稿，自动发布"});if(reviewed.error){toast("投稿已保存，但直接发布失败："+reviewed.error.message+"。请到审核列表完成发布。");return}await syncApprovedProposal(inserted.data.id);toast("管理员投稿成功，已直接发布");}
-  else toast("投稿成功，已提交管理员审核");
+  const editId=pendingEditId;
+  if(editId&&!myPostsCache?.some(p=>String(p.id)===String(editId)&&p.user_id===currentUser.id&&p.status==="pending")){toast("待审核投稿信息已过期，请重新打开编辑");resetPendingEdit();return}
+  const inserted=editId
+   ? await db.from("proposals").update({action,payload:{...payload,author_profile:authorInfoFromUser(currentUser)}}).eq("id",editId).eq("user_id",currentUser.id).eq("status","pending").select("id").maybeSingle()
+   : await db.from("proposals").insert({user_id:currentUser.id,action,payload:{...payload,author_profile:authorInfoFromUser(currentUser)},status:"pending"}).select("id").single();
+  if(inserted.error){toast((editId?"重新投稿失败：":"投稿失败：")+inserted.error.message);return}
+  if(!inserted.data?.id){toast("投稿状态已改变，无法编辑，请刷新记录");return}
+  if(editId){myPostsCache=null;reviewCache=null;resetPendingEdit();toast("投稿已更新，等待审核");}
+  else{
+  if(isAdmin){const reviewed=await db.rpc("review_proposal",{p_proposal_id:inserted.data.id,p_decision:"approve",p_admin_note:"管理员投稿，自动发布"});if(reviewed.error){toast("投稿已保存，但直接发布失败："+reviewed.error.message+"。请到审核列表完成发布。");return}await syncApprovedProposal(inserted.data.id);toast("投稿已发布");}
+  else toast("投稿成功，等待审核");
+  }
   form.reset();$("newAnimeCuts").innerHTML="";$("existingAnimeCuts").innerHTML="";makeCutRow("newAnimeCuts");makeCutRow("existingAnimeCuts");updateSubmissionType();await refresh();
- }catch(err){toast("投稿请求失败："+(err?.message||String(err)))}finally{submit.disabled=false;submit.textContent="➤ 提交投稿"}
+ }catch(err){toast("投稿请求失败："+(err?.message||String(err)))}finally{submit.disabled=false;submit.textContent=pendingEditId?"保存并重新投稿":"➤ 提交投稿"}
 });
 navigatePage("home");
 function hasRecoveryMarker(){
