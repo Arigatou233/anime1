@@ -2216,6 +2216,67 @@ body{background:linear-gradient(180deg,#f4f8ff 0,#f9fbff 380px,#f8faff 100%)}
   #cards .season-items .directory-card{grid-template-columns:72px minmax(0,1fr)!important;gap:9px!important;padding:9px!important}
   #cards .season-items .directory-card .directory-poster{width:72px!important;height:96px!important}
 }
+
+/* 最终响应式覆盖：手机单列横向列表，电脑保持原网格 */
+@media screen and (max-width: 700px){
+  #cards .season-items,
+  #cards.directory-grid-view .season-items,
+  #cards.directory-list-view .season-items{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:10px!important;
+    padding:10px!important;
+  }
+  #cards .season-items .directory-card,
+  #cards.directory-grid-view .season-items .directory-card{
+    display:grid!important;
+    grid-template-columns:88px minmax(0,1fr)!important;
+    grid-template-rows:auto!important;
+    align-items:stretch!important;
+    gap:11px!important;
+    width:100%!important;
+    padding:10px!important;
+    min-height:132px!important;
+  }
+  #cards .season-items .directory-card .directory-poster,
+  #cards.directory-grid-view .season-items .directory-card .directory-poster{
+    grid-column:1!important;
+    grid-row:1!important;
+    width:88px!important;
+    height:116px!important;
+    min-width:0!important;
+    min-height:0!important;
+    max-height:none!important;
+    aspect-ratio:auto!important;
+    padding:4px!important;
+    margin:0!important;
+    align-self:start!important;
+  }
+  #cards .season-items .directory-card .directory-poster img{
+    width:100%!important;height:100%!important;object-fit:contain!important;
+  }
+  #cards .season-items .directory-card .card-main,
+  #cards.directory-grid-view .season-items .directory-card .card-main{
+    grid-column:2!important;grid-row:1!important;
+    width:auto!important;min-width:0!important;
+    display:flex!important;flex-direction:column!important;
+    gap:7px!important;padding:0!important;
+  }
+  #cards .season-items .directory-card .card-bottom{
+    margin-top:auto!important;
+  }
+}
+@media screen and (max-width: 380px){
+  #cards .season-items .directory-card,
+  #cards.directory-grid-view .season-items .directory-card{
+    grid-template-columns:74px minmax(0,1fr)!important;
+  }
+  #cards .season-items .directory-card .directory-poster,
+  #cards.directory-grid-view .season-items .directory-card .directory-poster{
+    width:74px!important;height:105px!important;
+  }
+}
+
 </style>
 
 
