@@ -2198,6 +2198,24 @@ body{background:linear-gradient(180deg,#f4f8ff 0,#f9fbff 380px,#f8faff 100%)}
 .pending-post-actions .pending-cancel{color:#b75d6b!important;background:#fff6f7!important;border:1px solid #f5dfe3!important}
 .pending-edit-notice{padding:12px 15px;margin:0 0 16px;border-radius:12px;border:1px solid #d8e6fc;background:#f0f6ff;color:#4d70ae;font-size:13px;font-weight:650}
 
+
+/* Responsive archive directory: desktop grid, phone horizontal list */
+@media (max-width:700px){
+  #cards .season-items{display:flex!important;flex-direction:column!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;padding:10px!important}
+  #cards .season-items .directory-card{display:grid!important;grid-template-columns:84px minmax(0,1fr)!important;grid-template-rows:auto!important;align-items:stretch!important;gap:12px!important;width:100%!important;min-height:0!important;padding:11px!important}
+  #cards .season-items .directory-card .directory-poster{grid-column:1!important;grid-row:1!important;align-self:start!important;width:84px!important;height:112px!important;min-width:0!important;min-height:0!important;aspect-ratio:3/4!important;padding:3px!important;margin:0!important}
+  #cards .season-items .directory-card .directory-poster img{width:100%!important;height:100%!important;object-fit:contain!important}
+  #cards .season-items .directory-card .card-main{grid-column:2!important;grid-row:1!important;min-width:0!important;width:100%!important;display:flex!important;flex-direction:column!important;gap:5px!important;padding:0!important}
+  #cards .season-items .directory-card .card-main h3{font-size:15px!important;line-height:1.4!important;margin:0 0 3px!important}
+  #cards .season-items .directory-card .card-bottom{margin-top:auto!important}
+  #cards .season-items .directory-card .directory-stats{font-size:11px!important}
+  #cards .season-items .directory-card .card-actions{justify-content:flex-end!important}
+  #cards .season-items .directory-card .directory-detail-button{min-height:30px!important;padding:5px 10px!important;font-size:11px!important}
+}
+@media (max-width:360px){
+  #cards .season-items .directory-card{grid-template-columns:72px minmax(0,1fr)!important;gap:9px!important;padding:9px!important}
+  #cards .season-items .directory-card .directory-poster{width:72px!important;height:96px!important}
+}
 </style>
 
 
